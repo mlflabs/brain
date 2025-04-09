@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://caq5evqb5mx8w"]
+
+[ext_resource type="PackedScene" uid="uid://bwggrf7sbmkcv" path="res://addons/PlayerCharacter/PlayerCharacterScene.tscn" id="1_nxogm"]
+[ext_resource type="Material" uid="uid://c32py1js6b57g" path="res://addons/kenney_prototype_tools/materials/orange/material_05.tres" id="2_3253y"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("1_nxogm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.77983, 0)
+
+[node name="Map" type="Node" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51941, 0, -1.45197)
+material_override = ExtResource("2_3253y")
+use_collision = true
+size = Vector3(14.3528, 1, 13.4252)
