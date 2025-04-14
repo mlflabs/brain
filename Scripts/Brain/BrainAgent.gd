@@ -51,14 +51,13 @@ func _process(delta):
 			current_consideration = considerations[largest_index]
 			current_consideration.on_enter()
 			
-			print("Chosen {}, with score {}", current_consideration.name, largest_score)
+			print("Chosen: ", current_consideration.name, ", with score:", largest_score)
 			
 			largest_index = 0
 			largest_score = 0
 			state = RUNNING
 			return
 		ERROR:
-			printerr("We had a oopseee")
 			state = THINKING
 		
 
@@ -68,6 +67,7 @@ func on_result(result:bool):
 	else:
 		state = ERROR
 	
-
+func interupt():
+	on_result(false)
 
 		

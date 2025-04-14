@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://6ulp4jr8arsk"]
+[gd_scene load_steps=16 format=3 uid="uid://6ulp4jr8arsk"]
 
 [ext_resource type="Script" uid="uid://0dim3ha5y8k7" path="res://Scripts/Classes/npc_wp_creeper.gd" id="1_16t62"]
 [ext_resource type="Script" uid="uid://5xm5vsxyceah" path="res://Scripts/Brain/BrainBoardNpc.gd" id="2_x1fa8"]
@@ -9,13 +9,20 @@
 [ext_resource type="Script" uid="uid://c3cdo2revtl7" path="res://Scripts/Brain/Actions/WaypointActions/BrainActionGetNextWP.gd" id="7_72wl0"]
 [ext_resource type="Script" uid="uid://dq78aqhb8c4dc" path="res://Scripts/Brain/Actions/BrainActionMove.gd" id="8_eotv4"]
 [ext_resource type="Material" uid="uid://fyvygjjo7ysh" path="res://assets/Kenny/kenney_prototype_tools/materials/red/material_02.tres" id="9_srfhi"]
+[ext_resource type="Script" uid="uid://b8jdpe1hbqw38" path="res://Scripts/Brain/Considerations/BrainConsiderationBBValidKey.gd" id="9_x1fa8"]
+[ext_resource type="Script" uid="uid://btkfbftwq1jtc" path="res://Scripts/Brain/Actions/BrainBoardActions/BrainActionChangeAnim.gd" id="10_etwnn"]
+[ext_resource type="Script" uid="uid://bwtnxjnd36e7k" path="res://Scripts/Brain/Actions/BrainBoardActions/BrainActionWait.gd" id="11_xcg2l"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fq0cl"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_hwpts"]
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_etwnn"]
+
+[node name="Creep1" type="CharacterBody3D" node_paths=PackedStringArray("BA", "BB")]
 script = ExtResource("1_16t62")
+BA = NodePath("BrainAgent")
+BB = NodePath("BrainBoardNpc")
 
 [node name="BrainBoardNpc" type="Node" parent="." node_paths=PackedStringArray("nav_agent", "npc", "npc_anim", "npc_model_root")]
 script = ExtResource("2_x1fa8")
@@ -32,6 +39,25 @@ metadata/_custom_type_script = "uid://ds1c32y20tiig"
 [node name="BrainAgent" type="Node" parent="."]
 script = ExtResource("4_etwnn")
 metadata/_custom_type_script = "uid://dum72xbrhjpq2"
+
+[node name="BrainConsiderationBBValidKey" type="Node" parent="BrainAgent" node_paths=PackedStringArray("bb")]
+script = ExtResource("9_x1fa8")
+bb = NodePath("../../BrainBoardNpc")
+key = "target"
+metadata/_custom_type_script = "uid://b8jdpe1hbqw38"
+
+[node name="BrainStateActions" type="Node" parent="BrainAgent/BrainConsiderationBBValidKey"]
+script = ExtResource("6_mcuvf")
+metadata/_custom_type_script = "uid://pp6jh1a56vm3"
+
+[node name="BrainActionChangeAnim" type="Node" parent="BrainAgent/BrainConsiderationBBValidKey/BrainStateActions" node_paths=PackedStringArray("bb")]
+script = ExtResource("10_etwnn")
+bb = NodePath("../../../../BrainBoardNpc")
+metadata/_custom_type_script = "uid://btkfbftwq1jtc"
+
+[node name="BrainActionWait" type="Node" parent="BrainAgent/BrainConsiderationBBValidKey/BrainStateActions"]
+script = ExtResource("11_xcg2l")
+metadata/_custom_type_script = "uid://bwtnxjnd36e7k"
 
 [node name="BrainStaticConsideration" type="Node" parent="BrainAgent"]
 script = ExtResource("5_xcg2l")
@@ -54,6 +80,7 @@ bb = NodePath("../../../../BrainBoardNpc")
 metadata/_custom_type_script = "uid://dq78aqhb8c4dc"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.57, 0, 0, 0, 0.57, 0, 0, 0, 0.57, 0, 0, 0)
 shape = SubResource("SphereShape3D_fq0cl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -61,8 +88,15 @@ material_override = ExtResource("9_srfhi")
 mesh = SubResource("SphereMesh_hwpts")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_desired_distance = 0.2
-target_desired_distance = 0.2
-path_max_distance = 0.21
 max_speed = 1.0
-debug_enabled = true
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.00107754, -0.00781954, 0.709956, -0.703353, -0.0969228, 0, 0.0969168, -0.70331, -0.00789343, 0.0161554, -0.0234969, -0.476581)
+shape = SubResource("CapsuleShape3D_etwnn")
+debug_color = Color(0.802878, 0.284463, 0.769626, 0.42)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0275173, 0.14912, -0.389198)
+size = Vector3(0.446045, 0.228516, 0.318848)

@@ -20,8 +20,9 @@ func tick(delta:float):
 		var direction = (next_nav_point - bb.npc.global_position).normalized()
 		bb.npc.velocity = direction * bb.nav_agent.get_max_speed() 
 		
+		if direction.y != 1:
+			bb.npc_model_root.basis = lerp(bb.npc_model_root.basis, Basis.looking_at(direction), 10.0 * delta)
 		
-		rotate_model(direction, delta)
 		bb.npc.move_and_slide()
 		
 		
@@ -32,8 +33,3 @@ func tick(delta:float):
 				bb.nav_agent.get_next_path_position()
 	else:
 		parent.on_result(true)
-
-
-func rotate_model(direction: Vector3, delta : float) -> void:
-	bb.npc_model_root.basis = lerp(bb.npc_model_root.basis, Basis.looking_at(direction), 10.0 * delta)
-	

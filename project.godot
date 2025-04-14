@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 MapManager="*res://Scripts/Singletons/MapManager.gd"
 PropertyManager="*res://Scripts/Singletons/PropertyManager.gd"
+GlobalBoard="*res://Scripts/Brain/BrainBoard.gd"
 
 [input]
 

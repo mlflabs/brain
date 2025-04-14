@@ -23,11 +23,10 @@ func _ready():
 		if i is BrainConsideration:
 			considerations.append(i)
 		if i is BrainState:
-			if action == null:
-				action = i
-				action.parent = self
+			if state == null:
+				state = i
+				state.parent = self
 			else:
 				printerr("Only one action allowed for each consideration")
-	if action == null:
-		printerr("No action added2222")	
+
 	

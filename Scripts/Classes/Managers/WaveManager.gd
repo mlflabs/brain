@@ -1,6 +1,7 @@
 extends Node
 class_name WaveManager
 
+const CREEPS_KEY = "creeps"
 
 @export var start_waypoints: Array[WayPoint] = []
 @export var waypoint: WayPoint
@@ -11,11 +12,15 @@ class_name WaveManager
 @export var timer_creep:float = 0.5
 
 
+
 var time:float
 
+var creeps:Array[NpcWPCreeper] = []
 
 func _ready() -> void:
 	time = 0
+	
+	GlobalBoard.set_value(CREEPS_KEY, creeps)
 
 
 func _physics_process(delta: float) -> void:
@@ -29,5 +34,13 @@ func start_wave():
 	var c = creep.instantiate()
 	creep_parent.add_child(c)
 	c.waypoint = waypoint
+	c.on_destroy_callback = remove_creep
+	add_creep(c)
 	c.position = waypoint.position
+
+
+func remove_creep(node):
+	creeps.erase(node)
 	
+func add_creep(node):
+	creeps.append(node)
