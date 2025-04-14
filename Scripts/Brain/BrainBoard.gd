@@ -22,9 +22,9 @@ func _ready():
 
 
 func keys() -> Array[String]:
-	var keys: Array[String]
-	keys.assign(_data.keys().duplicate())
-	return keys
+	var k: Array[String]
+	k.assign(_data.keys().duplicate())
+	return k
 
 func set_value(key: Variant, value: Variant, blackboard_name: String = DEFAULT) -> void:
 	if not _data.has(blackboard_name):

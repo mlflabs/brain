@@ -2,17 +2,16 @@ extends BrainState
 class_name BrainStateRest
 
 @export var time:float = 2
-@export var npc:Npc
+@export var bb:BrainBoardNpc
 
 var current_time:float = 0
 
 func on_enter():
 	current_time = 0
-	npc.set_state(Npc.npc_state.IDLE)
+	bb.npc_anim.set_state(bb.npc_anim.npc_state.IDLE)
 	
 func on_exit():
 	pass
-	
 
 
 func tick(delta:float):

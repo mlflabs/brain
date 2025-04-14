@@ -1,12 +1,12 @@
-[gd_scene load_steps=23 format=3 uid="uid://bgxygt6h17kxl"]
+[gd_scene load_steps=27 format=3 uid="uid://bgxygt6h17kxl"]
 
 [ext_resource type="Script" uid="uid://c78gp5y6mlwml" path="res://Scripts/Classes/Managers/WaveManager.gd" id="1_erwvk"]
 [ext_resource type="PackedScene" uid="uid://dgaexk2mqn6j8" path="res://addons/srcoder_thirdperson_controller/player.tscn" id="1_r150o"]
+[ext_resource type="Script" uid="uid://cyb4fr4xpexb2" path="res://Scripts/Classes/npc.gd" id="2_1p5hy"]
 [ext_resource type="PackedScene" uid="uid://6ulp4jr8arsk" path="res://Scenes/Creeps/creep1.tscn" id="2_2w5on"]
 [ext_resource type="Script" uid="uid://5xm5vsxyceah" path="res://Scripts/Brain/BrainBoardNpc.gd" id="3_1p5hy"]
 [ext_resource type="PackedScene" uid="uid://dl6hqvtvu3ew1" path="res://assets/Kenny/npcs/character-male-d.glb" id="3_4kpch"]
 [ext_resource type="Script" uid="uid://dum72xbrhjpq2" path="res://Scripts/Brain/BrainAgent.gd" id="3_kln2b"]
-[ext_resource type="Script" uid="uid://cjr6cwpxc7mpl" path="res://Scripts/Classes/npc_smart.gd" id="4_sxkr1"]
 [ext_resource type="Script" uid="uid://cgg06m6c002th" path="res://Scripts/Brain/Considerations/BrainConsiderationRandom.gd" id="6_50glp"]
 [ext_resource type="Script" uid="uid://ds1c32y20tiig" path="res://Scripts/Classes/npc_anim.gd" id="6_sxkr1"]
 [ext_resource type="Script" uid="uid://pp6jh1a56vm3" path="res://Scripts/Brain/States/BrainStateActions.gd" id="7_frkhe"]
@@ -18,6 +18,8 @@
 [ext_resource type="Script" uid="uid://1mrerf28m6y1" path="res://Scenes/node_npcs.gd" id="11_frkhe"]
 [ext_resource type="Script" uid="uid://ctikmiavfple0" path="res://Scenes/node_items.gd" id="12_1p5hy"]
 [ext_resource type="Script" uid="uid://cdxnbyx27pk8x" path="res://Scripts/Classes/WayPoint.gd" id="16_2w5on"]
+[ext_resource type="Script" uid="uid://bdan8ph3hdfa2" path="res://Scripts/Brain/Considerations/BrainStaticConsideration.gd" id="18_0sclb"]
+[ext_resource type="Material" uid="uid://fyvygjjo7ysh" path="res://assets/Kenny/kenney_prototype_tools/materials/red/material_02.tres" id="19_sxkr1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kln2b"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -34,6 +36,10 @@ glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1p5hy"]
 size = Vector3(0.230957, 0.506348, 0.182251)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fq0cl"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_hwpts"]
 
 [node name="Main" type="Node3D"]
 
@@ -54,19 +60,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5218, 0.00247574, 12.9971
 
 [node name="Npc" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.28281)
-script = ExtResource("4_sxkr1")
+script = ExtResource("2_1p5hy")
 
-[node name="BrainBoardNpc" type="Node" parent="Npc" node_paths=PackedStringArray("nav_agent", "npc", "npc_anim", "npc_model_root")]
+[node name="BrainBoardNpc" type="Node" parent="Npc" node_paths=PackedStringArray("nav_agent", "npc", "npc_anim")]
 script = ExtResource("3_1p5hy")
 nav_agent = NodePath("../NavigationAgent3D")
 npc = NodePath("..")
 npc_anim = NodePath("../NpcAnim")
-npc_model_root = NodePath("../Model")
 metadata/_custom_type_script = "uid://5xm5vsxyceah"
 
-[node name="NpcAnim" type="Node" parent="Npc" node_paths=PackedStringArray("animation_player")]
+[node name="NpcAnim" type="Node" parent="Npc"]
 script = ExtResource("6_sxkr1")
-animation_player = NodePath("../Model/model/AnimationPlayer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Npc"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0266113, 0.246826, -0.00177002)
@@ -156,6 +160,35 @@ end_wp = true
 metadata/_custom_type_script = "uid://cdxnbyx27pk8x"
 
 [node name="Creeps" type="Node" parent="."]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="Creeps"]
+
+[node name="BrainBoardNpc" type="Node" parent="Creeps/CharacterBody3D" node_paths=PackedStringArray("nav_agent")]
+script = ExtResource("3_1p5hy")
+nav_agent = NodePath("../NavigationAgent3D")
+metadata/_custom_type_script = "uid://5xm5vsxyceah"
+
+[node name="BrainAgent" type="Node" parent="Creeps/CharacterBody3D"]
+script = ExtResource("3_kln2b")
+metadata/_custom_type_script = "uid://dum72xbrhjpq2"
+
+[node name="BrainStaticConsideration" type="Node" parent="Creeps/CharacterBody3D/BrainAgent"]
+script = ExtResource("18_0sclb")
+value = 0.1
+metadata/_custom_type_script = "uid://bdan8ph3hdfa2"
+
+[node name="BrainStateActions" type="Node" parent="Creeps/CharacterBody3D/BrainAgent/BrainStaticConsideration"]
+script = ExtResource("7_frkhe")
+metadata/_custom_type_script = "uid://pp6jh1a56vm3"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Creeps/CharacterBody3D"]
+shape = SubResource("SphereShape3D_fq0cl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Creeps/CharacterBody3D"]
+material_override = ExtResource("19_sxkr1")
+mesh = SubResource("SphereMesh_hwpts")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Creeps/CharacterBody3D"]
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.25354)

@@ -1,9 +1,68 @@
-[gd_scene load_steps=3 format=3 uid="uid://6ulp4jr8arsk"]
+[gd_scene load_steps=12 format=3 uid="uid://6ulp4jr8arsk"]
 
-[ext_resource type="Texture2D" uid="uid://cy0x7bkgsvvw1" path="res://assets/Kenny/kenney_prototype_tools/textures/red/texture_02.png" id="1_0w6hr"]
+[ext_resource type="Script" uid="uid://0dim3ha5y8k7" path="res://Scripts/Classes/npc_wp_creeper.gd" id="1_16t62"]
+[ext_resource type="Script" uid="uid://5xm5vsxyceah" path="res://Scripts/Brain/BrainBoardNpc.gd" id="2_x1fa8"]
+[ext_resource type="Script" uid="uid://ds1c32y20tiig" path="res://Scripts/Classes/npc_anim.gd" id="3_t2dta"]
+[ext_resource type="Script" uid="uid://dum72xbrhjpq2" path="res://Scripts/Brain/BrainAgent.gd" id="4_etwnn"]
+[ext_resource type="Script" uid="uid://bdan8ph3hdfa2" path="res://Scripts/Brain/Considerations/BrainStaticConsideration.gd" id="5_xcg2l"]
+[ext_resource type="Script" uid="uid://pp6jh1a56vm3" path="res://Scripts/Brain/States/BrainStateActions.gd" id="6_mcuvf"]
+[ext_resource type="Script" uid="uid://c3cdo2revtl7" path="res://Scripts/Brain/Actions/WaypointActions/BrainActionGetNextWP.gd" id="7_72wl0"]
+[ext_resource type="Script" uid="uid://dq78aqhb8c4dc" path="res://Scripts/Brain/Actions/BrainActionMove.gd" id="8_eotv4"]
+[ext_resource type="Material" uid="uid://fyvygjjo7ysh" path="res://assets/Kenny/kenney_prototype_tools/materials/red/material_02.tres" id="9_srfhi"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ffkl"]
-albedo_texture = ExtResource("1_0w6hr")
+[sub_resource type="SphereShape3D" id="SphereShape3D_fq0cl"]
 
-[node name="Creep" type="CSGSphere3D"]
-material_override = SubResource("StandardMaterial3D_0ffkl")
+[sub_resource type="SphereMesh" id="SphereMesh_hwpts"]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_16t62")
+
+[node name="BrainBoardNpc" type="Node" parent="." node_paths=PackedStringArray("nav_agent", "npc", "npc_anim", "npc_model_root")]
+script = ExtResource("2_x1fa8")
+nav_agent = NodePath("../NavigationAgent3D")
+npc = NodePath("..")
+npc_anim = NodePath("../NpcAnim")
+npc_model_root = NodePath("..")
+metadata/_custom_type_script = "uid://5xm5vsxyceah"
+
+[node name="NpcAnim" type="Node" parent="."]
+script = ExtResource("3_t2dta")
+metadata/_custom_type_script = "uid://ds1c32y20tiig"
+
+[node name="BrainAgent" type="Node" parent="."]
+script = ExtResource("4_etwnn")
+metadata/_custom_type_script = "uid://dum72xbrhjpq2"
+
+[node name="BrainStaticConsideration" type="Node" parent="BrainAgent"]
+script = ExtResource("5_xcg2l")
+value = 0.1
+metadata/_custom_type_script = "uid://bdan8ph3hdfa2"
+
+[node name="BrainStateActions" type="Node" parent="BrainAgent/BrainStaticConsideration"]
+script = ExtResource("6_mcuvf")
+metadata/_custom_type_script = "uid://pp6jh1a56vm3"
+
+[node name="BrainActionGetNextWP" type="Node" parent="BrainAgent/BrainStaticConsideration/BrainStateActions" node_paths=PackedStringArray("npc", "bb")]
+script = ExtResource("7_72wl0")
+npc = NodePath("../../../..")
+bb = NodePath("../../../../BrainBoardNpc")
+metadata/_custom_type_script = "uid://c3cdo2revtl7"
+
+[node name="BrainActionMove" type="Node" parent="BrainAgent/BrainStaticConsideration/BrainStateActions" node_paths=PackedStringArray("bb")]
+script = ExtResource("8_eotv4")
+bb = NodePath("../../../../BrainBoardNpc")
+metadata/_custom_type_script = "uid://dq78aqhb8c4dc"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_fq0cl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("9_srfhi")
+mesh = SubResource("SphereMesh_hwpts")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.2
+target_desired_distance = 0.2
+path_max_distance = 0.21
+max_speed = 1.0
+debug_enabled = true

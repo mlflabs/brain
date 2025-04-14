@@ -28,5 +28,6 @@ func _physics_process(delta: float) -> void:
 func start_wave():
 	var c = creep.instantiate()
 	creep_parent.add_child(c)
+	c.waypoint = waypoint
 	c.position = waypoint.position
 	

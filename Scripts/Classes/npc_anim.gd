@@ -1,19 +1,14 @@
-extends CharacterBody3D
-class_name Npc
+extends Node
+class_name NpcAnim
 
 
 
 
 
-@onready var animation_player : AnimationPlayer = $Model/model/AnimationPlayer
-
-######################################
-####Seperate this.........
-####Make Seperate Anim manager.......
+@export var animation_player : AnimationPlayer
 
 enum npc_state {IDLE,RUNNING,JUMPING}
 var state : npc_state = npc_state.IDLE
-@onready var playermodel : Node3D = $Model
  
 
 
@@ -27,6 +22,8 @@ func set_state(s: npc_state):
 	if s == state:
 		return	
 	state = s
+	if animation_player == null:
+		return
 	match s:
 		npc_state.IDLE:
 			animation_player.play("idle")

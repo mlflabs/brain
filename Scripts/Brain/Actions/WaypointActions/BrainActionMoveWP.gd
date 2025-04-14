@@ -1,12 +1,13 @@
 extends BrainAction
-class_name BrainActionMove
+class_name BrainActionMoveWP
 
 
 @export var bb:BrainBoardNpc
 
 
 func on_enter():
-	bb.npc.set_state(Npc.npc_state.RUNNING)
+	pass
+	#bb.npc.set_state(Npc.npc_state.RUNNING)
 	
 	
 func on_exit():

@@ -6,7 +6,7 @@ class_name BrainActionMove
 
 
 func on_enter():
-	bb.npc.set_state(Npc.npc_state.RUNNING)
+	bb.npc_anim.set_state(bb.npc_anim.npc_state.RUNNING)
 	
 	
 func on_exit():
@@ -19,6 +19,8 @@ func tick(delta:float):
 		var next_nav_point = bb.nav_agent.get_next_path_position()
 		var direction = (next_nav_point - bb.npc.global_position).normalized()
 		bb.npc.velocity = direction * bb.nav_agent.get_max_speed() 
+		
+		
 		rotate_model(direction, delta)
 		bb.npc.move_and_slide()
 		
@@ -33,5 +35,5 @@ func tick(delta:float):
 
 
 func rotate_model(direction: Vector3, delta : float) -> void:
-	bb.npc.playermodel.basis = lerp(bb.npc.playermodel.basis, Basis.looking_at(direction), 10.0 * delta)
+	bb.npc_model_root.basis = lerp(bb.npc_model_root.basis, Basis.looking_at(direction), 10.0 * delta)
 	

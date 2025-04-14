@@ -30,8 +30,9 @@ func on_enter():
 
 func next_action():
 	currentAction = actions[index]
-	currentAction.on_enter()
 	index += 1
+	currentAction.on_enter()
+	
 	
 
 

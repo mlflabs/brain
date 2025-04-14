@@ -4,6 +4,9 @@ class_name BrainBoardNpc
 
 @export var nav_agent:NavigationAgent3D
 @export var npc:Npc
+@export var npc_anim:NpcAnim
+@export var npc_model_root : Node3D
+
 
 
 
