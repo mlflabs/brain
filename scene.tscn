@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://caq5evqb5mx8w"]
 
-[ext_resource type="PackedScene" uid="uid://bwggrf7sbmkcv" path="res://addons/PlayerCharacter/PlayerCharacterScene.tscn" id="1_nxogm"]
-[ext_resource type="Material" uid="uid://c32py1js6b57g" path="res://addons/kenney_prototype_tools/materials/orange/material_05.tres" id="2_3253y"]
+[ext_resource type="PackedScene" path="res://addons/PlayerCharacter/PlayerCharacterScene.tscn" id="1_nxogm"]
+[ext_resource type="Material" uid="uid://c32py1js6b57g" path="res://assets/Kenny/kenney_prototype_tools/materials/orange/material_05.tres" id="2_3253y"]
 
 [node name="Node3D" type="Node3D"]
 

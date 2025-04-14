@@ -1,0 +1,134 @@
+[gd_scene load_steps=18 format=3 uid="uid://dcmwngwlpcc1o"]
+
+[ext_resource type="Script" uid="uid://4gkw41tpkdx0" path="res://Scripts/SceneScripts/LevelScene.gd" id="1_tj5wv"]
+[ext_resource type="PackedScene" uid="uid://wo8t48jjx2k" path="res://assets/veg/tree_apple.glb" id="1_xylue"]
+[ext_resource type="Script" uid="uid://behav5l0c1u6" path="res://assets/veg/tree_apple.gd" id="2_tj5wv"]
+[ext_resource type="Material" uid="uid://csfdcdo2s8jaw" path="res://assets/Kenny/kenney_prototype_tools/materials/orange/material_04.tres" id="3_ienac"]
+[ext_resource type="Material" uid="uid://wdic64mkoax2" path="res://assets/materials/road_standard_material_3d.tres" id="5_xylue"]
+[ext_resource type="PackedScene" uid="uid://dajp1fjopd75v" path="res://assets/Kenny/TowerDefense/detail-dirt.glb" id="6_esopp"]
+[ext_resource type="PackedScene" uid="uid://ds857f5klm5x3" path="res://assets/Kenny/TowerDefense/detail-tree.glb" id="7_b10nm"]
+[ext_resource type="PackedScene" uid="uid://b3oabkveatdqr" path="res://assets/Kenny/TowerDefense/enemy-ufo-b-weapon.glb" id="8_fhlu0"]
+[ext_resource type="PackedScene" uid="uid://fq2d3c5kvq4b" path="res://assets/Kenny/TowerDefense/snow-detail-dirt.glb" id="9_bktio"]
+[ext_resource type="PackedScene" uid="uid://cujq7v4vhs3ya" path="res://assets/Kenny/TowerDefense/tile-tree.glb" id="10_nrlyp"]
+[ext_resource type="PackedScene" uid="uid://b570xa7bafnnl" path="res://assets/Kenny/TowerDefense/wood-structure.glb" id="11_44tr1"]
+[ext_resource type="PackedScene" uid="uid://d35nxody01buk" path="res://assets/Kenny/TowerDefense/tower-round-top-b.glb" id="12_nrlyp"]
+[ext_resource type="PackedScene" uid="uid://6vwe5vaqh5ss" path="res://assets/Kenny/TowerDefense/tower-round-top-a.glb" id="13_44tr1"]
+[ext_resource type="PackedScene" uid="uid://dt6vh0urj0iho" path="res://assets/Kenny/TowerDefense/tower-round-roof-c.glb" id="14_pmxqn"]
+[ext_resource type="PackedScene" uid="uid://3ix26af3aj1y" path="res://assets/Kenny/TowerDefense/tower-round-roof-a.glb" id="15_gs5q7"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_idj7w"]
+vertices = PackedVector3Array(-3.75, 0.5, 3.75, -0.5, 0.5, 1, -0.75, 0.5, -0.5, -5, 0.5, 3.75, -24.75, 0.5, 4.5, 0.25, 0.5, -24.75, -24.75, 0.5, -24.75, -5.5, 0.5, 4.5, 0.25, 0.5, -0.75, 0.75, 0.5, -0.75, 1, 0.5, 0, 24.75, 0.5, 0, 24.75, 0.5, -24.75, -0.25, 1.25, -0.25, -0.25, 1.25, 0.25, 0.25, 1.25, 0.25, 0.25, 1.25, -0.25, 0.5, 0.5, 1, -3.5, 0.5, 5.25, -4.25, 0.5, 24.75, 24.75, 0.5, 24.75, -4.25, 0.5, 5.5, -4.75, 2, 5, -4, 2, 5, -4, 2, 4.25, -5, 2, 4.5, -5, 0.5, 5.5, -24.75, 0.5, 24.75)
+polygons = [PackedInt32Array(0, 3, 1), PackedInt32Array(1, 3, 2), PackedInt32Array(3, 4, 2), PackedInt32Array(2, 4, 5), PackedInt32Array(5, 4, 6), PackedInt32Array(3, 7, 4), PackedInt32Array(5, 8, 2), PackedInt32Array(9, 8, 5), PackedInt32Array(10, 9, 11), PackedInt32Array(11, 9, 12), PackedInt32Array(12, 9, 5), PackedInt32Array(16, 15, 13), PackedInt32Array(13, 15, 14), PackedInt32Array(1, 17, 0), PackedInt32Array(0, 17, 18), PackedInt32Array(10, 11, 17), PackedInt32Array(17, 11, 20), PackedInt32Array(17, 20, 19), PackedInt32Array(18, 19, 21), PackedInt32Array(19, 18, 17), PackedInt32Array(22, 25, 23), PackedInt32Array(23, 25, 24), PackedInt32Array(26, 21, 19), PackedInt32Array(7, 26, 4), PackedInt32Array(4, 26, 27), PackedInt32Array(27, 26, 19)]
+agent_radius = 0.1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h1m7h"]
+size = Vector3(0.32959, 1.00447, 0.320557)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D"]
+navigation_mesh = SubResource("NavigationMesh_idj7w")
+script = ExtResource("1_tj5wv")
+
+[node name="Env" type="Node" parent="."]
+
+[node name="blockbench_export" parent="Env" instance=ExtResource("1_xylue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.18138, 0.0620862, 4.4598)
+script = ExtResource("2_tj5wv")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Env/blockbench_export/Node/tree" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Env/blockbench_export/Node/tree/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000732422, 0.496851, -0.012085)
+shape = SubResource("BoxShape3D_h1m7h")
+
+[node name="cube" parent="Env/blockbench_export/Node/fruit" index="0"]
+physics_interpolation_mode = 1
+
+[node name="cube2" parent="Env/blockbench_export/Node/fruit" index="1"]
+physics_interpolation_mode = 1
+sorting_use_aabb_center = false
+
+[node name="cube3" parent="Env/blockbench_export/Node/fruit" index="2"]
+physics_interpolation_mode = 1
+
+[node name="cube4" parent="Env/blockbench_export/Node/fruit" index="3"]
+physics_interpolation_mode = 1
+
+[node name="cube5" parent="Env/blockbench_export/Node/fruit" index="4"]
+physics_interpolation_mode = 1
+
+[node name="cube6" parent="Env/blockbench_export/Node/fruit" index="5"]
+physics_interpolation_mode = 1
+
+[node name="cube7" parent="Env/blockbench_export/Node/fruit" index="6"]
+physics_interpolation_mode = 1
+
+[node name="cube8" parent="Env/blockbench_export/Node/fruit" index="7"]
+physics_interpolation_mode = 1
+
+[node name="cube9" parent="Env/blockbench_export/Node/fruit" index="8"]
+physics_interpolation_mode = 1
+
+[node name="cube10" parent="Env/blockbench_export/Node/fruit" index="9"]
+physics_interpolation_mode = 1
+
+[node name="cube11" parent="Env/blockbench_export/Node/fruit" index="10"]
+physics_interpolation_mode = 1
+
+[node name="cube12" parent="Env/blockbench_export/Node/fruit" index="11"]
+physics_interpolation_mode = 1
+
+[node name="cube13" parent="Env/blockbench_export/Node/fruit" index="12"]
+physics_interpolation_mode = 1
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.274035, -0.437914, -0.0979042)
+material_override = ExtResource("3_ienac")
+use_collision = true
+size = Vector3(50, 1, 50)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7239, -0.309739, 11.506)
+size = Vector3(27.936, 1, 2.21423)
+material = ExtResource("5_xylue")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.10958, -0.393585, 3.91943)
+size = Vector3(2.26897, 1, 17.3875)
+material = ExtResource("5_xylue")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2184, -0.393585, -3.48156)
+size = Vector3(24.4867, 1, 2.58548)
+material = ExtResource("5_xylue")
+
+[node name="detail-dirt2" parent="Env" instance=ExtResource("6_esopp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7364, 0.0620861, 13.8311)
+
+[node name="detail-tree2" parent="Env" instance=ExtResource("7_b10nm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.77118, 0.0620871, 13.2768)
+
+[node name="enemy-ufo-b-weapon2" parent="Env" instance=ExtResource("8_fhlu0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.399, 0.0620859, 14.1315)
+
+[node name="snow-detail-dirt2" parent="Env" instance=ExtResource("9_bktio")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4736, 0.0620861, 14.1296)
+
+[node name="tile-tree2" parent="Env" instance=ExtResource("10_nrlyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6772, 0.0620861, 18.3942)
+
+[node name="wood-structure2" parent="Env" instance=ExtResource("11_44tr1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.8376, 0.0620859, 18.4572)
+
+[node name="tower-round-top-b2" parent="Env" instance=ExtResource("12_nrlyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6981, 0.0620863, 18.6444)
+
+[node name="tower-round-top-a2" parent="Env" instance=ExtResource("13_44tr1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.58578, 0.0620861, 19.4187)
+
+[node name="tower-round-roof-c2" parent="Env" instance=ExtResource("14_pmxqn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1501, 0.0620861, 19.9497)
+
+[node name="tower-round-roof-a2" parent="Env" instance=ExtResource("15_gs5q7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5233, 0.0620863, 17.32)
+
+[editable path="Env/blockbench_export"]

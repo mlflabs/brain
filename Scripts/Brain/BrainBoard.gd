@@ -1,5 +1,6 @@
 #@icon("icons/blackboard.svg")
-class_name BrainBoard extends Node
+extends Node
+class_name BrainBoard
 
 
 const DEFAULT = "default"

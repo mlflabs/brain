@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://6ulp4jr8arsk"]
+
+[ext_resource type="Texture2D" uid="uid://cy0x7bkgsvvw1" path="res://assets/Kenny/kenney_prototype_tools/textures/red/texture_02.png" id="1_0w6hr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ffkl"]
+albedo_texture = ExtResource("1_0w6hr")
+
+[node name="Creep" type="CSGSphere3D"]
+material_override = SubResource("StandardMaterial3D_0ffkl")

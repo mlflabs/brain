@@ -1,0 +1,5 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://wdic64mkoax2"]
+
+[resource]
+render_priority = 1
+albedo_color = Color(0.550065, 0.485979, 0.18981, 1)

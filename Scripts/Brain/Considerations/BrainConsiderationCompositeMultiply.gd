@@ -22,7 +22,7 @@ func _ready():
 	for i in get_children():
 		if i is BrainConsideration:
 			considerations.append(i)
-		if i is BrainAction:
+		if i is BrainState:
 			if action == null:
 				action = i
 				action.parent = self

@@ -2,7 +2,7 @@ extends BrainBase
 class_name BrainConsideration
 
 
-var action : BrainAction = null
+var state : BrainState = null
 enum { THINKING, RUNNING }
 
 
@@ -12,15 +12,15 @@ func get_score():
 	
 
 func tick(delta:float):
-	action.tick(delta)
+	state.tick(delta)
 
 
 func on_enter():
-	action.on_enter()
+	state.on_enter()
 	
 	
 func on_exit():
-	action.on_exit()
+	state.on_exit()
 
 
 func on_result(result:bool):
@@ -29,10 +29,10 @@ func on_result(result:bool):
 
 func _ready():
 	for i in get_children():
-		if i is BrainAction:
-			if action == null:
-				action = i
-				action.parent = self
+		if i is BrainState:
+			if state == null:
+				state = i
+				state.parent = self
 			else:
 				printerr("Only one action allowed for each consideration")
 	#if action == null:
