@@ -14,6 +14,8 @@ func get_score():
 func tick(delta:float):
 	state.tick(delta)
 
+func tick_physics(delta:float):
+	state.tick_physics(delta)
 
 func on_enter():
 	state.on_enter()

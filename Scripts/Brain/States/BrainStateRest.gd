@@ -8,7 +8,7 @@ var current_time:float = 0
 
 func on_enter():
 	current_time = 0
-	bb.npc_anim.set_state(bb.npc_anim.npc_state.IDLE)
+	bb.npc_anim.set_state(bb.npc_anim.State.IDLE)
 	
 func on_exit():
 	pass

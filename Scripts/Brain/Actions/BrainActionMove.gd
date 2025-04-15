@@ -6,15 +6,9 @@ class_name BrainActionMove
 
 
 func on_enter():
-	bb.npc_anim.set_state(bb.npc_anim.npc_state.RUNNING)
+	bb.npc_anim.set_state(bb.npc_anim.State.RUNNING)
 	
-	
-func on_exit():
-	pass
-	
-
-
-func tick(delta:float):
+func tick_physics(delta:float):
 	if not bb.nav_agent.is_navigation_finished():
 		var next_nav_point = bb.nav_agent.get_next_path_position()
 		var direction = (next_nav_point - bb.npc.global_position).normalized()

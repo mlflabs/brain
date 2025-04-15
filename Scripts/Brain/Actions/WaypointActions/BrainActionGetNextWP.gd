@@ -7,7 +7,6 @@ class_name BrainActionGetNextWP
 
 func on_enter():
 	if npc.waypoint:
-		var d = npc.global_position.distance_to(npc.waypoint.position)
 		if npc.global_position.distance_to(npc.waypoint.position) < PropertyManager.distance_reach_buffer:
 			#get next wp
 			if npc.waypoint.end_wp:

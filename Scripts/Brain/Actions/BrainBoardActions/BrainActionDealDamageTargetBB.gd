@@ -1,9 +1,10 @@
 extends BrainAction
-class_name BrainActionFocusTargetBB
+class_name BrainActionDealDamageTargetBB
 
 
 @export var bb:BrainBoardNpc
 @export var target_key:String
+@export var damage_value_key:String
 
 enum state {Start, Finished}
 var current_state:state
@@ -21,7 +22,7 @@ func tick(_delta:float):
 			if !is_instance_valid(target):
 				return parent.on_result(false)
 			
-			target.interupt(bb.npc)
+			target.receive_damage(bb.blackboard.get(damage_value_key))
 			current_state = state.Finished
 		state.Finished:
 			parent.on_result(true)

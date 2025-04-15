@@ -23,7 +23,9 @@ func _ready():
 	if considerations.is_empty():
 		printerr("No considerations found")
 
-
+func _physics_process(delta):
+	if state == RUNNING:
+		current_consideration.tick_physics(delta)
 
 func _process(delta):
 	match state:

@@ -7,27 +7,38 @@ class_name NpcAnim
 
 @export var animation_player : AnimationPlayer
 
-enum npc_state {IDLE,RUNNING,JUMPING}
-var state : npc_state = npc_state.IDLE
+enum State {IDLE,RUNNING,JUMPING, DIE, KICK_LEFT, KICK_RIGHT, PUNCH_LEFT, PUNCH_RIGHT}
+var current_state : State = State.IDLE
  
 
 
 
 func _ready() -> void:
-	set_state(npc_state.IDLE)
+	set_state(State.IDLE)
 	
 
 
-func set_state(s: npc_state):
-	if s == state:
+func set_state(s: State, force:bool = false):
+	if s == current_state and !force:
 		return	
-	state = s
+	current_state = s
 	if animation_player == null:
 		return
 	match s:
-		npc_state.IDLE:
+		State.IDLE:
 			animation_player.play("idle")
-		npc_state.RUNNING:
+		State.RUNNING:
 			animation_player.play("sprint")
-		npc_state.JUMPING:
+		State.JUMPING:
 			animation_player.play("jump")
+		State.DIE:
+			animation_player.play("die")
+		State.KICK_LEFT:
+			animation_player.play("attack-kick-left")
+		State.KICK_RIGHT:
+			animation_player.play("attack-kick-right")
+		State.PUNCH_LEFT:
+			animation_player.play("attack-melee-left")
+		State.PUNCH_RIGHT:
+			animation_player.play("attack-melee-right")
+			

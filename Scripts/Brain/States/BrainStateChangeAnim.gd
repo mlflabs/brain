@@ -2,7 +2,7 @@ extends BrainState
 class_name BrainStateChangeAnim
 
 @export var bb:BrainBoardNpc
-@export var state:NpcAnim.npc_state
+@export var state:NpcAnim.State
 
 func on_enter():
 	bb.npc_anim.set_state(state)

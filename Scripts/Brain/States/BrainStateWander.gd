@@ -18,7 +18,7 @@ func on_enter():
 	var pos = get_random_position()
 	
 	nav_agent.set_target_position(pos)
-	npc.set_state(Npc.npc_state.RUNNING)
+	npc.set_state(Npc.State.RUNNING)
 	
 func on_exit():
 	pass

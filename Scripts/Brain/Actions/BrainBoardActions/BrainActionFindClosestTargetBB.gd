@@ -13,7 +13,7 @@ var current_state:state
 func on_enter():
 	current_state = state.Finding
 
-func tick(delta:float):
+func tick(_delta:float):
 	match  current_state:
 		state.Finding:
 			print("looking for closest target")

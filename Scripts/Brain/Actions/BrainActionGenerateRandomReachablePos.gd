@@ -43,8 +43,7 @@ func get_random_position() -> Vector3:
 
 	var random_point: Vector3
 	var attempts = 0
-	var max_attempts = 10 # Avoid infinite loops
-
+	
 	while attempts < max_attempts:
 		var random_radius = randf_range(min_distance, max_distance)
 		var random_angle = randf_range(0, TAU) # Full circle in radians

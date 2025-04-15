@@ -45,3 +45,6 @@ func on_exit():
 
 func tick(delta:float):
 	currentAction.tick(delta)
+	
+func tick_physics(delta:float):
+	currentAction.tick_physics(delta)
