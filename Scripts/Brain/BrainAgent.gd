@@ -4,7 +4,7 @@ class_name BrainAgent
 var considerations : Array[BrainConsideration] = []
 var current_consideration: BrainConsideration
 
-enum { THINKING, DECIDING, RUNNING, ERROR }
+enum { START, THINKING, DECIDING, RUNNING, ERROR }
 
 var state = THINKING
 
@@ -52,20 +52,22 @@ func _process(delta):
 		DECIDING:
 			current_consideration = considerations[largest_index]
 			current_consideration.on_enter()
-			
 			print("Chosen: ", current_consideration.name, ", with score:", largest_score)
-			
-			largest_index = 0
-			largest_score = 0
 			state = RUNNING
 			return
+		START:
+			largest_index = 0
+			largest_score = 0
+			state= THINKING
+			current_consideration.on_exit()
 		ERROR:
-			state = THINKING
+			state = START
+			
 		
 
 func on_result(result:bool):
 	if result:
-		state = THINKING
+		state = START
 	else:
 		state = ERROR
 	

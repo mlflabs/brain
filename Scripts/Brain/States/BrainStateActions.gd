@@ -22,6 +22,8 @@ func on_result(result:bool):
 			parent.on_result(result)
 		else:
 			next_action()
+	else:
+		parent.on_result(result)
 			
 
 func on_enter():
@@ -39,7 +41,7 @@ func next_action():
 	
 	
 func on_exit():
-	pass
+	currentAction.on_exit()
 	
 
 

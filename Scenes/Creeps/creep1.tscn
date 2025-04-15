@@ -43,6 +43,7 @@ metadata/_custom_type_script = "uid://ds1c32y20tiig"
 script = ExtResource("4_xcg2l")
 BB = NodePath("../BrainBoardNpc")
 npc = NodePath("..")
+life = 100
 
 [node name="BrainAgent" type="Node" parent="."]
 script = ExtResource("4_etwnn")
@@ -96,11 +97,13 @@ material_override = ExtResource("9_srfhi")
 mesh = SubResource("SphereMesh_hwpts")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.2
+target_desired_distance = 0.2
 avoidance_enabled = true
 height = 2.0
 radius = 1.0
+neighbor_distance = 10.0
 max_speed = 1.0
-use_3d_avoidance = true
 
 [node name="Area3D" type="Area3D" parent="."]
 

@@ -18,7 +18,7 @@ var time:float
 var creeps:Array[NpcWPCreeper] = []
 
 func _ready() -> void:
-	time = 0
+	time = 60
 	
 	GlobalBoard.set_value(CREEPS_KEY, creeps)
 
@@ -35,6 +35,7 @@ func start_wave():
 	creep_parent.add_child(c)
 	c.waypoint = waypoint
 	c.on_destroy_callback = remove_creep
+	c.npc_stats.set_life(randi_range(1,100))
 	add_creep(c)
 	c.position = waypoint.position
 

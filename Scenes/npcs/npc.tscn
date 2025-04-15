@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bfvficdshqjxn"]
+[gd_scene load_steps=24 format=3 uid="uid://bfvficdshqjxn"]
 
 [ext_resource type="Script" uid="uid://cjr6cwpxc7mpl" path="res://Scripts/Classes/npc_smart.gd" id="1_8aih3"]
 [ext_resource type="Script" uid="uid://5xm5vsxyceah" path="res://Scripts/Brain/BrainBoardNpc.gd" id="2_icy7c"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://breuaq3mn34oe" path="res://Scripts/Brain/Actions/Anim/BrainActionPlayAnimationSequence.gd" id="16_w4bb1"]
 [ext_resource type="Script" uid="uid://cdlebhu010oox" path="res://Scripts/Resources/AnimationSequenceItem.gd" id="18_qt4l2"]
 [ext_resource type="Script" uid="uid://bqg16iy7f0gr3" path="res://Scripts/Brain/Actions/BrainBoardActions/BrainActionDealDamageTargetBB.gd" id="19_ras1v"]
+[ext_resource type="Script" uid="uid://bpbqq86bryhra" path="res://Scripts/Brain/Actions/BrainBoardActions/BrainActionLooseFocusTargetBB.gd" id="20_qt4l2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1p5hy"]
 size = Vector3(0.230957, 0.506348, 0.182251)
@@ -64,7 +65,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0266113, 0.246826, -0.00177
 shape = SubResource("BoxShape3D_1p5hy")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-max_speed = 2.0
+path_desired_distance = 0.3
+target_desired_distance = 0.5
+max_speed = 3.0
 
 [node name="Model" type="Node3D" parent="."]
 
@@ -155,5 +158,11 @@ bb = NodePath("../../../../BrainBoardNpc")
 target_key = "target"
 damage_value_key = "prop_strength"
 metadata/_custom_type_script = "uid://bqg16iy7f0gr3"
+
+[node name="BrainActionLooseFocusTargetBB" type="Node" parent="BrainAgent/BrainConsiderationGBArrayCount/BrainStateActions" node_paths=PackedStringArray("bb")]
+script = ExtResource("20_qt4l2")
+bb = NodePath("../../../../BrainBoardNpc")
+target_key = "target"
+metadata/_custom_type_script = "uid://bpbqq86bryhra"
 
 [editable path="Model/model"]

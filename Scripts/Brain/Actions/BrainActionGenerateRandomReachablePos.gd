@@ -20,6 +20,7 @@ func on_enter():
 		result = false
 		return
 	
+	result = true
 	bb_npc.nav_agent.set_target_position(pos)
 	
 	

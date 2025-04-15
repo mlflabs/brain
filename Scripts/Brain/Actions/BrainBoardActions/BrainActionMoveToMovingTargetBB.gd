@@ -36,7 +36,12 @@ func tick(delta:float):
 			if bb.nav_agent.is_navigation_finished():
 				return parent.on_result(true)			
 			
+			
+			
 			var pos = bb.nav_agent.get_next_path_position()
+			##todo: remove
+			var d = bb.npc.global_position.distance_to(pos)
+			
 			var dir = (pos - bb.npc.global_position).normalized()
 			bb.npc.velocity = dir * bb.nav_agent.get_max_speed() 
 			if dir.y != 1:

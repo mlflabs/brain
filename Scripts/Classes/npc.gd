@@ -19,7 +19,11 @@ func interupt(t):
 	target = t
 	BA.interupt()
 	BB.blackboard.set("target", t)
-	
+
+func loose_target(t):
+	if target == t:
+		BB.blackboard.set("target", null)
+		BA.interupt()
 
 func receive_damage(value:int):
 	npc_stats.change_life(-value)
