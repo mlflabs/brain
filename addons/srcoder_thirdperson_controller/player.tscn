@@ -1,16 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://dgaexk2mqn6j8"]
+[gd_scene load_steps=12 format=3 uid="uid://dgaexk2mqn6j8"]
 
 [ext_resource type="Script" uid="uid://cm8xi0s2oidvg" path="res://addons/srcoder_thirdperson_controller/assets/player.gd" id="1_4s81h"]
 [ext_resource type="PackedScene" uid="uid://ccf670c6bkob8" path="res://addons/srcoder_thirdperson_controller/assets/character-male-e.glb" id="1_jt3wm"]
+[ext_resource type="Script" uid="uid://csjmy4ihmura8" path="res://Scripts/Classes/PlayerTarget.gd" id="2_bf7xu"]
 [ext_resource type="Script" uid="uid://mnryd7mk6pbh" path="res://addons/srcoder_thirdperson_controller/assets/camera_pivot.gd" id="3_0ffrl"]
+[ext_resource type="Script" uid="uid://biij66gtenp4t" path="res://Scripts/Classes/command.gd" id="4_gsgtm"]
+[ext_resource type="Script" uid="uid://b2kuh4kru5tf3" path="res://Scripts/Classes/action_sensor.gd" id="4_lmbpc"]
+[ext_resource type="Material" uid="uid://bchshffd6npv0" path="res://assets/Kenny/kenney_prototype_tools/materials/orange/material_13.tres" id="5_bf7xu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_71pwh"]
 radius = 0.274773
 height = 0.721095
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pncjy"]
+radius = 0.220183
+height = 0.575693
+
+[sub_resource type="SphereMesh" id="SphereMesh_6sduc"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lmbpc"]
+
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
 script = ExtResource("1_4s81h")
+
+[node name="PlayerTarget" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("2_bf7xu")
+player = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.358072, 0)
@@ -26,6 +42,37 @@ spring_length = 3.365
 [node name="Camera3D" type="Camera3D" parent="camera_pivot/SpringArm3D"]
 
 [node name="playermodel" type="Node3D" parent="."]
+
+[node name="ActionSensor" type="Node3D" parent="playermodel"]
+script = ExtResource("4_lmbpc")
+
+[node name="Area3D" type="Area3D" parent="playermodel/ActionSensor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="playermodel/ActionSensor/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 0.0155677, 0.999879, 0, -0.999879, 0.0155677, 0.0120321, 0.361912, -0.582187)
+shape = SubResource("CapsuleShape3D_pncjy")
+
+[node name="Command" type="Node3D" parent="playermodel" node_paths=PackedStringArray("player", "playerTM", "sensor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42328, -0.206666)
+script = ExtResource("4_gsgtm")
+player = NodePath("../..")
+playerTM = NodePath("../../PlayerTarget")
+sensor = NodePath("Area3D")
+speed = 15.0
+time = 0.1
+
+[node name="Area3D" type="Area3D" parent="playermodel/Command"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="playermodel/Command/Area3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0.0540381)
+material_override = ExtResource("5_bf7xu")
+mesh = SubResource("SphereMesh_6sduc")
+skeleton = NodePath("../../../character-male-e2/character-male-e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="playermodel/Command/Area3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+shape = SubResource("SphereShape3D_lmbpc")
 
 [node name="character-male-e2" parent="playermodel" instance=ExtResource("1_jt3wm")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.0071882, 0)

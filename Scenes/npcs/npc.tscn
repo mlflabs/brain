@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://bfvficdshqjxn"]
+[gd_scene load_steps=30 format=4 uid="uid://bfvficdshqjxn"]
 
 [ext_resource type="Script" uid="uid://cjr6cwpxc7mpl" path="res://Scripts/Classes/npc_smart.gd" id="1_8aih3"]
 [ext_resource type="Script" uid="uid://5xm5vsxyceah" path="res://Scripts/Brain/BrainBoardNpc.gd" id="2_icy7c"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://48kudn7u18fe" path="res://assets/CubeWorld/Tools/Pickaxe_Wood_Atlas.png" id="6_n7exu"]
 [ext_resource type="Script" uid="uid://cgg06m6c002th" path="res://Scripts/Brain/Considerations/BrainConsiderationRandom.gd" id="6_qt4l2"]
 [ext_resource type="Script" uid="uid://bcup1yg3wf5wf" path="res://Scripts/Brain/States/BrainStateRest.gd" id="7_n7exu"]
+[ext_resource type="Script" uid="uid://b87vwo7ethtyu" path="res://Scripts/Classes/npc_selector.gd" id="7_t4qr8"]
+[ext_resource type="Material" uid="uid://dh8sk72xrbbdf" path="res://assets/Kenny/kenney_prototype_tools/materials/purple/material_03.tres" id="8_bhxe3"]
 [ext_resource type="Script" uid="uid://pp6jh1a56vm3" path="res://Scripts/Brain/States/BrainStateActions.gd" id="8_nmf7u"]
 [ext_resource type="Script" uid="uid://tfhpe1howkpk" path="res://Scripts/Brain/Actions/BrainActionGenerateRandomReachablePos.gd" id="9_t4qr8"]
 [ext_resource type="Script" uid="uid://dq78aqhb8c4dc" path="res://Scripts/Brain/Actions/BrainActionMove.gd" id="10_bhxe3"]
@@ -20,10 +22,13 @@
 [ext_resource type="Script" uid="uid://breuaq3mn34oe" path="res://Scripts/Brain/Actions/Anim/BrainActionPlayAnimationSequence.gd" id="16_w4bb1"]
 [ext_resource type="Script" uid="uid://cdlebhu010oox" path="res://Scripts/Resources/AnimationSequenceItem.gd" id="18_qt4l2"]
 [ext_resource type="Script" uid="uid://bqg16iy7f0gr3" path="res://Scripts/Brain/Actions/BrainBoardActions/BrainActionDealDamageTargetBB.gd" id="19_ras1v"]
-[ext_resource type="Script" path="res://Scripts/Brain/Actions/BrainBoardActions/BrainActionLooseFocusTargetBB.gd" id="20_qt4l2"]
+[ext_resource type="Script" uid="uid://bpbqq86bryhra" path="res://Scripts/Brain/Actions/BrainBoardActions/BrainActionLooseFocusTargetBB.gd" id="20_qt4l2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1p5hy"]
-size = Vector3(0.230957, 0.506348, 0.182251)
+size = Vector3(0.453552, 0.783035, 0.358826)
+
+[sub_resource type="SphereMesh" id="SphereMesh_uod0v"]
+material = ExtResource("8_bhxe3")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0441i"]
 resource_name = "Atlas"
@@ -66,15 +71,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_jvaa5")
 
-[sub_resource type="Resource" id="Resource_eg4om"]
-script = ExtResource("18_qt4l2")
-state = 4
-time = 0.0
-metadata/_custom_type_script = "uid://cdlebhu010oox"
-
 [sub_resource type="Resource" id="Resource_w4bb1"]
 script = ExtResource("18_qt4l2")
-state = 7
+state = 6
 time = 0.0
 metadata/_custom_type_script = "uid://cdlebhu010oox"
 
@@ -103,7 +102,7 @@ npc = NodePath("..")
 metadata/_custom_type_script = "uid://dkke5g55u1jrj"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0266113, 0.246826, -0.00177002)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00432026, 0.420644, 0.00369351)
 shape = SubResource("BoxShape3D_1p5hy")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
@@ -111,13 +110,22 @@ path_desired_distance = 0.3
 target_desired_distance = 0.5
 max_speed = 3.0
 
+[node name="Selector" type="Node3D" parent="." node_paths=PackedStringArray("BB", "npc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01727, 0.0166827)
+script = ExtResource("7_t4qr8")
+BB = NodePath("../BrainBoardNpc")
+npc = NodePath("..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Selector"]
+transform = Transform3D(0.28, 0, 0, 0, 0.28, 0, 0, 0, 0.28, 0, 0, 0)
+transparency = 0.7
+cast_shadow = 0
+mesh = SubResource("SphereMesh_uod0v")
+
 [node name="Model" type="Node3D" parent="."]
 
 [node name="model" parent="Model" instance=ExtResource("4_w4bb1")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-
-[node name="character-male-d" parent="Model/model" index="0"]
-transform = Transform3D(0.995459, 0, 0, 0, 0.995459, 0, 0, 0, 0.995459, 0, 0, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0.271172)
 
 [node name="Skeleton3D" parent="Model/model/character-male-d" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.29141e-08, 0, 0.262106)
@@ -127,12 +135,12 @@ bones/5/enabled = false
 bones/5/rotation = Quaternion(0, 0, 0.382683, 0.92388)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Model/model/character-male-d/Skeleton3D" index="0"]
-transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 0.0998968, 0.28775, -0.01725)
+transform = Transform3D(0.707108, 0.707106, 0, -0.707106, 0.707108, 0, 0, 0, 1, 0.0998968, 0.28775, -0.01725)
 bone_name = "arm-left"
 bone_idx = 4
 
 [node name="Pickaxe_Wood" type="MeshInstance3D" parent="Model/model/character-male-d/Skeleton3D/BoneAttachment3D"]
-transform = Transform3D(0.265368, -0.125264, -0.441349, -0.264486, 0.374837, -0.265413, 0.374869, 0.353138, 0.125168, 0.249597, 0.0771319, 0.165256)
+transform = Transform3D(0.415193, -0.0210305, -0.328743, -0.322785, 0.0796015, -0.412763, 0.0657532, 0.523566, 0.0495505, 0.231414, 0.0131865, -0.0242069)
 mesh = SubResource("ArrayMesh_nmf7u")
 skeleton = NodePath("../..")
 
@@ -207,7 +215,7 @@ metadata/_custom_type_script = "uid://cyguow7i763vh"
 [node name="BrainActionPlayAnimationSequence" type="Node" parent="BrainAgent/BrainConsiderationGBArrayCount/BrainStateActions" node_paths=PackedStringArray("bb")]
 script = ExtResource("16_w4bb1")
 bb = NodePath("../../../../BrainBoardNpc")
-anims = Array[ExtResource("18_qt4l2")]([SubResource("Resource_eg4om"), SubResource("Resource_w4bb1")])
+anims = Array[ExtResource("18_qt4l2")]([SubResource("Resource_w4bb1")])
 metadata/_custom_type_script = "uid://breuaq3mn34oe"
 
 [node name="BrainActionDealDamageTargetBB2" type="Node" parent="BrainAgent/BrainConsiderationGBArrayCount/BrainStateActions" node_paths=PackedStringArray("bb")]

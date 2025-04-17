@@ -20,6 +20,7 @@ func change_life(value:int):
 	life += value
 	if life < 0: life = 0
 	set_life(life)
+	print("LIVE changed to: ", life)
 
 func set_life(value:int):
 	life = value

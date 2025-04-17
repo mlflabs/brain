@@ -43,7 +43,7 @@ metadata/_custom_type_script = "uid://ds1c32y20tiig"
 script = ExtResource("4_xcg2l")
 BB = NodePath("../BrainBoardNpc")
 npc = NodePath("..")
-life = 100
+life = 4
 
 [node name="BrainAgent" type="Node" parent="."]
 script = ExtResource("4_etwnn")

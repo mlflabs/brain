@@ -1,45 +1,14 @@
-[gd_scene load_steps=44 format=3 uid="uid://bgxygt6h17kxl"]
+[gd_scene load_steps=13 format=3 uid="uid://bgxygt6h17kxl"]
 
 [ext_resource type="Script" uid="uid://c78gp5y6mlwml" path="res://Scripts/Classes/Managers/WaveManager.gd" id="1_erwvk"]
 [ext_resource type="PackedScene" uid="uid://dgaexk2mqn6j8" path="res://addons/srcoder_thirdperson_controller/player.tscn" id="1_r150o"]
 [ext_resource type="PackedScene" uid="uid://6ulp4jr8arsk" path="res://Scenes/Creeps/creep1.tscn" id="2_2w5on"]
 [ext_resource type="PackedScene" uid="uid://bfvficdshqjxn" path="res://Scenes/npcs/npc.tscn" id="4_vy5pj"]
 [ext_resource type="PackedScene" uid="uid://dcmwngwlpcc1o" path="res://Scenes/Level.tscn" id="9_grg3l"]
-[ext_resource type="PackedScene" uid="uid://dgw4r5hjyrgnp" path="res://assets/Kenny/FantasyTownKit/poles.glb" id="10_6ehlx"]
 [ext_resource type="Script" uid="uid://cs8e3cxqdibst" path="res://Scenes/node_properties.gd" id="10_grg3l"]
 [ext_resource type="Script" uid="uid://1mrerf28m6y1" path="res://Scenes/node_npcs.gd" id="11_frkhe"]
-[ext_resource type="PackedScene" uid="uid://dkv12yf5geeje" path="res://assets/Kenny/FantasyTownKit/polesHorizontal.glb" id="11_utia5"]
 [ext_resource type="Script" uid="uid://ctikmiavfple0" path="res://Scenes/node_items.gd" id="12_1p5hy"]
-[ext_resource type="PackedScene" uid="uid://cd5ccgagmhl8a" path="res://assets/Kenny/FantasyTownKit/roadCorner.glb" id="12_f7hdo"]
-[ext_resource type="PackedScene" uid="uid://cxk3l7ep8wph6" path="res://assets/Kenny/FantasyTownKit/roof.glb" id="13_clvyn"]
-[ext_resource type="PackedScene" uid="uid://dmdn15muj88wj" path="res://assets/Kenny/FantasyTownKit/roofHigh.glb" id="14_d8m2u"]
-[ext_resource type="PackedScene" uid="uid://be6jqa6g41vmn" path="res://assets/Kenny/FantasyTownKit/roofRight.glb" id="15_5psol"]
 [ext_resource type="Script" uid="uid://cdxnbyx27pk8x" path="res://Scripts/Classes/WayPoint.gd" id="16_2w5on"]
-[ext_resource type="PackedScene" uid="uid://bnsjnqp6a28xf" path="res://assets/Kenny/FantasyTownKit/stairsStoneRound.glb" id="16_m4llh"]
-[ext_resource type="PackedScene" uid="uid://cx605crguvqol" path="res://assets/Kenny/FantasyTownKit/stall.glb" id="17_lac6x"]
-[ext_resource type="PackedScene" uid="uid://dnp3kxusytpb5" path="res://assets/Kenny/FantasyTownKit/tree.glb" id="18_hpjjw"]
-[ext_resource type="PackedScene" uid="uid://ccdl6slbj8rjw" path="res://assets/Kenny/FantasyTownKit/treeCrooked.glb" id="19_off7b"]
-[ext_resource type="PackedScene" uid="uid://dacc2r1w1pfj4" path="res://assets/Kenny/FantasyTownKit/treeHigh.glb" id="20_lfh1j"]
-[ext_resource type="PackedScene" uid="uid://bvgbprr5p8vwd" path="res://assets/Kenny/FantasyTownKit/treeHighCrooked.glb" id="21_7sj7i"]
-[ext_resource type="PackedScene" uid="uid://c2isup4cajp4f" path="res://assets/Kenny/FantasyTownKit/treeHighRound.glb" id="22_semxg"]
-[ext_resource type="PackedScene" uid="uid://db183y6kygkdy" path="res://assets/Kenny/FantasyTownKit/wall.glb" id="23_ep8v8"]
-[ext_resource type="PackedScene" uid="uid://b8u20oeyavfph" path="res://assets/Kenny/FantasyTownKit/wallArch.glb" id="24_3133c"]
-[ext_resource type="PackedScene" uid="uid://cyrueyixn4d0r" path="res://assets/Kenny/FantasyTownKit/wallWoodBlock.glb" id="25_js5gh"]
-[ext_resource type="PackedScene" uid="uid://bjeqwgf1ie2vj" path="res://assets/Kenny/FantasyTownKit/wallWoodBlockHalf.glb" id="26_vvjo1"]
-[ext_resource type="PackedScene" uid="uid://coysbnbg5hcr" path="res://assets/Kenny/FantasyTownKit/wallWoodBroken.glb" id="27_yisvs"]
-[ext_resource type="PackedScene" uid="uid://d3u18pptdwnv8" path="res://assets/Kenny/FantasyTownKit/wallWoodCurved.glb" id="28_rgw24"]
-[ext_resource type="PackedScene" uid="uid://cwudi878gxgbg" path="res://assets/Kenny/FantasyTownKit/wallWoodDoorwaySquare.glb" id="29_5gwyn"]
-[ext_resource type="PackedScene" uid="uid://c7itt8a7acchv" path="res://assets/Kenny/FantasyTownKit/wallWoodDoor.glb" id="30_r6gtk"]
-[ext_resource type="PackedScene" uid="uid://dw4f7ujrep7a1" path="res://assets/Kenny/FantasyTownKit/wallWoodRounded.glb" id="31_81ldr"]
-[ext_resource type="PackedScene" uid="uid://bbuy55fo78th5" path="res://assets/Kenny/FantasyTownKit/watermill.glb" id="32_eywpa"]
-[ext_resource type="PackedScene" uid="uid://t3f1owk0ssvf" path="res://assets/Kenny/FantasyTownKit/windmill.glb" id="33_j7e3e"]
-[ext_resource type="PackedScene" uid="uid://d3g306isgkuio" path="res://assets/Kenny/FantasyTownKit/blade.glb" id="34_y2ulj"]
-[ext_resource type="PackedScene" uid="uid://chruilqyf5ug6" path="res://assets/Kenny/FantasyTownKit/cart.glb" id="35_t3x2a"]
-[ext_resource type="PackedScene" uid="uid://svl77m5uonro" path="res://assets/Kenny/FantasyTownKit/fence.glb" id="36_1bbis"]
-[ext_resource type="PackedScene" uid="uid://dp7dqnjal6k22" path="res://assets/Kenny/FantasyTownKit/fountainRound.glb" id="37_yn2g2"]
-[ext_resource type="PackedScene" uid="uid://bfjf1qnwm2iel" path="res://assets/CubeWorld/Tools/Axe_Diamond.gltf" id="38_yic5e"]
-[ext_resource type="PackedScene" uid="uid://2ikqv131pfr5" path="res://assets/CubeWorld/Tools/Axe_Gold.gltf" id="39_ex7s8"]
-[ext_resource type="PackedScene" uid="uid://dfhu3k3xukuea" path="res://assets/CubeWorld/Tools/Sword_Wood.gltf" id="40_4clwk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kln2b"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -72,7 +41,7 @@ environment = SubResource("Environment_pbw6q")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5218, 0.00247574, 12.9971)
 
 [node name="Npc" parent="." instance=ExtResource("4_vy5pj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.1912, 0, 8.41513)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.191, 0, 8.415)
 
 [node name="NavigationRegion3D" parent="." instance=ExtResource("9_grg3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000356674, 0.00995731, -0.0151258)
@@ -117,99 +86,3 @@ end_wp = true
 metadata/_custom_type_script = "uid://cdxnbyx27pk8x"
 
 [node name="Creeps" type="Node" parent="."]
-
-[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.25354)
-
-[node name="poles2" parent="." instance=ExtResource("10_6ehlx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.68091, 0.0620855, 13.1576)
-
-[node name="polesHorizontal2" parent="." instance=ExtResource("11_utia5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.69074, 0.0620855, 12.1911)
-
-[node name="roadCorner2" parent="." instance=ExtResource("12_f7hdo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.123, 0.0620855, 13.3059)
-
-[node name="roof2" parent="." instance=ExtResource("13_clvyn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6434, 0.0844462, 12.0273)
-
-[node name="roofHigh2" parent="." instance=ExtResource("14_d8m2u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7746, 0.0974413, 12.9734)
-
-[node name="roofRight2" parent="." instance=ExtResource("15_5psol")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.54349, 0.106807, 11.9615)
-
-[node name="stairsStoneRound2" parent="." instance=ExtResource("16_m4llh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5529, 0.0620855, 11.9323)
-
-[node name="stall2" parent="." instance=ExtResource("17_lac6x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.51913, 0.062086, 14.0021)
-
-[node name="tree2" parent="." instance=ExtResource("18_hpjjw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.02442, 0.062086, 17.4033)
-
-[node name="treeCrooked2" parent="." instance=ExtResource("19_off7b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.52227, 0.062086, 15.2525)
-
-[node name="treeHigh2" parent="." instance=ExtResource("20_lfh1j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3322, 0.0620855, 15.8117)
-
-[node name="treeHighCrooked2" parent="." instance=ExtResource("21_7sj7i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.78809, 0.062086, 13.4651)
-
-[node name="treeHighRound2" parent="." instance=ExtResource("22_semxg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.7158, 0.0620855, 19.6806)
-
-[node name="wall2" parent="." instance=ExtResource("23_ep8v8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.65959, 0.062086, 12.1899)
-
-[node name="wallArch2" parent="." instance=ExtResource("24_3133c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.67781, 0.0620855, 13.1999)
-
-[node name="wallWoodBlock2" parent="." instance=ExtResource("25_js5gh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.7683, 0.0620855, 15.7143)
-
-[node name="wallWoodBlockHalf2" parent="." instance=ExtResource("26_vvjo1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0407, 0.062086, 15.625)
-
-[node name="wallWoodBroken2" parent="." instance=ExtResource("27_yisvs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.4196, 0.062086, 16.2077)
-
-[node name="wallWoodCurved2" parent="." instance=ExtResource("28_rgw24")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.86501, 0.062086, 14.7138)
-
-[node name="wallWoodDoorwaySquare2" parent="." instance=ExtResource("29_5gwyn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4042, 0.062086, 16.4337)
-
-[node name="wallWoodDoor2" parent="." instance=ExtResource("30_r6gtk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.3801, 0.0620855, 15.4854)
-
-[node name="wallWoodRounded2" parent="." instance=ExtResource("31_81ldr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3783, 0.0620855, 15.4825)
-
-[node name="watermill2" parent="." instance=ExtResource("32_eywpa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.4459, 0.928111, 20.0435)
-
-[node name="windmill2" parent="." instance=ExtResource("33_j7e3e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5593, 1.59748, 20.9594)
-
-[node name="blade2" parent="." instance=ExtResource("34_y2ulj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5106, 0.0620855, 20.5627)
-
-[node name="cart2" parent="." instance=ExtResource("35_t3x2a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.0235, 0.0620855, 12.5364)
-
-[node name="fence2" parent="." instance=ExtResource("36_1bbis")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.94961, 0.062086, 11.8602)
-
-[node name="fountainRound2" parent="." instance=ExtResource("37_yn2g2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0304, 0.0620855, 21.3943)
-
-[node name="Axe_Diamond2" parent="." instance=ExtResource("38_yic5e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.76522, 0.377753, 11.5689)
-
-[node name="Axe_Gold2" parent="." instance=ExtResource("39_ex7s8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.28517, 0.377752, 11.211)
-
-[node name="Sword_Wood2" parent="." instance=ExtResource("40_4clwk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.52433, 0.324606, 10.5869)
