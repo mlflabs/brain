@@ -99,6 +99,7 @@ mesh = SubResource("SphereMesh_hwpts")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 0.2
 target_desired_distance = 0.2
+path_max_distance = 10.01
 avoidance_enabled = true
 height = 2.0
 radius = 1.0

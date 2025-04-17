@@ -19,7 +19,7 @@
 [ext_resource type="Script" uid="uid://breuaq3mn34oe" path="res://Scripts/Brain/Actions/Anim/BrainActionPlayAnimationSequence.gd" id="16_w4bb1"]
 [ext_resource type="Script" uid="uid://cdlebhu010oox" path="res://Scripts/Resources/AnimationSequenceItem.gd" id="18_qt4l2"]
 [ext_resource type="Script" uid="uid://bqg16iy7f0gr3" path="res://Scripts/Brain/Actions/BrainBoardActions/BrainActionDealDamageTargetBB.gd" id="19_ras1v"]
-[ext_resource type="Script" uid="uid://bpbqq86bryhra" path="res://Scripts/Brain/Actions/BrainBoardActions/BrainActionLooseFocusTargetBB.gd" id="20_qt4l2"]
+[ext_resource type="Script" path="res://Scripts/Brain/Actions/BrainBoardActions/BrainActionLooseFocusTargetBB.gd" id="20_qt4l2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1p5hy"]
 size = Vector3(0.230957, 0.506348, 0.182251)
