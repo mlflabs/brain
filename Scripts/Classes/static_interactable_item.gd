@@ -39,6 +39,8 @@ func interact():
 	if interaction_anim == Interactions.Shake:
 		start_shake(shake_intensity, shake_speed)
 
+func damage(value:int):
+	interact()
 
 func start_shake(intensity: float = 0.1, speed: float = 20.0):
 	current_shake_intensity = intensity
@@ -48,3 +50,7 @@ func start_shake(intensity: float = 0.1, speed: float = 20.0):
 func stop_shake():
 	current_shake_intensity = 0
 	position = original_position # Reset to original position
+
+
+func remove():
+	queue_free()

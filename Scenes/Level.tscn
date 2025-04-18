@@ -1,12 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://dcmwngwlpcc1o"]
+[gd_scene load_steps=9 format=3 uid="uid://dcmwngwlpcc1o"]
 
 [ext_resource type="Script" uid="uid://4gkw41tpkdx0" path="res://Scripts/SceneScripts/LevelScene.gd" id="1_tj5wv"]
 [ext_resource type="PackedScene" uid="uid://wo8t48jjx2k" path="res://assets/veg/tree_apple.glb" id="1_xylue"]
 [ext_resource type="Script" uid="uid://behav5l0c1u6" path="res://assets/veg/tree_apple.gd" id="2_tj5wv"]
 [ext_resource type="Material" uid="uid://csfdcdo2s8jaw" path="res://assets/Kenny/kenney_prototype_tools/materials/orange/material_04.tres" id="3_ienac"]
 [ext_resource type="Material" uid="uid://wdic64mkoax2" path="res://assets/materials/road_standard_material_3d.tres" id="5_xylue"]
-[ext_resource type="PackedScene" uid="uid://ccdl6slbj8rjw" path="res://assets/Kenny/FantasyTownKit/treeCrooked.glb" id="6_or7tv"]
-[ext_resource type="Script" uid="uid://1nt5fejv7wa4" path="res://Scripts/Classes/static_interactable_item.gd" id="9_133si"]
+[ext_resource type="PackedScene" uid="uid://uxre888cp1xh" path="res://Scenes/Env/tree_1.tscn" id="6_tj5wv"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_idj7w"]
 vertices = PackedVector3Array(-24.476, 0.562086, 4.4021, -5.22597, 0.562086, 4.4021, -4.72597, 0.562086, 3.6521, -3.97597, 0.562086, -24.8479, -24.476, 0.562086, -24.8479, -3.97597, 0.562086, 3.6521, -3.47597, 0.562086, 3.6521, -3.22597, 0.562086, 4.4021, 25.024, 0.562086, 4.4021, 25.024, 0.562086, -24.8479, -4.47597, 2.06209, 4.9021, -3.72597, 2.06209, 4.9021, -3.72597, 2.06209, 4.1521, -4.72597, 2.06209, 4.4021, -6.22597, 0.562086, 15.4021, -4.97597, 0.562086, 14.6521, -5.72597, 0.562086, 13.1521, -2.22597, 0.562086, 20.1521, -2.22597, 0.562086, 19.4021, -4.97597, 0.562086, 16.6521, -1.47597, 0.562086, 24.6521, -1.47597, 0.562086, 20.6521, -6.22597, 0.562086, 16.1521, -24.476, 0.562086, 24.6521, -4.47597, 0.562086, 12.6521, -4.22597, 0.562086, 5.4021, -4.97597, 0.562086, 5.1521, -3.97597, 0.562086, 12.9021, -4.47597, 0.562086, 14.4021, -3.72597, 0.562086, 14.6521, -1.47597, 0.562086, 18.6521, -3.72597, 0.562086, 15.6521, -3.47597, 0.562086, 5.4021, -0.475965, 0.562086, 19.1521, 25.024, 0.562086, 24.6521, -0.475965, 0.562086, 20.1521)
@@ -15,8 +14,6 @@ agent_radius = 0.1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h1m7h"]
 size = Vector3(0.32959, 1.00447, 0.320557)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_esopp"]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D"]
 navigation_mesh = SubResource("NavigationMesh_idj7w")
@@ -95,18 +92,46 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2184, -0.393585, -3.48156)
 size = Vector3(24.4867, 1, 2.58548)
 material = ExtResource("5_xylue")
 
-[node name="Tree1" type="StaticBody3D" parent="."]
+[node name="Tree1" parent="." instance=ExtResource("6_tj5wv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.286, 0, 15.4925)
-script = ExtResource("9_133si")
-interaction_anim = 1
-shake_speed = 1.0
-shake_cool_down = 0.02
 
-[node name="mesh" parent="Tree1" instance=ExtResource("6_or7tv")]
+[node name="Tree2" parent="." instance=ExtResource("6_tj5wv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.09337, 0, 6.32178)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Tree1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.977622, 0)
-shape = SubResource("CapsuleShape3D_esopp")
-debug_color = Color(0.820628, 0.318386, 0.633218, 0.42)
+[node name="Tree3" parent="." instance=ExtResource("6_tj5wv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3966, 0, 3.35895)
+
+[node name="Tree4" parent="." instance=ExtResource("6_tj5wv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.0071, 0, 20.6922)
+
+[node name="Tree5" parent="." instance=ExtResource("6_tj5wv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7305, 0, 20.6)
+
+[node name="Tree6" parent="." instance=ExtResource("6_tj5wv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.0912, 0, 22.7606)
+
+[node name="Tree7" parent="." instance=ExtResource("6_tj5wv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4154, 0, 21.4997)
+
+[node name="Tree8" parent="." instance=ExtResource("6_tj5wv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.286, 0, -1.34593)
+
+[node name="Tree9" parent="." instance=ExtResource("6_tj5wv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.286, 0, 1.75035)
+
+[node name="Tree10" parent="." instance=ExtResource("6_tj5wv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4409, 0, 20.0456)
+
+[node name="Tree11" parent="." instance=ExtResource("6_tj5wv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.1859, 0, 21.9587)
+
+[node name="Tree12" parent="." instance=ExtResource("6_tj5wv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.002, 0, 21.4666)
+
+[node name="Tree13" parent="." instance=ExtResource("6_tj5wv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.198, 0, 7.36321)
+
+[node name="Tree14" parent="." instance=ExtResource("6_tj5wv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.286, 0, 20.1864)
 
 [editable path="Env/blockbench_export"]

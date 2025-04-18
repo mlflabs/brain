@@ -3,7 +3,7 @@ class_name NpcSelector
 
 var selected:bool = false
 
-const KEY_SELECTED: String = "npc_selected"
+
 
 @export var BB: BrainBoard
 @export var npc:Npc
@@ -19,6 +19,7 @@ func player_target_added(target):
 		return
 	if target == npc:
 		state_changed(true)
+		
 
 
 
@@ -27,5 +28,5 @@ func player_targets_cleared():
 	
 func state_changed(state):
 	selected = state
-	BB.blackboard.set(KEY_SELECTED, selected)
+	BB.blackboard.set(PropertyManager.KEY_SELECTED, selected)
 	self.visible = selected

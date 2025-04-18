@@ -3,7 +3,8 @@ class_name BrainActionMoveToMovingTargetBB
 
 
 @export var bb:BrainBoardNpc
-@export var target_key:String
+@export var reach_distance:float = 0
+@export var target_key:String = PropertyManager.KEY_TARGET
 
 enum state { Start, MoveToTarget }
 var current_state:state
@@ -12,11 +13,11 @@ var target
 
 func on_enter():
 	current_state = state.Start
-
+	
 func tick(delta:float):
 	match  current_state:
 		state.Start:
-			var t = bb.blackboard.get(target_key)
+			var t = bb.blackboard.get(PropertyManager.KEY_TARGET)
 			
 			if t == null:
 				return parent.on_result(false)
@@ -36,10 +37,11 @@ func tick(delta:float):
 			if bb.nav_agent.is_navigation_finished():
 				return parent.on_result(true)			
 			
-			
+			if reach_distance > 0:
+				if bb.npc.global_position.distance_to(target.global_position) < reach_distance:
+					return parent.on_result(true)
 			
 			var pos = bb.nav_agent.get_next_path_position()
-			##todo: remove
 			var d = bb.npc.global_position.distance_to(pos)
 			
 			var dir = (pos - bb.npc.global_position).normalized()

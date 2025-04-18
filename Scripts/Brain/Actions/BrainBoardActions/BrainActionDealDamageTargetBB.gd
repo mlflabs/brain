@@ -3,7 +3,6 @@ class_name BrainActionDealDamageTargetBB
 
 
 @export var bb:BrainBoardNpc
-@export var target_key:String
 @export var damage_value_key:String
 
 enum state {Start, Finished}
@@ -16,7 +15,7 @@ func on_enter():
 func tick(_delta:float):
 	match  current_state:
 		state.Start:
-			var target =  bb.blackboard.get(target_key, null)
+			var target =  bb.blackboard.get(PropertyManager.KEY_TARGET, null)
 			if target == null:
 				return parent.on_result(false)
 			if !is_instance_valid(target):

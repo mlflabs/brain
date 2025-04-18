@@ -18,7 +18,7 @@ var time:float
 var creeps:Array[NpcWPCreeper] = []
 
 func _ready() -> void:
-	time = 30
+	time = 0
 	
 	GlobalBoard.set_value(CREEPS_KEY, creeps)
 

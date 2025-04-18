@@ -52,7 +52,7 @@ func _process(delta):
 		DECIDING:
 			current_consideration = considerations[largest_index]
 			current_consideration.on_enter()
-			print("Chosen: ", current_consideration.name, ", with score:", largest_score)
+			print("Chosen: ", current_consideration.brain_name, ", with score:", largest_score)
 			state = RUNNING
 			return
 		START:

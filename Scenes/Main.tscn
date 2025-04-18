@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://bgxygt6h17kxl"]
+[gd_scene load_steps=14 format=3 uid="uid://bgxygt6h17kxl"]
 
+[ext_resource type="PackedScene" uid="uid://2xhidvti6bfa" path="res://Scenes/Ui/resources.tscn" id="1_bmxlf"]
 [ext_resource type="Script" uid="uid://c78gp5y6mlwml" path="res://Scripts/Classes/Managers/WaveManager.gd" id="1_erwvk"]
 [ext_resource type="PackedScene" uid="uid://dgaexk2mqn6j8" path="res://addons/srcoder_thirdperson_controller/player.tscn" id="1_r150o"]
 [ext_resource type="PackedScene" uid="uid://6ulp4jr8arsk" path="res://Scenes/Creeps/creep1.tscn" id="2_2w5on"]
@@ -24,6 +25,8 @@ tonemap_mode = 2
 glow_enabled = true
 
 [node name="Main" type="Node3D"]
+
+[node name="Control" parent="." instance=ExtResource("1_bmxlf")]
 
 [node name="Managers" type="Node" parent="."]
 

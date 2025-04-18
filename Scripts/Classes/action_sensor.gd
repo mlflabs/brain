@@ -15,9 +15,12 @@ func on_body_entered(node):
 		printerr("hitting creep")
 		disable()
 		node.npc_stats.remove_life(player.calculated_strength)
-	
+		PlayerManager.player_action_added.emit(PlayerManager.PlayerActions.Attack)
+		GlobalBoard.blackboard.set(PropertyManager.KEY_PLAYER_TARGET, node)
+
 	if node is StaticInteractableItem:
-		node.interact()
+		node.damage(player.calculated_strength)
+		PlayerManager.player_action_added.emit(PlayerManager.PlayerActions.Wood)
 		disable()
 		
 

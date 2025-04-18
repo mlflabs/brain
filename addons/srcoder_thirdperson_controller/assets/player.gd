@@ -20,6 +20,7 @@ const ROTATION_SPEED := 6.0
 @onready var playermodel : Node3D = $playermodel
 @onready var action_sensor: ActionSensor = $playermodel/ActionSensor
 @onready var player_command:PlayerCommand = $playermodel/Command
+@onready var player_targets: PlayerTargetManager = $PlayerTarget
 
 enum state {IDLE,RUNNING,JUMPING, TALK, ACTION1, BUSY}
 enum action_state { KICK_LEFT, KICK_RIGHT, PUNCH_LEFT, PUNCH_RIGHT }
@@ -33,8 +34,17 @@ var c_state : state = state.IDLE
 
 func _ready() -> void:
 	animation_player.connect("animation_finished", animation_finished)
-
+	
+	GlobalBoard.blackboard.set(PropertyManager.KEY_PLAYER, self)
+	
+	
+	
 func _physics_process(delta: float) -> void:
+
+	if Input.is_action_just_pressed("clear_targets"):
+		player_targets.clear_argets()
+	
+	
 	if c_state == state.BUSY:
 		if is_on_floor():
 			return

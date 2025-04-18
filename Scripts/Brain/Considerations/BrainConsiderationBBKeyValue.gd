@@ -1,9 +1,9 @@
 extends BrainConsideration
-class_name BrainConsiderationBBValidKey
+class_name BrainConsiderationBBKeyValue
 
 @export var bb:BrainBoard
 @export var key: String
-@export var valid_key_score:float = 1
+@export var multiplier:float = 1
 @export var invalid_key_score:float = 0
 
 
@@ -12,11 +12,8 @@ class_name BrainConsiderationBBValidKey
 func get_score():
 	var a = bb.blackboard.get(key, null)
 	
-	if(a == null):
+	if(!a):
 		return invalid_key_score
 	
-	if !is_instance_valid(a):
-		return invalid_key_score
-	
-	return valid_key_score
+	return a * multiplier
 	

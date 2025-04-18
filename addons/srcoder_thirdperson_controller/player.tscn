@@ -62,7 +62,6 @@ speed = 15.0
 time = 0.1
 
 [node name="Area3D" type="Area3D" parent="playermodel/Command"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="playermodel/Command/Area3D"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0.0540381)
@@ -71,7 +70,7 @@ mesh = SubResource("SphereMesh_6sduc")
 skeleton = NodePath("../../../character-male-e2/character-male-e")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="playermodel/Command/Area3D"]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+transform = Transform3D(0.355, 0, 0, 0, 0.355, 0, 0, 0, 0.355, 0, 0, 0.153869)
 shape = SubResource("SphereShape3D_lmbpc")
 
 [node name="character-male-e2" parent="playermodel" instance=ExtResource("1_jt3wm")]
