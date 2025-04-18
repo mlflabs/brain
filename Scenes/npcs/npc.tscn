@@ -1,10 +1,12 @@
-[gd_scene load_steps=38 format=4 uid="uid://bfvficdshqjxn"]
+[gd_scene load_steps=43 format=4 uid="uid://bfvficdshqjxn"]
 
 [ext_resource type="Script" uid="uid://cjr6cwpxc7mpl" path="res://Scripts/Classes/npc_smart.gd" id="1_8aih3"]
 [ext_resource type="Script" uid="uid://5xm5vsxyceah" path="res://Scripts/Brain/BrainBoardNpc.gd" id="2_icy7c"]
 [ext_resource type="Script" uid="uid://ds1c32y20tiig" path="res://Scripts/Classes/npc_anim.gd" id="3_eg4om"]
 [ext_resource type="Script" uid="uid://dkke5g55u1jrj" path="res://Scripts/Classes/npc_stats.gd" id="4_ras1v"]
 [ext_resource type="PackedScene" uid="uid://dl6hqvtvu3ew1" path="res://assets/Kenny/npcs/character-male-d.glb" id="4_w4bb1"]
+[ext_resource type="Script" uid="uid://dkg6jv4xnadlb" path="res://Scripts/Classes/Emoji.gd" id="5_3khl4"]
+[ext_resource type="Texture2D" uid="uid://c7f1ftgkyhiss" path="res://assets/Kenny/Icons/emote_question.png" id="5_mapuy"]
 [ext_resource type="Script" uid="uid://dum72xbrhjpq2" path="res://Scripts/Brain/BrainAgent.gd" id="5_ras1v"]
 [ext_resource type="Texture2D" uid="uid://48kudn7u18fe" path="res://assets/CubeWorld/Tools/Pickaxe_Wood_Atlas.png" id="6_n7exu"]
 [ext_resource type="Script" uid="uid://cgg06m6c002th" path="res://Scripts/Brain/Considerations/BrainConsiderationRandom.gd" id="6_qt4l2"]
@@ -31,6 +33,9 @@
 [ext_resource type="Script" uid="uid://bdan8ph3hdfa2" path="res://Scripts/Brain/Considerations/BrainStaticConsideration.gd" id="28_q8gtk"]
 [ext_resource type="Script" uid="uid://d142r5byopmyf" path="res://Scripts/Brain/Actions/BrainBoardActions/BrainActionFollowTargetBB.gd" id="29_mapuy"]
 [ext_resource type="Script" uid="uid://dok8i7osgl2ug" path="res://Scripts/Brain/Actions/Player/BrainActionStudyPlayer.gd" id="29_q8gtk"]
+[ext_resource type="Script" uid="uid://dwomplfxuescg" path="res://Scripts/Brain/Considerations/Game/BrainConsiderationBBHasPlayerAction.gd" id="34_62pcp"]
+[ext_resource type="Script" uid="uid://okoehp24hyli" path="res://Scripts/Brain/Considerations/Game/BrainConsiderationBBKeyValueEqualsPlayerAction.gd" id="35_2fjge"]
+[ext_resource type="Script" uid="uid://bejcx620tn8j" path="res://Scripts/Brain/Actions/Npc/BrainActionEmoji.gd" id="36_1jc8v"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1p5hy"]
 size = Vector3(0.453552, 0.783035, 0.358826)
@@ -107,6 +112,13 @@ script = ExtResource("4_ras1v")
 BB = NodePath("../BrainBoardNpc")
 npc = NodePath("..")
 metadata/_custom_type_script = "uid://dkke5g55u1jrj"
+
+[node name="Emoji" type="Node3D" parent="."]
+script = ExtResource("5_3khl4")
+
+[node name="Sprite3D" type="Sprite3D" parent="Emoji"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.41165, 0)
+texture = ExtResource("5_mapuy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00432026, 0.47696, 0.00369351)
@@ -309,5 +321,56 @@ bb = NodePath("../../../../../../BrainBoardNpc")
 use_global_board = true
 reach_distance = 0.9
 metadata/_custom_type_script = "uid://d142r5byopmyf"
+
+[node name="BrainConsiderationBBHasPlayerAction" type="Node" parent="BrainAgent/BrainConsiderationBBValidKeyValue/BrainStateSubAgent" node_paths=PackedStringArray("bb")]
+script = ExtResource("34_62pcp")
+bb = NodePath("../../../../BrainBoardNpc")
+key_action = "player_action"
+key_action_time = "player_action_time"
+valid_key_score = 6.0
+brain_name = "ImitatePlayer"
+metadata/_custom_type_script = "uid://dwomplfxuescg"
+
+[node name="BrainStateSubAgent" type="Node" parent="BrainAgent/BrainConsiderationBBValidKeyValue/BrainStateSubAgent/BrainConsiderationBBHasPlayerAction"]
+script = ExtResource("24_bhxe3")
+metadata/_custom_type_script = "uid://dxfiqh3ut0hl"
+
+[node name="BrainConsiderationBBKeyValueEqualsPlayerAction" type="Node" parent="BrainAgent/BrainConsiderationBBValidKeyValue/BrainStateSubAgent/BrainConsiderationBBHasPlayerAction/BrainStateSubAgent" node_paths=PackedStringArray("bb")]
+script = ExtResource("35_2fjge")
+bb = NodePath("../../../../../../BrainBoardNpc")
+key = "player_action"
+value = 2
+valid_key_score = 0.5
+brain_name = "Sub wood"
+metadata/_custom_type_script = "uid://okoehp24hyli"
+
+[node name="BrainStateActions" type="Node" parent="BrainAgent/BrainConsiderationBBValidKeyValue/BrainStateSubAgent/BrainConsiderationBBHasPlayerAction/BrainStateSubAgent/BrainConsiderationBBKeyValueEqualsPlayerAction"]
+script = ExtResource("8_nmf7u")
+metadata/_custom_type_script = "uid://pp6jh1a56vm3"
+
+[node name="BrainActionEmoji" type="Node" parent="BrainAgent/BrainConsiderationBBValidKeyValue/BrainStateSubAgent/BrainConsiderationBBHasPlayerAction/BrainStateSubAgent/BrainConsiderationBBKeyValueEqualsPlayerAction/BrainStateActions" node_paths=PackedStringArray("emoji")]
+script = ExtResource("36_1jc8v")
+emoji = NodePath("../../../../../../../../Emoji")
+state = 1
+metadata/_custom_type_script = "uid://bejcx620tn8j"
+
+[node name="BrainConsiderationBBKeyValueEqualsPlayerAction2" type="Node" parent="BrainAgent/BrainConsiderationBBValidKeyValue/BrainStateSubAgent/BrainConsiderationBBHasPlayerAction/BrainStateSubAgent" node_paths=PackedStringArray("bb")]
+script = ExtResource("35_2fjge")
+bb = NodePath("../../../../../../BrainBoardNpc")
+key = "player_action"
+value = 1
+valid_key_score = 0.5
+brain_name = "sub_attack"
+metadata/_custom_type_script = "uid://okoehp24hyli"
+
+[node name="BrainStateActions" type="Node" parent="BrainAgent/BrainConsiderationBBValidKeyValue/BrainStateSubAgent/BrainConsiderationBBHasPlayerAction/BrainStateSubAgent/BrainConsiderationBBKeyValueEqualsPlayerAction2"]
+script = ExtResource("8_nmf7u")
+metadata/_custom_type_script = "uid://pp6jh1a56vm3"
+
+[node name="BrainActionEmoji" type="Node" parent="BrainAgent/BrainConsiderationBBValidKeyValue/BrainStateSubAgent/BrainConsiderationBBHasPlayerAction/BrainStateSubAgent/BrainConsiderationBBKeyValueEqualsPlayerAction2/BrainStateActions" node_paths=PackedStringArray("emoji")]
+script = ExtResource("36_1jc8v")
+emoji = NodePath("../../../../../../../../Emoji")
+state = 2
+metadata/_custom_type_script = "uid://bejcx620tn8j"
 
 [editable path="Model/model"]
