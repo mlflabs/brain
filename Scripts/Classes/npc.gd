@@ -16,18 +16,24 @@ var on_destroy_callback
 
 
 func interupt(t):
+	if t == self:
+		target = null
+		BB.blackboard.set(PropertyManager.KEY_TARGET, null)
+		BA.interupt()
 	target = t
 	BA.interupt()
-	BB.blackboard.set("target", t)
+	BB.blackboard.set(PropertyManager.KEY_TARGET, t)
 
 func loose_target(t):
 	if target == t:
-		BB.blackboard.set("target", null)
+		BB.blackboard.set(PropertyManager.KEY_TARGET, null)
 		BA.interupt()
 
 func receive_damage(value:int):
-	npc_stats.change_life(-value)
+	damage(value)
 
+func damage(value:int):
+	npc_stats.change_life(-value)
 
 func remove():
 	npc_anim.set_state(NpcAnim.State.DIE)

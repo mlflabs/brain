@@ -1,5 +1,5 @@
-extends BrainState
-class_name BrainStateSubAgent
+extends BrainAction
+class_name BrainActionSubAgent
 
 
 var considerations : Array[BrainConsideration] = []
@@ -26,7 +26,10 @@ func _ready():
 		printerr("No considerations found")
 
 func on_result(result:bool):
-	parent.on_result(true)
+	if result:
+		state = START
+	else:
+		state = ERROR
 	
 	
 func on_exit():

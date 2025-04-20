@@ -21,7 +21,7 @@ func tick(_delta:float):
 			if !is_instance_valid(target):
 				return parent.on_result(false)
 			
-			target.receive_damage(bb.blackboard.get(damage_value_key))
+			target.damage(bb.blackboard.get(damage_value_key))
 			current_state = state.Finished
 		state.Finished:
 			parent.on_result(true)

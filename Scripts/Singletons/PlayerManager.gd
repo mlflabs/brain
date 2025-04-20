@@ -1,7 +1,11 @@
 extends Node
 
 
-enum PlayerActions { None,Attack, Wood }
+var player:Player
+
+
+enum PlayerActions { None, Idle, Move, Attack, Wood }
+
 
 #signals
 signal player_targer_added(target)

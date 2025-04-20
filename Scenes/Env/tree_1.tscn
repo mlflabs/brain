@@ -7,11 +7,8 @@
 
 [node name="Tree1" type="StaticBody3D"]
 script = ExtResource("1_lietq")
-wood = null
-life = null
 shake_multiplier = 0.02
 interaction_anim = 1
-shake_intensity = null
 shake_speed = 1.0
 shake_cool_down = 0.02
 

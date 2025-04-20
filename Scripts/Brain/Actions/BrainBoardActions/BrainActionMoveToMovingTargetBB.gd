@@ -14,7 +14,7 @@ var target
 func on_enter():
 	current_state = state.Start
 	
-func tick(delta:float):
+func tick_physics(delta:float):
 	match  current_state:
 		state.Start:
 			var t = bb.blackboard.get(PropertyManager.KEY_TARGET)

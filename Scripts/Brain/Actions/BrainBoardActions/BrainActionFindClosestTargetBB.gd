@@ -1,10 +1,10 @@
 extends BrainAction
-class_name BrainActionFindClosestTargetBBd
+class_name BrainActionFindClosestTargetBB
 
 
-@export var bb:BrainBoard
+@export var bb:BrainBoardNpc
 @export var targets_array_key:String
-@export var save_target_key:String
+@export var save_target_key:String = PropertyManager.KEY_TARGET
 
 enum state {Finding, Finished}
 var current_state:state
@@ -34,6 +34,7 @@ func tick(_delta:float):
 					closest_obj = targets[i]
 
 			bb.blackboard.set(save_target_key, closest_obj)
+			bb.npc.target = closest_obj
 			current_state = state.Finished
 				
 		

@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://6ulp4jr8arsk"]
+[gd_scene load_steps=18 format=3 uid="uid://6ulp4jr8arsk"]
 
 [ext_resource type="Script" uid="uid://0dim3ha5y8k7" path="res://Scripts/Classes/npc_wp_creeper.gd" id="1_16t62"]
+[ext_resource type="Script" uid="uid://dcw1oc3xeseuy" path="res://Scripts/Classes/effect_shake.gd" id="2_mcuvf"]
 [ext_resource type="Script" uid="uid://5xm5vsxyceah" path="res://Scripts/Brain/BrainBoardNpc.gd" id="2_x1fa8"]
 [ext_resource type="Script" uid="uid://ds1c32y20tiig" path="res://Scripts/Classes/npc_anim.gd" id="3_t2dta"]
 [ext_resource type="Script" uid="uid://dum72xbrhjpq2" path="res://Scripts/Brain/BrainAgent.gd" id="4_etwnn"]
@@ -20,12 +21,19 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_etwnn"]
 
-[node name="Creep1" type="CharacterBody3D" node_paths=PackedStringArray("BA", "BB", "npc_stats", "npc_anim")]
+[node name="Creep1" type="CharacterBody3D" node_paths=PackedStringArray("effect", "BA", "BB", "npc_stats", "npc_anim")]
 script = ExtResource("1_16t62")
+effect = NodePath("EffectShake")
 BA = NodePath("BrainAgent")
 BB = NodePath("BrainBoardNpc")
 npc_stats = NodePath("NpcStats")
 npc_anim = NodePath("NpcAnim")
+
+[node name="EffectShake" type="StaticBody3D" parent="." node_paths=PackedStringArray("mesh")]
+script = ExtResource("2_mcuvf")
+shake_intensity = 0.2
+mesh = NodePath("../MeshInstance3D")
+metadata/_custom_type_script = "uid://dcw1oc3xeseuy"
 
 [node name="BrainBoardNpc" type="Node" parent="." node_paths=PackedStringArray("nav_agent", "npc", "npc_anim", "npc_model_root")]
 script = ExtResource("2_x1fa8")

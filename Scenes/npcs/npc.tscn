@@ -1,11 +1,11 @@
-[gd_scene load_steps=43 format=4 uid="uid://bfvficdshqjxn"]
+[gd_scene load_steps=47 format=4 uid="uid://bfvficdshqjxn"]
 
 [ext_resource type="Script" uid="uid://cjr6cwpxc7mpl" path="res://Scripts/Classes/npc_smart.gd" id="1_8aih3"]
 [ext_resource type="Script" uid="uid://5xm5vsxyceah" path="res://Scripts/Brain/BrainBoardNpc.gd" id="2_icy7c"]
 [ext_resource type="Script" uid="uid://ds1c32y20tiig" path="res://Scripts/Classes/npc_anim.gd" id="3_eg4om"]
 [ext_resource type="Script" uid="uid://dkke5g55u1jrj" path="res://Scripts/Classes/npc_stats.gd" id="4_ras1v"]
 [ext_resource type="PackedScene" uid="uid://dl6hqvtvu3ew1" path="res://assets/Kenny/npcs/character-male-d.glb" id="4_w4bb1"]
-[ext_resource type="Script" uid="uid://dkg6jv4xnadlb" path="res://Scripts/Classes/Emoji.gd" id="5_3khl4"]
+[ext_resource type="Script" path="res://Scripts/Classes/Emoji.gd" id="5_3khl4"]
 [ext_resource type="Texture2D" uid="uid://c7f1ftgkyhiss" path="res://assets/Kenny/Icons/emote_question.png" id="5_mapuy"]
 [ext_resource type="Script" uid="uid://dum72xbrhjpq2" path="res://Scripts/Brain/BrainAgent.gd" id="5_ras1v"]
 [ext_resource type="Texture2D" uid="uid://48kudn7u18fe" path="res://assets/CubeWorld/Tools/Pickaxe_Wood_Atlas.png" id="6_n7exu"]
@@ -26,16 +26,18 @@
 [ext_resource type="Script" uid="uid://bpbqq86bryhra" path="res://Scripts/Brain/Actions/BrainBoardActions/BrainActionLooseFocusTargetBB.gd" id="20_qt4l2"]
 [ext_resource type="Script" uid="uid://djax4cjks07nh" path="res://Scripts/Brain/Considerations/BrainConsiderationBBValidKeyValue.gd" id="23_t4qr8"]
 [ext_resource type="Script" uid="uid://dxfiqh3ut0hl" path="res://Scripts/Brain/States/BrainStateSubAgent.gd" id="24_bhxe3"]
-[ext_resource type="Script" uid="uid://dekjiw8gkjqfr" path="res://Scripts/Brain/Considerations/BrainFunctionSetDistanceToTargetBB.gd" id="25_uod0v"]
+[ext_resource type="Script" uid="uid://dekjiw8gkjqfr" path="res://Scripts/Brain/CFunctions/BrainFunctionSetDistanceToTargetBB.gd" id="25_uod0v"]
 [ext_resource type="Script" uid="uid://j8ejejraqiqe" path="res://Scripts/Brain/Considerations/BrainConsiderationBBKeyValueInRange.gd" id="26_tlfml"]
 [ext_resource type="Script" uid="uid://bwtnxjnd36e7k" path="res://Scripts/Brain/Actions/BrainBoardActions/BrainActionWait.gd" id="27_h2msv"]
 [ext_resource type="Script" uid="uid://dohrqxi16ij0b" path="res://Scripts/Brain/Actions/BrainActionParallelActions.gd" id="27_q8gtk"]
 [ext_resource type="Script" uid="uid://bdan8ph3hdfa2" path="res://Scripts/Brain/Considerations/BrainStaticConsideration.gd" id="28_q8gtk"]
 [ext_resource type="Script" uid="uid://d142r5byopmyf" path="res://Scripts/Brain/Actions/BrainBoardActions/BrainActionFollowTargetBB.gd" id="29_mapuy"]
 [ext_resource type="Script" uid="uid://dok8i7osgl2ug" path="res://Scripts/Brain/Actions/Player/BrainActionStudyPlayer.gd" id="29_q8gtk"]
-[ext_resource type="Script" uid="uid://dwomplfxuescg" path="res://Scripts/Brain/Considerations/Game/BrainConsiderationBBHasPlayerAction.gd" id="34_62pcp"]
-[ext_resource type="Script" uid="uid://okoehp24hyli" path="res://Scripts/Brain/Considerations/Game/BrainConsiderationBBKeyValueEqualsPlayerAction.gd" id="35_2fjge"]
+[ext_resource type="Script" uid="uid://cyem64w7qg3xu" path="res://Scripts/Brain/Considerations/BrainConsiderationPlayerAction.gd" id="34_1jc8v"]
 [ext_resource type="Script" uid="uid://bejcx620tn8j" path="res://Scripts/Brain/Actions/Npc/BrainActionEmoji.gd" id="36_1jc8v"]
+[ext_resource type="Script" uid="uid://doi6fx4x526qm" path="res://Scripts/Brain/CFunctions/BrainFunctionSetTargetToPlayerTargetBB.gd" id="37_5w7up"]
+[ext_resource type="Script" uid="uid://ciu5ilp7rggqn" path="res://Scripts/Brain/Actions/BrainBoardActions/BrainActionMoveToMovingTargetAvoidanceBB.gd" id="37_128y6"]
+[ext_resource type="Script" uid="uid://dvwh4oev7f4d2" path="res://Scripts/Brain/Considerations/BrainConsiderationNpcSmartAction.gd" id="38_5w7up"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1p5hy"]
 size = Vector3(0.453552, 0.783035, 0.358826)
@@ -89,6 +91,18 @@ state = 6
 time = 0.0
 metadata/_custom_type_script = "uid://cdlebhu010oox"
 
+[sub_resource type="Resource" id="Resource_128y6"]
+script = ExtResource("18_qt4l2")
+state = 6
+time = 0.0
+metadata/_custom_type_script = "uid://cdlebhu010oox"
+
+[sub_resource type="Resource" id="Resource_5w7up"]
+script = ExtResource("18_qt4l2")
+state = 0
+time = 0.5
+metadata/_custom_type_script = "uid://cdlebhu010oox"
+
 [node name="Npc" type="CharacterBody3D" node_paths=PackedStringArray("BA", "BB", "npc_anim")]
 script = ExtResource("1_8aih3")
 BA = NodePath("BrainAgent")
@@ -114,6 +128,7 @@ npc = NodePath("..")
 metadata/_custom_type_script = "uid://dkke5g55u1jrj"
 
 [node name="Emoji" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.554773, 0)
 script = ExtResource("5_3khl4")
 
 [node name="Sprite3D" type="Sprite3D" parent="Emoji"]
@@ -121,12 +136,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.41165, 0)
 texture = ExtResource("5_mapuy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00432026, 0.47696, 0.00369351)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00432026, -0.0679509, 0.00369351)
 shape = SubResource("BoxShape3D_1p5hy")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 0.3
+simplify_path = true
 max_speed = 3.0
+debug_enabled = true
 
 [node name="Selector" type="Node3D" parent="." node_paths=PackedStringArray("BB", "npc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01727, 0.0166827)
@@ -135,12 +152,13 @@ BB = NodePath("../BrainBoardNpc")
 npc = NodePath("..")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Selector"]
-transform = Transform3D(0.28, 0, 0, 0, 0.28, 0, 0, 0, 0.28, 0, 0, 0)
+transform = Transform3D(0.28, 0, 0, 0, 0.28, 0, 0, 0, 0.28, 0, -0.529685, 0)
 transparency = 0.35
 cast_shadow = 0
 mesh = SubResource("SphereMesh_uod0v")
 
 [node name="Model" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.457146, 0)
 
 [node name="model" parent="Model" instance=ExtResource("4_w4bb1")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0.271)
@@ -166,38 +184,38 @@ skeleton = NodePath("../..")
 script = ExtResource("5_ras1v")
 metadata/_custom_type_script = "uid://dum72xbrhjpq2"
 
-[node name="BrainConsiderationRandom" type="Node" parent="BrainAgent"]
+[node name="BC_Rest" type="Node" parent="BrainAgent"]
 script = ExtResource("6_qt4l2")
 max_value = 0.2
 brain_name = "BrainRandom_Rest"
 metadata/_custom_type_script = "uid://cgg06m6c002th"
 
-[node name="BrainActionRest" type="Node" parent="BrainAgent/BrainConsiderationRandom" node_paths=PackedStringArray("bb")]
+[node name="BrainActionRest" type="Node" parent="BrainAgent/BC_Rest" node_paths=PackedStringArray("bb")]
 script = ExtResource("7_n7exu")
 bb = NodePath("../../../BrainBoardNpc")
 metadata/_custom_type_script = "uid://bcup1yg3wf5wf"
 
-[node name="BrainConsiderationRandom2" type="Node" parent="BrainAgent"]
+[node name="BC_Wander" type="Node" parent="BrainAgent"]
 script = ExtResource("6_qt4l2")
 max_value = 0.2
 brain_name = "BrainRandom_Wander"
 metadata/_custom_type_script = "uid://cgg06m6c002th"
 
-[node name="BrainStateActions" type="Node" parent="BrainAgent/BrainConsiderationRandom2"]
+[node name="BrainStateActions" type="Node" parent="BrainAgent/BC_Wander"]
 script = ExtResource("8_nmf7u")
 metadata/_custom_type_script = "uid://pp6jh1a56vm3"
 
-[node name="BrainActionGenerateRandomReachablePos" type="Node" parent="BrainAgent/BrainConsiderationRandom2/BrainStateActions" node_paths=PackedStringArray("bb_npc")]
+[node name="BrainActionGenerateRandomReachablePos" type="Node" parent="BrainAgent/BC_Wander/BrainStateActions" node_paths=PackedStringArray("bb_npc")]
 script = ExtResource("9_t4qr8")
 bb_npc = NodePath("../../../../BrainBoardNpc")
 metadata/_custom_type_script = "uid://tfhpe1howkpk"
 
-[node name="BrainActionMove" type="Node" parent="BrainAgent/BrainConsiderationRandom2/BrainStateActions" node_paths=PackedStringArray("bb")]
+[node name="BrainActionMove" type="Node" parent="BrainAgent/BC_Wander/BrainStateActions" node_paths=PackedStringArray("bb")]
 script = ExtResource("10_bhxe3")
 bb = NodePath("../../../../BrainBoardNpc")
 metadata/_custom_type_script = "uid://dq78aqhb8c4dc"
 
-[node name="BrainConsiderationGBArrayCount" type="Node" parent="BrainAgent"]
+[node name="BC_AttackCreeps" type="Node" parent="BrainAgent"]
 script = ExtResource("11_uod0v")
 array_key = "creeps"
 count_multiplier = 0.5
@@ -205,51 +223,50 @@ max_value = 0.6
 brain_name = "BrainTargets"
 metadata/_custom_type_script = "uid://blns0y4x27f2d"
 
-[node name="BrainStateActions" type="Node" parent="BrainAgent/BrainConsiderationGBArrayCount"]
+[node name="BrainStateActions" type="Node" parent="BrainAgent/BC_AttackCreeps"]
 script = ExtResource("8_nmf7u")
 metadata/_custom_type_script = "uid://pp6jh1a56vm3"
 
-[node name="BrainActionFindClosestTargetBB" type="Node" parent="BrainAgent/BrainConsiderationGBArrayCount/BrainStateActions" node_paths=PackedStringArray("bb")]
+[node name="BrainActionFindClosestTargetBB" type="Node" parent="BrainAgent/BC_AttackCreeps/BrainStateActions" node_paths=PackedStringArray("bb")]
 script = ExtResource("12_pc83j")
 bb = NodePath("../../../../BrainBoardNpc")
 targets_array_key = "creeps"
-save_target_key = "target"
 metadata/_custom_type_script = "uid://c6t4u6fe27sfh"
 
-[node name="BrainActionChangeAnim" type="Node" parent="BrainAgent/BrainConsiderationGBArrayCount/BrainStateActions" node_paths=PackedStringArray("bb")]
+[node name="BrainActionChangeAnim" type="Node" parent="BrainAgent/BC_AttackCreeps/BrainStateActions" node_paths=PackedStringArray("bb")]
 script = ExtResource("13_58gyf")
 bb = NodePath("../../../../BrainBoardNpc")
 state = 1
 metadata/_custom_type_script = "uid://btkfbftwq1jtc"
 
-[node name="BrainActionMoveToMovingTargetBB" type="Node" parent="BrainAgent/BrainConsiderationGBArrayCount/BrainStateActions" node_paths=PackedStringArray("bb")]
+[node name="BrainActionMoveToMovingTargetBB" type="Node" parent="BrainAgent/BC_AttackCreeps/BrainStateActions" node_paths=PackedStringArray("bb")]
 script = ExtResource("14_jmk8s")
 bb = NodePath("../../../../BrainBoardNpc")
 reach_distance = 1.0
 metadata/_custom_type_script = "uid://fl0hlwgboccg"
 
-[node name="BrainActionFocusTargetBB" type="Node" parent="BrainAgent/BrainConsiderationGBArrayCount/BrainStateActions" node_paths=PackedStringArray("bb")]
+[node name="BrainActionFocusTargetBB" type="Node" parent="BrainAgent/BC_AttackCreeps/BrainStateActions" node_paths=PackedStringArray("bb")]
 script = ExtResource("15_tlfml")
 bb = NodePath("../../../../BrainBoardNpc")
 metadata/_custom_type_script = "uid://cyguow7i763vh"
 
-[node name="BrainActionPlayAnimationSequence" type="Node" parent="BrainAgent/BrainConsiderationGBArrayCount/BrainStateActions" node_paths=PackedStringArray("bb")]
+[node name="BrainActionPlayAnimationSequence" type="Node" parent="BrainAgent/BC_AttackCreeps/BrainStateActions" node_paths=PackedStringArray("bb")]
 script = ExtResource("16_w4bb1")
 bb = NodePath("../../../../BrainBoardNpc")
 anims = Array[ExtResource("18_qt4l2")]([SubResource("Resource_w4bb1")])
 metadata/_custom_type_script = "uid://breuaq3mn34oe"
 
-[node name="BrainActionDealDamageTargetBB2" type="Node" parent="BrainAgent/BrainConsiderationGBArrayCount/BrainStateActions" node_paths=PackedStringArray("bb")]
+[node name="BrainActionDealDamageTargetBB2" type="Node" parent="BrainAgent/BC_AttackCreeps/BrainStateActions" node_paths=PackedStringArray("bb")]
 script = ExtResource("19_ras1v")
 bb = NodePath("../../../../BrainBoardNpc")
 damage_value_key = "prop_strength"
 metadata/_custom_type_script = "uid://bqg16iy7f0gr3"
 
-[node name="BrainActionLooseFocusTargetBB" type="Node" parent="BrainAgent/BrainConsiderationGBArrayCount/BrainStateActions" node_paths=PackedStringArray("bb")]
+[node name="BrainActionLooseFocusTargetBB" type="Node" parent="BrainAgent/BC_AttackCreeps/BrainStateActions" node_paths=PackedStringArray("bb")]
 script = ExtResource("20_qt4l2")
 bb = NodePath("../../../../BrainBoardNpc")
 
-[node name="BrainConsiderationBBValidKeyValue" type="Node" parent="BrainAgent" node_paths=PackedStringArray("bb")]
+[node name="BC_Selected" type="Node" parent="BrainAgent" node_paths=PackedStringArray("bb")]
 script = ExtResource("23_t4qr8")
 bb = NodePath("../../BrainBoardNpc")
 key = "npc_selected"
@@ -257,18 +274,18 @@ valid_key_score = 0.8
 brain_name = "Selected"
 metadata/_custom_type_script = "uid://djax4cjks07nh"
 
-[node name="BrainStateSubAgent" type="Node" parent="BrainAgent/BrainConsiderationBBValidKeyValue"]
+[node name="BrainStateSubAgent" type="Node" parent="BrainAgent/BC_Selected"]
 script = ExtResource("24_bhxe3")
 metadata/_custom_type_script = "uid://dxfiqh3ut0hl"
 
-[node name="BrainFunctionSetDistanceToTargetBB" type="Node" parent="BrainAgent/BrainConsiderationBBValidKeyValue/BrainStateSubAgent" node_paths=PackedStringArray("bb")]
+[node name="BrainFunctionPlayerDistance" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent" node_paths=PackedStringArray("bb")]
 script = ExtResource("25_uod0v")
 bb = NodePath("../../../../BrainBoardNpc")
 target_key_in_global_board = true
 invalid_target_key_value = 100000.0
 metadata/_custom_type_script = "uid://dekjiw8gkjqfr"
 
-[node name="BrainConsiderationBBKeyValueInRange" type="Node" parent="BrainAgent/BrainConsiderationBBValidKeyValue/BrainStateSubAgent" node_paths=PackedStringArray("bb")]
+[node name="BrainConsiderationInRangeOfPlayer" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent" node_paths=PackedStringArray("bb")]
 script = ExtResource("26_tlfml")
 bb = NodePath("../../../../BrainBoardNpc")
 key = "distance"
@@ -277,100 +294,259 @@ in_range_score = 0.5
 brain_name = "Follow_In_Range"
 metadata/_custom_type_script = "uid://j8ejejraqiqe"
 
-[node name="BrainStateActions" type="Node" parent="BrainAgent/BrainConsiderationBBValidKeyValue/BrainStateSubAgent/BrainConsiderationBBKeyValueInRange"]
+[node name="BrainStateActions" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BrainConsiderationInRangeOfPlayer"]
 script = ExtResource("8_nmf7u")
 metadata/_custom_type_script = "uid://pp6jh1a56vm3"
 
-[node name="BrainActionChangeAnim" type="Node" parent="BrainAgent/BrainConsiderationBBValidKeyValue/BrainStateSubAgent/BrainConsiderationBBKeyValueInRange/BrainStateActions" node_paths=PackedStringArray("bb")]
+[node name="BrainActionChangeAnim" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BrainConsiderationInRangeOfPlayer/BrainStateActions" node_paths=PackedStringArray("bb")]
 script = ExtResource("13_58gyf")
 bb = NodePath("../../../../../../BrainBoardNpc")
 metadata/_custom_type_script = "uid://btkfbftwq1jtc"
 
-[node name="BrainActionParallelActions" type="Node" parent="BrainAgent/BrainConsiderationBBValidKeyValue/BrainStateSubAgent/BrainConsiderationBBKeyValueInRange/BrainStateActions"]
+[node name="BrainActionParallelActions" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BrainConsiderationInRangeOfPlayer/BrainStateActions"]
 script = ExtResource("27_q8gtk")
 metadata/_custom_type_script = "uid://dohrqxi16ij0b"
 
-[node name="BrainActionWait" type="Node" parent="BrainAgent/BrainConsiderationBBValidKeyValue/BrainStateSubAgent/BrainConsiderationBBKeyValueInRange/BrainStateActions/BrainActionParallelActions"]
+[node name="BrainActionWait" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BrainConsiderationInRangeOfPlayer/BrainStateActions/BrainActionParallelActions"]
 script = ExtResource("27_h2msv")
 metadata/_custom_type_script = "uid://bwtnxjnd36e7k"
 
-[node name="BrainActionStudyPlayer" type="Node" parent="BrainAgent/BrainConsiderationBBValidKeyValue/BrainStateSubAgent/BrainConsiderationBBKeyValueInRange/BrainStateActions/BrainActionParallelActions" node_paths=PackedStringArray("bb")]
+[node name="BrainActionStudyPlayer" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BrainConsiderationInRangeOfPlayer/BrainStateActions/BrainActionParallelActions" node_paths=PackedStringArray("bb")]
 script = ExtResource("29_q8gtk")
 bb = NodePath("../../../../../../../BrainBoardNpc")
 metadata/_custom_type_script = "uid://dok8i7osgl2ug"
 
-[node name="BrainStaticConsideration" type="Node" parent="BrainAgent/BrainConsiderationBBValidKeyValue/BrainStateSubAgent"]
+[node name="BC_Default_GoToPlayer" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent"]
 script = ExtResource("28_q8gtk")
 value = 0.2
 brain_name = "Follow"
 metadata/_custom_type_script = "uid://bdan8ph3hdfa2"
 
-[node name="BrainStateActions" type="Node" parent="BrainAgent/BrainConsiderationBBValidKeyValue/BrainStateSubAgent/BrainStaticConsideration"]
+[node name="BrainStateActions" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Default_GoToPlayer"]
 script = ExtResource("8_nmf7u")
 metadata/_custom_type_script = "uid://pp6jh1a56vm3"
 
-[node name="BrainActionChangeAnim" type="Node" parent="BrainAgent/BrainConsiderationBBValidKeyValue/BrainStateSubAgent/BrainStaticConsideration/BrainStateActions" node_paths=PackedStringArray("bb")]
+[node name="BrainActionChangeAnim" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Default_GoToPlayer/BrainStateActions" node_paths=PackedStringArray("bb")]
 script = ExtResource("13_58gyf")
 bb = NodePath("../../../../../../BrainBoardNpc")
 state = 1
 metadata/_custom_type_script = "uid://btkfbftwq1jtc"
 
-[node name="BrainActionFollowTargetBB" type="Node" parent="BrainAgent/BrainConsiderationBBValidKeyValue/BrainStateSubAgent/BrainStaticConsideration/BrainStateActions" node_paths=PackedStringArray("bb")]
+[node name="BrainActionFollowTargetBB" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Default_GoToPlayer/BrainStateActions" node_paths=PackedStringArray("bb")]
 script = ExtResource("29_mapuy")
 bb = NodePath("../../../../../../BrainBoardNpc")
 use_global_board = true
 reach_distance = 0.9
 metadata/_custom_type_script = "uid://d142r5byopmyf"
 
-[node name="BrainConsiderationBBHasPlayerAction" type="Node" parent="BrainAgent/BrainConsiderationBBValidKeyValue/BrainStateSubAgent" node_paths=PackedStringArray("bb")]
-script = ExtResource("34_62pcp")
-bb = NodePath("../../../../BrainBoardNpc")
-key_action = "player_action"
-key_action_time = "player_action_time"
-valid_key_score = 6.0
-brain_name = "ImitatePlayer"
-metadata/_custom_type_script = "uid://dwomplfxuescg"
+[node name="BC_Action_Wood" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent"]
+script = ExtResource("34_1jc8v")
+action = 4
+equals_value = 0.6
+brain_name = "action_wood"
+metadata/_custom_type_script = "uid://cyem64w7qg3xu"
 
-[node name="BrainStateSubAgent" type="Node" parent="BrainAgent/BrainConsiderationBBValidKeyValue/BrainStateSubAgent/BrainConsiderationBBHasPlayerAction"]
+[node name="BrainStateSubAgent" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Wood"]
 script = ExtResource("24_bhxe3")
 metadata/_custom_type_script = "uid://dxfiqh3ut0hl"
 
-[node name="BrainConsiderationBBKeyValueEqualsPlayerAction" type="Node" parent="BrainAgent/BrainConsiderationBBValidKeyValue/BrainStateSubAgent/BrainConsiderationBBHasPlayerAction/BrainStateSubAgent" node_paths=PackedStringArray("bb")]
-script = ExtResource("35_2fjge")
+[node name="BrainFunctionSetTargetToPlayerTargetBB" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Wood/BrainStateSubAgent" node_paths=PackedStringArray("bb")]
+script = ExtResource("37_5w7up")
 bb = NodePath("../../../../../../BrainBoardNpc")
-key = "player_action"
-value = 2
-valid_key_score = 0.5
-brain_name = "Sub wood"
-metadata/_custom_type_script = "uid://okoehp24hyli"
+metadata/_custom_type_script = "uid://doi6fx4x526qm"
 
-[node name="BrainStateActions" type="Node" parent="BrainAgent/BrainConsiderationBBValidKeyValue/BrainStateSubAgent/BrainConsiderationBBHasPlayerAction/BrainStateSubAgent/BrainConsiderationBBKeyValueEqualsPlayerAction"]
+[node name="BrainFunctionSetDistanceToTargetBB" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Wood/BrainStateSubAgent" node_paths=PackedStringArray("bb")]
+script = ExtResource("25_uod0v")
+bb = NodePath("../../../../../../BrainBoardNpc")
+target_key = "target"
+invalid_target_key_value = 100000.0
+metadata/_custom_type_script = "uid://dekjiw8gkjqfr"
+
+[node name="BC_DEFAULT_MoveToTarget" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Wood/BrainStateSubAgent"]
+script = ExtResource("28_q8gtk")
+value = 0.1
+brain_name = "MoveToWoodTarget"
+metadata/_custom_type_script = "uid://bdan8ph3hdfa2"
+
+[node name="BrainStateActions" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Wood/BrainStateSubAgent/BC_DEFAULT_MoveToTarget"]
 script = ExtResource("8_nmf7u")
 metadata/_custom_type_script = "uid://pp6jh1a56vm3"
 
-[node name="BrainActionEmoji" type="Node" parent="BrainAgent/BrainConsiderationBBValidKeyValue/BrainStateSubAgent/BrainConsiderationBBHasPlayerAction/BrainStateSubAgent/BrainConsiderationBBKeyValueEqualsPlayerAction/BrainStateActions" node_paths=PackedStringArray("emoji")]
+[node name="BrainActionEmoji" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Wood/BrainStateSubAgent/BC_DEFAULT_MoveToTarget/BrainStateActions" node_paths=PackedStringArray("emoji")]
 script = ExtResource("36_1jc8v")
 emoji = NodePath("../../../../../../../../Emoji")
 state = 1
 metadata/_custom_type_script = "uid://bejcx620tn8j"
 
-[node name="BrainConsiderationBBKeyValueEqualsPlayerAction2" type="Node" parent="BrainAgent/BrainConsiderationBBValidKeyValue/BrainStateSubAgent/BrainConsiderationBBHasPlayerAction/BrainStateSubAgent" node_paths=PackedStringArray("bb")]
-script = ExtResource("35_2fjge")
-bb = NodePath("../../../../../../BrainBoardNpc")
-key = "player_action"
-value = 1
-valid_key_score = 0.5
-brain_name = "sub_attack"
-metadata/_custom_type_script = "uid://okoehp24hyli"
+[node name="BrainActionChangeAnim" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Wood/BrainStateSubAgent/BC_DEFAULT_MoveToTarget/BrainStateActions" node_paths=PackedStringArray("bb")]
+script = ExtResource("13_58gyf")
+bb = NodePath("../../../../../../../../BrainBoardNpc")
+state = 1
+metadata/_custom_type_script = "uid://btkfbftwq1jtc"
 
-[node name="BrainStateActions" type="Node" parent="BrainAgent/BrainConsiderationBBValidKeyValue/BrainStateSubAgent/BrainConsiderationBBHasPlayerAction/BrainStateSubAgent/BrainConsiderationBBKeyValueEqualsPlayerAction2"]
+[node name="BrainActionMoveToMovingTargetBB" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Wood/BrainStateSubAgent/BC_DEFAULT_MoveToTarget/BrainStateActions" node_paths=PackedStringArray("bb")]
+script = ExtResource("14_jmk8s")
+bb = NodePath("../../../../../../../../BrainBoardNpc")
+reach_distance = 0.5
+metadata/_custom_type_script = "uid://fl0hlwgboccg"
+
+[node name="BC_NoTarget" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Wood/BrainStateSubAgent" node_paths=PackedStringArray("bb")]
+script = ExtResource("26_tlfml")
+bb = NodePath("../../../../../../BrainBoardNpc")
+key = "distance"
+value = 1000.0
+type = 1
+brain_name = "NoTarget"
+metadata/_custom_type_script = "uid://j8ejejraqiqe"
+
+[node name="BrainStateActions" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Wood/BrainStateSubAgent/BC_NoTarget"]
 script = ExtResource("8_nmf7u")
 metadata/_custom_type_script = "uid://pp6jh1a56vm3"
 
-[node name="BrainActionEmoji" type="Node" parent="BrainAgent/BrainConsiderationBBValidKeyValue/BrainStateSubAgent/BrainConsiderationBBHasPlayerAction/BrainStateSubAgent/BrainConsiderationBBKeyValueEqualsPlayerAction2/BrainStateActions" node_paths=PackedStringArray("emoji")]
+[node name="BrainActionWait" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Wood/BrainStateSubAgent/BC_NoTarget/BrainStateActions"]
+script = ExtResource("27_h2msv")
+time = 1.0
+metadata/_custom_type_script = "uid://bwtnxjnd36e7k"
+
+[node name="BC_InRangeOfTarget" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Wood/BrainStateSubAgent" node_paths=PackedStringArray("bb")]
+script = ExtResource("26_tlfml")
+bb = NodePath("../../../../../../BrainBoardNpc")
+key = "distance"
+value = 1.01
+in_range_score = 0.5
+metadata/_custom_type_script = "uid://j8ejejraqiqe"
+
+[node name="BrainStateActions" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Wood/BrainStateSubAgent/BC_InRangeOfTarget"]
+script = ExtResource("8_nmf7u")
+metadata/_custom_type_script = "uid://pp6jh1a56vm3"
+
+[node name="BrainActionPlayAnimationSequence" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Wood/BrainStateSubAgent/BC_InRangeOfTarget/BrainStateActions" node_paths=PackedStringArray("bb")]
+script = ExtResource("16_w4bb1")
+bb = NodePath("../../../../../../../../BrainBoardNpc")
+anims = Array[ExtResource("18_qt4l2")]([SubResource("Resource_128y6")])
+metadata/_custom_type_script = "uid://breuaq3mn34oe"
+
+[node name="BrainActionDealDamageTargetBB" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Wood/BrainStateSubAgent/BC_InRangeOfTarget/BrainStateActions" node_paths=PackedStringArray("bb")]
+script = ExtResource("19_ras1v")
+bb = NodePath("../../../../../../../../BrainBoardNpc")
+damage_value_key = "prop_strength"
+metadata/_custom_type_script = "uid://bqg16iy7f0gr3"
+
+[node name="BrainActionPlayAnimationSequence2" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Wood/BrainStateSubAgent/BC_InRangeOfTarget/BrainStateActions" node_paths=PackedStringArray("bb")]
+script = ExtResource("16_w4bb1")
+bb = NodePath("../../../../../../../../BrainBoardNpc")
+anims = Array[ExtResource("18_qt4l2")]([SubResource("Resource_5w7up")])
+metadata/_custom_type_script = "uid://breuaq3mn34oe"
+
+[node name="BC_Action_Attack" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent"]
+script = ExtResource("34_1jc8v")
+action = 3
+equals_value = 0.6
+brain_name = "action_wood"
+metadata/_custom_type_script = "uid://cyem64w7qg3xu"
+
+[node name="BrainStateSubAgent" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Attack"]
+script = ExtResource("24_bhxe3")
+metadata/_custom_type_script = "uid://dxfiqh3ut0hl"
+
+[node name="BrainFunctionSetTargetToPlayerTargetBB" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Attack/BrainStateSubAgent" node_paths=PackedStringArray("bb")]
+script = ExtResource("37_5w7up")
+bb = NodePath("../../../../../../BrainBoardNpc")
+metadata/_custom_type_script = "uid://doi6fx4x526qm"
+
+[node name="BrainFunctionSetDistanceToTargetBB" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Attack/BrainStateSubAgent" node_paths=PackedStringArray("bb")]
+script = ExtResource("25_uod0v")
+bb = NodePath("../../../../../../BrainBoardNpc")
+target_key = "target"
+invalid_target_key_value = 100000.0
+metadata/_custom_type_script = "uid://dekjiw8gkjqfr"
+
+[node name="BC_DEFAULT_MoveToTarget" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Attack/BrainStateSubAgent"]
+script = ExtResource("28_q8gtk")
+value = 0.1
+brain_name = "MoveToTarget"
+metadata/_custom_type_script = "uid://bdan8ph3hdfa2"
+
+[node name="BrainStateActions" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Attack/BrainStateSubAgent/BC_DEFAULT_MoveToTarget"]
+script = ExtResource("8_nmf7u")
+metadata/_custom_type_script = "uid://pp6jh1a56vm3"
+
+[node name="BrainActionEmoji" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Attack/BrainStateSubAgent/BC_DEFAULT_MoveToTarget/BrainStateActions" node_paths=PackedStringArray("emoji")]
 script = ExtResource("36_1jc8v")
 emoji = NodePath("../../../../../../../../Emoji")
-state = 2
+state = 1
 metadata/_custom_type_script = "uid://bejcx620tn8j"
+
+[node name="BrainActionChangeAnim" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Attack/BrainStateSubAgent/BC_DEFAULT_MoveToTarget/BrainStateActions" node_paths=PackedStringArray("bb")]
+script = ExtResource("13_58gyf")
+bb = NodePath("../../../../../../../../BrainBoardNpc")
+state = 1
+metadata/_custom_type_script = "uid://btkfbftwq1jtc"
+
+[node name="BrainActionMoveToMovingTargetAvoidanceBB" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Attack/BrainStateSubAgent/BC_DEFAULT_MoveToTarget/BrainStateActions" node_paths=PackedStringArray("bb")]
+script = ExtResource("37_128y6")
+bb = NodePath("../../../../../../../../BrainBoardNpc")
+reach_distance = 1.2
+metadata/_custom_type_script = "uid://ciu5ilp7rggqn"
+
+[node name="BC_NoTarget" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Attack/BrainStateSubAgent" node_paths=PackedStringArray("bb")]
+script = ExtResource("26_tlfml")
+bb = NodePath("../../../../../../BrainBoardNpc")
+key = "distance"
+value = 1000.0
+type = 1
+brain_name = "NoTarget"
+metadata/_custom_type_script = "uid://j8ejejraqiqe"
+
+[node name="BrainStateActions" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Attack/BrainStateSubAgent/BC_NoTarget"]
+script = ExtResource("8_nmf7u")
+metadata/_custom_type_script = "uid://pp6jh1a56vm3"
+
+[node name="BrainActionWait" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Attack/BrainStateSubAgent/BC_NoTarget/BrainStateActions"]
+script = ExtResource("27_h2msv")
+time = 1.0
+metadata/_custom_type_script = "uid://bwtnxjnd36e7k"
+
+[node name="BC_InRangeOfTarget" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Attack/BrainStateSubAgent" node_paths=PackedStringArray("bb")]
+script = ExtResource("26_tlfml")
+bb = NodePath("../../../../../../BrainBoardNpc")
+key = "distance"
+value = 1.5
+in_range_score = 0.5
+metadata/_custom_type_script = "uid://j8ejejraqiqe"
+
+[node name="BrainStateActions" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Attack/BrainStateSubAgent/BC_InRangeOfTarget"]
+script = ExtResource("8_nmf7u")
+metadata/_custom_type_script = "uid://pp6jh1a56vm3"
+
+[node name="BrainActionPlayAnimationSequence" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Attack/BrainStateSubAgent/BC_InRangeOfTarget/BrainStateActions" node_paths=PackedStringArray("bb")]
+script = ExtResource("16_w4bb1")
+bb = NodePath("../../../../../../../../BrainBoardNpc")
+anims = Array[ExtResource("18_qt4l2")]([SubResource("Resource_128y6")])
+metadata/_custom_type_script = "uid://breuaq3mn34oe"
+
+[node name="BrainActionDealDamageTargetBB" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Attack/BrainStateSubAgent/BC_InRangeOfTarget/BrainStateActions" node_paths=PackedStringArray("bb")]
+script = ExtResource("19_ras1v")
+bb = NodePath("../../../../../../../../BrainBoardNpc")
+damage_value_key = "prop_strength"
+metadata/_custom_type_script = "uid://bqg16iy7f0gr3"
+
+[node name="BrainActionPlayAnimationSequence2" type="Node" parent="BrainAgent/BC_Selected/BrainStateSubAgent/BC_Action_Attack/BrainStateSubAgent/BC_InRangeOfTarget/BrainStateActions" node_paths=PackedStringArray("bb")]
+script = ExtResource("16_w4bb1")
+bb = NodePath("../../../../../../../../BrainBoardNpc")
+anims = Array[ExtResource("18_qt4l2")]([SubResource("Resource_5w7up")])
+metadata/_custom_type_script = "uid://breuaq3mn34oe"
+
+[node name="BC_Wood" type="Node" parent="BrainAgent" node_paths=PackedStringArray("npc")]
+script = ExtResource("38_5w7up")
+action = 4
+npc = NodePath("../..")
+equals_value = 0.9
+metadata/_custom_type_script = "uid://dvwh4oev7f4d2"
+
+[node name="BrainActionFindClosestTargetBBd" type="Node" parent="BrainAgent/BC_Wood" node_paths=PackedStringArray("bb")]
+script = ExtResource("12_pc83j")
+bb = NodePath("../../../BrainBoardNpc")
+metadata/_custom_type_script = "uid://c6t4u6fe27sfh"
 
 [editable path="Model/model"]

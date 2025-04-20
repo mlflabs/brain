@@ -8,7 +8,7 @@ const CREEPS_KEY = "creeps"
 @export var creep: PackedScene
 @export var creep_parent: Node
 
-@export var timer_wave:float = 30
+@export var timer_wave:float = 10
 @export var timer_creep:float = 0.5
 
 
@@ -18,7 +18,7 @@ var time:float
 var creeps:Array[NpcWPCreeper] = []
 
 func _ready() -> void:
-	time = 0
+	time = 10
 	
 	GlobalBoard.set_value(CREEPS_KEY, creeps)
 

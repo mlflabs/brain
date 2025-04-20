@@ -14,6 +14,8 @@ const ROTATION_SPEED := 6.0
 
 #Player stats
 
+var target
+var action:PlayerManager.PlayerActions
 
 #slowly rotate the charcter to point in the direction of the camera_pivot
 @onready var camera_pivot : Node3D = $camera_pivot
@@ -35,6 +37,7 @@ var c_state : state = state.IDLE
 func _ready() -> void:
 	animation_player.connect("animation_finished", animation_finished)
 	
+	PlayerManager.player = self
 	GlobalBoard.blackboard.set(PropertyManager.KEY_PLAYER, self)
 	
 	
@@ -92,8 +95,10 @@ func _physics_process(delta: float) -> void:
 	match c_state:
 		state.IDLE:
 			animation_player.play("idle")
+			#change_action(PlayerManager.PlayerActions.Idle)
 		state.RUNNING:
 			animation_player.play("sprint")
+			change_action(PlayerManager.PlayerActions.Move)
 		state.JUMPING:
 			animation_player.play("jump")
 		state.TALK:
@@ -104,6 +109,12 @@ func _physics_process(delta: float) -> void:
 			action_sensor.enable()
 			c_state = state.BUSY
 
+func change_action(a:PlayerManager.PlayerActions):
+	if a == action:
+		return
+	action = a
+	print("PlayerAction::::::: ", action)
+	PlayerManager.player_action_added.emit(action)
 
 func animation_finished(_anim_name:String):
 	if c_state == state.BUSY:

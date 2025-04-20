@@ -24,7 +24,7 @@ func get_score():
 		return -1
 	
 	var d = bb.npc.global_position.distance_to(t.global_position)
-	
+	print("Distance:::: ", d)
 	if value_key_in_global_board:
 		GlobalBoard.blackboard.set(value_key,d)
 	else:
