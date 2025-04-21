@@ -16,13 +16,13 @@ func on_body_entered(node):
 		disable()
 		node.npc_stats.remove_life(player.calculated_strength)
 		player.target = node
-		player.change_action(PlayerManager.PlayerActions.Attack)
+		player.change_action(Utils.ActionStates.Attack)
 		GlobalBoard.blackboard.set(PropertyManager.KEY_PLAYER_TARGET, node)
 
 	if node is StaticInteractableItem:
 		node.damage(player.calculated_strength)
 		player.target = node
-		player.change_action(PlayerManager.PlayerActions.Wood)
+		player.change_action(Utils.ActionStates.Work)
 		disable()
 		
 

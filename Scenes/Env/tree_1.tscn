@@ -4,11 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://ccdl6slbj8rjw" path="res://assets/Kenny/FantasyTownKit/treeCrooked.glb" id="2_kyg1u"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_esopp"]
+height = 2.77465
 
 [node name="Tree1" type="StaticBody3D"]
 script = ExtResource("1_lietq")
 shake_multiplier = 0.02
-interaction_anim = 1
 shake_speed = 1.0
 shake_cool_down = 0.02
 

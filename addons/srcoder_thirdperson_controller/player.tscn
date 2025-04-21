@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dgaexk2mqn6j8"]
+[gd_scene load_steps=13 format=3 uid="uid://dgaexk2mqn6j8"]
 
 [ext_resource type="Script" uid="uid://cm8xi0s2oidvg" path="res://addons/srcoder_thirdperson_controller/assets/player.gd" id="1_4s81h"]
 [ext_resource type="PackedScene" uid="uid://ccf670c6bkob8" path="res://addons/srcoder_thirdperson_controller/assets/character-male-e.glb" id="1_jt3wm"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://biij66gtenp4t" path="res://Scripts/Classes/command.gd" id="4_gsgtm"]
 [ext_resource type="Script" uid="uid://b2kuh4kru5tf3" path="res://Scripts/Classes/action_sensor.gd" id="4_lmbpc"]
 [ext_resource type="Material" uid="uid://bchshffd6npv0" path="res://assets/Kenny/kenney_prototype_tools/materials/orange/material_13.tres" id="5_bf7xu"]
+[ext_resource type="Script" uid="uid://jdo82rg7wrly" path="res://Scripts/Classes/player_action_area3d.gd" id="5_pncjy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_71pwh"]
 radius = 0.274773
@@ -19,6 +20,7 @@ height = 0.575693
 [sub_resource type="SphereMesh" id="SphereMesh_6sduc"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_lmbpc"]
+radius = 1.55066
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
@@ -58,19 +60,21 @@ script = ExtResource("4_gsgtm")
 player = NodePath("../..")
 playerTM = NodePath("../../PlayerTarget")
 sensor = NodePath("Area3D")
-speed = 15.0
-time = 0.1
+speed = 20.0
+time = 0.2
 
-[node name="Area3D" type="Area3D" parent="playermodel/Command"]
+[node name="Area3D" type="Area3D" parent="playermodel/Command" node_paths=PackedStringArray("player")]
+script = ExtResource("5_pncjy")
+player = NodePath("../../..")
 
 [node name="Mesh" type="MeshInstance3D" parent="playermodel/Command/Area3D"]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0.0540381)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, -0.047258)
 material_override = ExtResource("5_bf7xu")
 mesh = SubResource("SphereMesh_6sduc")
 skeleton = NodePath("../../../character-male-e2/character-male-e")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="playermodel/Command/Area3D"]
-transform = Transform3D(0.355, 0, 0, 0, 0.355, 0, 0, 0, 0.355, 0, 0, 0.153869)
+transform = Transform3D(0.355, 0, 0, 0, 0.355, 0, 0, 0, 0.355, 0, 0, 0.0469685)
 shape = SubResource("SphereShape3D_lmbpc")
 
 [node name="character-male-e2" parent="playermodel" instance=ExtResource("1_jt3wm")]

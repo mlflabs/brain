@@ -1,7 +1,7 @@
 extends BrainConsideration
 class_name BrainConsiderationPlayerAction
 
-@export var action:PlayerManager.PlayerActions
+@export var action:Utils.ActionStates
 
 @export var equals_value: float = 1
 @export var not_equals_value: float = 0

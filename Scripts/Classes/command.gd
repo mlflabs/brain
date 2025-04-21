@@ -16,7 +16,7 @@ var c_time:float = 0
 
 func _ready() -> void:
 	sensor.body_entered.connect(on_body_entered)
-	
+	sensor.area_entered.connect(on_area_entered)
 
 
 func _process(delta: float) -> void:
@@ -41,13 +41,17 @@ func _process(delta: float) -> void:
 			
 		state.Stop:
 			c_state = state.None
-			sensor.visible = false
+			sensor.position.z = -.6
+			#sensor.visible = false
 			sensor.monitoring = false
 
 func on_body_entered(node):
-	stop()
-	playerTM.add_target(node)
-		
+	#stop()
+	playerTM.add_target(node, self)
+
+func on_area_entered(node):
+	#stop()
+	playerTM.add_target(node, self)	
 	
 
 func start():

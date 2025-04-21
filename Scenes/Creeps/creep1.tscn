@@ -1,11 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://6ulp4jr8arsk"]
+[gd_scene load_steps=19 format=3 uid="uid://6ulp4jr8arsk"]
 
 [ext_resource type="Script" uid="uid://0dim3ha5y8k7" path="res://Scripts/Classes/npc_wp_creeper.gd" id="1_16t62"]
+[ext_resource type="Script" uid="uid://dvyl7g0ubvjku" path="res://Scripts/Resources/NpcStats.gd" id="2_72wl0"]
 [ext_resource type="Script" uid="uid://dcw1oc3xeseuy" path="res://Scripts/Classes/effect_shake.gd" id="2_mcuvf"]
 [ext_resource type="Script" uid="uid://5xm5vsxyceah" path="res://Scripts/Brain/BrainBoardNpc.gd" id="2_x1fa8"]
 [ext_resource type="Script" uid="uid://ds1c32y20tiig" path="res://Scripts/Classes/npc_anim.gd" id="3_t2dta"]
 [ext_resource type="Script" uid="uid://dum72xbrhjpq2" path="res://Scripts/Brain/BrainAgent.gd" id="4_etwnn"]
-[ext_resource type="Script" uid="uid://dkke5g55u1jrj" path="res://Scripts/Classes/npc_stats.gd" id="4_xcg2l"]
 [ext_resource type="Script" uid="uid://bdan8ph3hdfa2" path="res://Scripts/Brain/Considerations/BrainStaticConsideration.gd" id="5_xcg2l"]
 [ext_resource type="Script" uid="uid://pp6jh1a56vm3" path="res://Scripts/Brain/States/BrainStateActions.gd" id="6_mcuvf"]
 [ext_resource type="Script" uid="uid://c3cdo2revtl7" path="res://Scripts/Brain/Actions/WaypointActions/BrainActionGetNextWP.gd" id="7_72wl0"]
@@ -15,18 +15,24 @@
 [ext_resource type="Script" uid="uid://bwtnxjnd36e7k" path="res://Scripts/Brain/Actions/BrainBoardActions/BrainActionWait.gd" id="11_xcg2l"]
 [ext_resource type="Script" uid="uid://2dhr0n4hbxl6" path="res://Scripts/Brain/Actions/BrainActionMoveWithAvoidance.gd" id="12_xcg2l"]
 
+[sub_resource type="Resource" id="Resource_eotv4"]
+script = ExtResource("2_72wl0")
+life = 6
+strength = 1
+metadata/_custom_type_script = "uid://dvyl7g0ubvjku"
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_fq0cl"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_hwpts"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_etwnn"]
 
-[node name="Creep1" type="CharacterBody3D" node_paths=PackedStringArray("effect", "BA", "BB", "npc_stats", "npc_anim")]
+[node name="Creep1" type="CharacterBody3D" node_paths=PackedStringArray("effect", "BA", "BB", "npc_anim")]
 script = ExtResource("1_16t62")
+stats = SubResource("Resource_eotv4")
 effect = NodePath("EffectShake")
 BA = NodePath("BrainAgent")
 BB = NodePath("BrainBoardNpc")
-npc_stats = NodePath("NpcStats")
 npc_anim = NodePath("NpcAnim")
 
 [node name="EffectShake" type="StaticBody3D" parent="." node_paths=PackedStringArray("mesh")]
@@ -46,12 +52,6 @@ metadata/_custom_type_script = "uid://5xm5vsxyceah"
 [node name="NpcAnim" type="Node" parent="."]
 script = ExtResource("3_t2dta")
 metadata/_custom_type_script = "uid://ds1c32y20tiig"
-
-[node name="NpcStats" type="Node" parent="." node_paths=PackedStringArray("BB", "npc")]
-script = ExtResource("4_xcg2l")
-BB = NodePath("../BrainBoardNpc")
-npc = NodePath("..")
-life = 4
 
 [node name="BrainAgent" type="Node" parent="."]
 script = ExtResource("4_etwnn")

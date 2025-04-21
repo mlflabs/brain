@@ -18,6 +18,6 @@ func on_exit():
 func tick(_delta:float):
 	pass
 
-func on_player_action(action:PlayerManager.PlayerActions):
+func on_player_action(action:Utils.ActionStates):
 	bb.set_value(player_action_key, action)
 	bb.set_value(player_action_time_key, Time.get_ticks_msec())

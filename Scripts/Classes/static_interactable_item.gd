@@ -1,11 +1,12 @@
 extends StaticBody3D
 class_name  StaticInteractableItem
 
-enum State { None }
-enum Interactions { None, Shake }
+
 
 @export_category("Props")
-@export var interaction_anim:Interactions = Interactions.None
+@export var type:Utils.ResourceTypes = Utils.ResourceTypes.None
+@export var effect:Utils.EffectTypes = Utils.EffectTypes.None
+
 
 @export_category("Shake Props")
 @export var shake_intensity: float = 0.1
@@ -38,7 +39,7 @@ func _process(delta):
 
 
 func interact():
-	if interaction_anim == Interactions.Shake:
+	if effect == Utils.EffectTypes.Shake:
 		start_shake(shake_intensity, shake_speed)
 
 func damage(value:int):

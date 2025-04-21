@@ -1,0 +1,112 @@
+[gd_scene load_steps=16 format=3 uid="uid://cehp3qw86ie27"]
+
+[ext_resource type="PackedScene" uid="uid://q0edqmf01ig0" path="res://assets/Kenny/TowerDefense/tile-dirt.glb" id="1_2kus8"]
+[ext_resource type="Script" uid="uid://bhp6x6kpfuw2l" path="res://Scripts/Classes/Towers/TowerBuildOptions.gd" id="1_3rbfi"]
+[ext_resource type="Script" uid="uid://vtb4dbm4vmrq" path="res://Scripts/Classes/Towers/ShowNodeOnAreaEntered.gd" id="1_nly08"]
+[ext_resource type="PackedScene" uid="uid://dwtgebmf5hybn" path="res://assets/Kenny/TowerDefense/tower-round-base.glb" id="2_unpa3"]
+[ext_resource type="PackedScene" uid="uid://osy2o32i46oi" path="res://assets/Kenny/TowerDefense/weapon-ballista.glb" id="3_u5wxm"]
+[ext_resource type="Script" uid="uid://c7nj60bjow8ry" path="res://Scripts/Classes/Node3dActions/rotate.gd" id="3_uxw6g"]
+[ext_resource type="PackedScene" uid="uid://cdhglbmb0ditr" path="res://assets/Kenny/TowerDefense/weapon-catapult.glb" id="4_uxw6g"]
+[ext_resource type="PackedScene" uid="uid://benx4wl8y14sf" path="res://assets/Kenny/TowerDefense/selection-a.glb" id="6_rjnjd"]
+[ext_resource type="Script" uid="uid://dhr22bi3gxw35" path="res://Scripts/Classes/Towers/PlayerCommandSensor.gd" id="7_r2jbb"]
+[ext_resource type="PackedScene" uid="uid://mpb1qtalc7od" path="res://assets/Low Poly Fantasy Weapon Pack/Hammer.fbx" id="9_ckj8c"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rjnjd"]
+size = Vector3(9.76405, 0.454224, 6.97121)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r2jbb"]
+size = Vector3(2.47076, 1, 2.14868)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_r2jbb"]
+radius = 0.133282
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ckj8c"]
+radius = 0.112035
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u5wxm"]
+size = Vector3(1, 0.273987, 1)
+
+[node name="StaticBody3D" type="StaticBody3D"]
+script = ExtResource("1_3rbfi")
+
+[node name="Area3D" type="Area3D" parent="." node_paths=PackedStringArray("node")]
+script = ExtResource("1_nly08")
+node = NodePath("../Mesh")
+set_visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.985146, 0.25439, -0.0305386)
+shape = SubResource("BoxShape3D_rjnjd")
+
+[node name="Area3D2" type="Area3D" parent="." node_paths=PackedStringArray("node")]
+script = ExtResource("1_nly08")
+node = NodePath("../Mesh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0456005, 0.25439, 0.0686682)
+shape = SubResource("BoxShape3D_r2jbb")
+
+[node name="Mesh" type="Node3D" parent="."]
+
+[node name="BuildSetup" type="Node3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.95936, 0.696597, 0)
+
+[node name="Node" type="Node" parent="Mesh/BuildSetup" node_paths=PackedStringArray("node")]
+script = ExtResource("3_uxw6g")
+node = NodePath("..")
+
+[node name="Hammer" parent="Mesh/BuildSetup" instance=ExtResource("9_ckj8c")]
+transform = Transform3D(0.279593, 0.145095, 0, -0.145095, 0.279593, 0, 0, 0, 0.315, 1.33094, -0.850899, 0)
+
+[node name="Hammer2" parent="Mesh/BuildSetup" instance=ExtResource("9_ckj8c")]
+transform = Transform3D(-0.279662, -0.144963, -2.75382e-08, -0.144963, 0.279662, 0, 2.44488e-08, 1.26731e-08, -0.315, -1.24841, -0.859219, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Mesh/BuildSetup"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="tile-dirt2" parent="Mesh" instance=ExtResource("1_2kus8")]
+
+[node name="tower-round-base2" parent="Mesh" instance=ExtResource("2_unpa3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00458026, 0.107961, -0.0066607)
+visible = false
+
+[node name="Selections" type="Node3D" parent="Mesh"]
+
+[node name="Rotator" type="Node" parent="Mesh/Selections" node_paths=PackedStringArray("node")]
+script = ExtResource("3_uxw6g")
+node = NodePath("..")
+
+[node name="weapon-catapult2" parent="Mesh/Selections" instance=ExtResource("4_uxw6g")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 0.5, -0.5)
+
+[node name="selection-a2" parent="Mesh/Selections/weapon-catapult2" instance=ExtResource("6_rjnjd")]
+transform = Transform3D(-5.02681e-08, 0, -1.15, 0, 1.15, 0, 1.15, 0, -5.02681e-08, 0, 0, 0)
+
+[node name="Area3D3_Catapult" type="Area3D" parent="Mesh/Selections/weapon-catapult2" node_paths=PackedStringArray("node")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 0, 0, 0)
+script = ExtResource("7_r2jbb")
+node = NodePath("../selection-a2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Selections/weapon-catapult2/Area3D3_Catapult"]
+shape = SubResource("SphereShape3D_r2jbb")
+
+[node name="weapon-ballista2" parent="Mesh/Selections" instance=ExtResource("3_u5wxm")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 0.5, 0.5)
+
+[node name="selection-a3" parent="Mesh/Selections/weapon-ballista2" instance=ExtResource("6_rjnjd")]
+transform = Transform3D(-5.02681e-08, 0, -1.15, 0, 1.15, 0, 1.15, 0, -5.02681e-08, 0, 0, 0)
+
+[node name="Area3D_Ballista" type="Area3D" parent="Mesh/Selections/weapon-ballista2" node_paths=PackedStringArray("node")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 0, 0, 0)
+script = ExtResource("7_r2jbb")
+node = NodePath("../selection-a3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Selections/weapon-ballista2/Area3D_Ballista"]
+shape = SubResource("SphereShape3D_ckj8c")
+
+[node name="Sprite3D" type="Sprite3D" parent="Mesh/Selections/weapon-ballista2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.517393, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13488, 0)
+shape = SubResource("BoxShape3D_u5wxm")

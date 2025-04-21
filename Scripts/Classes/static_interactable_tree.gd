@@ -33,5 +33,5 @@ func damage(value:int):
 	
 
 func interact():
-	if interaction_anim == Interactions.Shake:
+	if effect == Utils.EffectTypes.Shake:
 		start_shake(shake_intensity + (life_lost * shake_multiplier), shake_speed)
