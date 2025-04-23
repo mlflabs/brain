@@ -6,4 +6,7 @@ class_name PlayerCommandSensor
 
 
 func action():
-	action_callback.call()
+	if action_callback:
+		action_callback.call()
+	else:
+		printerr("Action Callback not setup")

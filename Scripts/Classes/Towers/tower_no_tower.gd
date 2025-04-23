@@ -2,19 +2,25 @@ extends Node3D
 class_name TowerNoTower
 
 
-@onready var confirm = $Active/Confirm
 @onready var selections = $Active/Selections
+@onready var confirm: Confirm_Build = $Active/Confirm
 
 
 
 var selection:BuildTowerSelection
 
 func _ready():
+	confirm.action_callback = Callable(self, "confirm_build")
 	if selections.manager == null:
 		selections.manager = self
 
 	if selection == null:
 		confirm.visible = false
+	
+	
+
+func confirm_build():
+	print("ddddddddddddddddddddd")
 
 func set_selection(s: BuildTowerSelection):
 	selection = s
