@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cufw0kf0o3ejc"]
+
+[ext_resource type="Script" uid="uid://dkg6jv4xnadlb" path="res://Scripts/Classes/Emoji.gd" id="1_cjglu"]
+[ext_resource type="Texture2D" uid="uid://b62lkbbb65hof" path="res://assets/Kenny/Icons/emote_faceHappy.png" id="2_7c680"]
+
+[node name="Emoji" type="Node3D"]
+script = ExtResource("1_cjglu")
+show_time = 0.0
+
+[node name="sprite" type="Sprite3D" parent="."]
+texture = ExtResource("2_7c680")

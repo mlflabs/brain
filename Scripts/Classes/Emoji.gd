@@ -4,74 +4,77 @@ class_name Emoji
 
 
 @onready var sprite:Sprite3D = $Sprite3D
+# if its 0, its forever
 @export var show_time:float = 5
+@export var state:Utils.EmojiStates = Utils.EmojiStates.None
 
 var time:float = 0
 
-enum States  { None, Alert, Anger, Cash, Dot1, Dot2, Dot3, Happy, Sad, 
-	Idea, Laugh, Music, Question, Sleep, Star }
 
-var state: States = States.None
 
 func _ready() -> void:
-	change_state(States.Alert)
+	change_state(state)
 
 func _physics_process(delta: float) -> void:
-	if state == States.None:
+	if state == Utils.EmojiStates.None:
+		return
+	if show_time == 0:
 		return
 	
 	time += delta
 	if time > show_time:
-		change_state(States.None)
+		change_state(Utils.EmojiStates.None)
 		
 	
 
-func change_state(s:States):
-	if s == state:
+func change_state(s:Utils.EmojiStates, forse:bool = false):
+	if s == state and !forse:
 		return
 	state = s
 	time = 0
 	match state:
-		States.None:
+		Utils.EmojiStates.None:
 			sprite.visible = false
-		States.Alert:
+		Utils.EmojiStates.Alert:
 			sprite.texture = load("res://assets/Kenny/Icons/emote_alert.png")
 			sprite.visible = true
-		
-		States.Question:
+		Utils.EmojiStates.Cross:
+			sprite.texture = load("res://assets/Kenny/Icons/emote_cross.png")
+			sprite.visible = true
+		Utils.EmojiStates.Question:
 			sprite.texture = load("res://assets/Kenny/Icons/emote_question.png")
 			sprite.visible = true
-		States.Sleep:
+		Utils.EmojiStates.Sleep:
 			sprite.texture = load("res://assets/Kenny/Icons/emote_sleep.png")
 			sprite.visible = true
-		States.Star:
+		Utils.EmojiStates.Star:
 			sprite.texture = load("res://assets/Kenny/Icons/emote_star.png")
 			sprite.visible = true
-		States.Happy:
+		Utils.EmojiStates.Happy:
 			sprite.texture = load("res://assets/Kenny/Icons/emote_faceHappy.png")
 			sprite.visible = true
-		States.Sad:
+		Utils.EmojiStates.Sad:
 			sprite.texture = load("res://assets/Kenny/Icons/emote_faceSad.png")
 			sprite.visible = true
-		States.Idea:
+		Utils.EmojiStates.Idea:
 			sprite.texture = load("res://assets/Kenny/Icons/emote_idea.png")
 			sprite.visible = true
-		States.Laugh:
+		Utils.EmojiStates.Laugh:
 			sprite.texture = load("res://assets/Kenny/Icons/emote_laugh.png")
 			sprite.visible = true
-		States.Music:
+		Utils.EmojiStates.Music:
 			sprite.texture = load("res://assets/Kenny/Icons/emote_music.png")
 			sprite.visible = true
-		States.Cash:
+		Utils.EmojiStates.Cash:
 			sprite.texture = load("res://assets/Kenny/Icons/emote_cash.png")
 			sprite.visible = true
-		States.Dot1:
+		Utils.EmojiStates.Dot1:
 			sprite.texture = load("res://assets/Kenny/Icons/emote_dots1.png")
 			sprite.visible = true
-		States.Dot2:
+		Utils.EmojiStates.Dot2:
 			sprite.texture = load("res://assets/Kenny/Icons/emote_dots2.png")
 			sprite.visible = true
-		States.Dot3:
+		Utils.EmojiStates.Dot3:
 			sprite.texture = load("res://assets/Kenny/Icons/emote_dots3.png")
 			sprite.visible = true
 		

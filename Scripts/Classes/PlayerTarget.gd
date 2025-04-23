@@ -21,20 +21,15 @@ func add_target(t, sender):
 	
 	if t is StaticInteractableTree:
 		for t2 in targets:
-			t2.set_action(Utils.ActionStates.Work, Utils.ResourceTypes.Wood, false)
+			if t2 is NpcSmart:
+				t2.set_action(Utils.ActionStates.Work, Utils.ResourceTypes.Wood, false)
 		targets.clear()
 		PlayerManager.player_targets_cleared.emit()
 		sender.stop()
 		return
 	
 	if t is PlayerCommandSensor:
-		if !targets.is_empty():
-			if t == targets[0]: 
-				return
-			targets[0].set_node_visible(false)
-			targets.clear()
-		targets.append(t)
-		t.set_node_visible(true)
+		t.action()
 		sender.stop()
 		return
 	

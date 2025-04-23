@@ -41,7 +41,7 @@ func _process(delta: float) -> void:
 			
 		state.Stop:
 			c_state = state.None
-			sensor.position.z = -.6
+			sensor.position.z = -.1
 			#sensor.visible = false
 			sensor.monitoring = false
 

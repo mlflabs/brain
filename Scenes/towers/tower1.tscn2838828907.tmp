@@ -1,21 +1,18 @@
-[gd_scene load_steps=26 format=3 uid="uid://cehp3qw86ie27"]
+[gd_scene load_steps=18 format=3 uid="uid://cehp3qw86ie27"]
 
 [ext_resource type="PackedScene" uid="uid://q0edqmf01ig0" path="res://assets/Kenny/TowerDefense/tile-dirt.glb" id="1_2kus8"]
 [ext_resource type="Script" uid="uid://bhp6x6kpfuw2l" path="res://Scripts/Classes/Towers/TowerBuildOptions.gd" id="1_3rbfi"]
 [ext_resource type="Script" uid="uid://vtb4dbm4vmrq" path="res://Scripts/Classes/Towers/ShowNodeOnAreaEntered.gd" id="1_nly08"]
+[ext_resource type="PackedScene" uid="uid://dwtgebmf5hybn" path="res://assets/Kenny/TowerDefense/tower-round-base.glb" id="2_unpa3"]
 [ext_resource type="PackedScene" uid="uid://osy2o32i46oi" path="res://assets/Kenny/TowerDefense/weapon-ballista.glb" id="3_u5wxm"]
 [ext_resource type="Script" uid="uid://c7nj60bjow8ry" path="res://Scripts/Classes/Node3dActions/rotate.gd" id="3_uxw6g"]
 [ext_resource type="Script" uid="uid://nljy6opg114s" path="res://Scripts/Classes/Towers/tower_no_tower.gd" id="4_m3t7t"]
 [ext_resource type="PackedScene" uid="uid://cdhglbmb0ditr" path="res://assets/Kenny/TowerDefense/weapon-catapult.glb" id="4_uxw6g"]
-[ext_resource type="Script" uid="uid://b8ai842rgpkfa" path="res://Scripts/Classes/Towers/tower_buy_confirm.gd" id="5_hsjr7"]
 [ext_resource type="Script" uid="uid://boa6na1df7psn" path="res://Scripts/Classes/Towers/build_tower_selections.gd" id="6_73pem"]
 [ext_resource type="PackedScene" uid="uid://benx4wl8y14sf" path="res://assets/Kenny/TowerDefense/selection-a.glb" id="6_rjnjd"]
-[ext_resource type="PackedScene" uid="uid://cufw0kf0o3ejc" path="res://Scenes/Misc/emoji.tscn" id="7_hsjr7"]
 [ext_resource type="Script" uid="uid://dhr22bi3gxw35" path="res://Scripts/Classes/Towers/PlayerCommandSensor.gd" id="7_r2jbb"]
 [ext_resource type="Script" uid="uid://b1n0t821cqsa" path="res://Scripts/Classes/Towers/build_tower_selection.gd" id="8_m3t7t"]
 [ext_resource type="PackedScene" uid="uid://mpb1qtalc7od" path="res://assets/Low Poly Fantasy Weapon Pack/Hammer.fbx" id="9_ckj8c"]
-[ext_resource type="Script" uid="uid://ch1x20ruovrm0" path="res://Scripts/Resources/Tower.gd" id="10_txxrw"]
-[ext_resource type="Script" uid="uid://d3ksy3vdsjluv" path="res://Scripts/Resources/TowerStage.gd" id="11_03qqv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rjnjd"]
 size = Vector3(9.76405, 0.454224, 6.97121)
@@ -26,45 +23,8 @@ size = Vector3(2.47076, 1, 2.14868)
 [sub_resource type="BoxShape3D" id="BoxShape3D_u5wxm"]
 size = Vector3(1, 0.273987, 1)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_hsjr7"]
-radius = 0.389995
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_txxrw"]
 radius = 0.748804
-
-[sub_resource type="Resource" id="Resource_hsjr7"]
-script = ExtResource("11_03qqv")
-level = 0
-cost_wood = 2
-cost_gold = 0
-attack = 10
-cooldown = 1.0
-cost_work = 1
-metadata/_custom_type_script = "uid://d3ksy3vdsjluv"
-
-[sub_resource type="Resource" id="Resource_6k482"]
-script = ExtResource("10_txxrw")
-name = "Catapult"
-type = 2
-tower_stages = Array[ExtResource("11_03qqv")]([SubResource("Resource_hsjr7")])
-metadata/_custom_type_script = "uid://ch1x20ruovrm0"
-
-[sub_resource type="Resource" id="Resource_cqyo6"]
-script = ExtResource("11_03qqv")
-level = 0
-cost_wood = 5
-cost_gold = 0
-attack = 1
-cooldown = 0.2
-cost_work = 6
-metadata/_custom_type_script = "uid://d3ksy3vdsjluv"
-
-[sub_resource type="Resource" id="Resource_i7v2g"]
-script = ExtResource("10_txxrw")
-name = "Ballista"
-type = 1
-tower_stages = Array[ExtResource("11_03qqv")]([SubResource("Resource_cqyo6")])
-metadata/_custom_type_script = "uid://ch1x20ruovrm0"
 
 [node name="StaticBody3D" type="StaticBody3D"]
 script = ExtResource("1_3rbfi")
@@ -103,46 +63,32 @@ script = ExtResource("4_m3t7t")
 
 [node name="Confirm" type="Node3D" parent="Top/TowerNoTower/Active"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.95936, 0.696597, 0)
-script = ExtResource("5_hsjr7")
 
-[node name="Area3D" type="Area3D" parent="Top/TowerNoTower/Active/Confirm"]
-script = ExtResource("7_r2jbb")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Top/TowerNoTower/Active/Confirm/Area3D"]
-shape = SubResource("SphereShape3D_hsjr7")
-
-[node name="Rotate" type="Node" parent="Top/TowerNoTower/Active/Confirm" node_paths=PackedStringArray("node")]
+[node name="Node" type="Node" parent="Top/TowerNoTower/Active/Confirm" node_paths=PackedStringArray("node")]
 script = ExtResource("3_uxw6g")
-node = NodePath("../Mesh")
+node = NodePath("..")
 
-[node name="Emoji" parent="Top/TowerNoTower/Active/Confirm" instance=ExtResource("7_hsjr7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.486355, 0)
-
-[node name="Mesh" type="Node3D" parent="Top/TowerNoTower/Active/Confirm"]
-
-[node name="Hammer" parent="Top/TowerNoTower/Active/Confirm/Mesh" instance=ExtResource("9_ckj8c")]
+[node name="Hammer" parent="Top/TowerNoTower/Active/Confirm" instance=ExtResource("9_ckj8c")]
 transform = Transform3D(0.279593, 0.145095, 0, -0.145095, 0.279593, 0, 0, 0, 0.315, 1.33094, -0.850899, 0)
 
-[node name="Hammer2" parent="Top/TowerNoTower/Active/Confirm/Mesh" instance=ExtResource("9_ckj8c")]
+[node name="Hammer2" parent="Top/TowerNoTower/Active/Confirm" instance=ExtResource("9_ckj8c")]
 transform = Transform3D(-0.279662, -0.144963, -2.75382e-08, -0.144963, 0.279662, 0, 2.44488e-08, 1.26731e-08, -0.315, -1.24841, -0.859219, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Top/TowerNoTower/Active/Confirm/Mesh"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Top/TowerNoTower/Active/Confirm"]
 size = Vector3(0.1, 0.1, 0.1)
 
-[node name="Selections" type="Node3D" parent="Top/TowerNoTower/Active" node_paths=PackedStringArray("selections", "pcs")]
+[node name="Selections" type="Node3D" parent="Top/TowerNoTower/Active"]
 script = ExtResource("6_73pem")
-selections = [NodePath("s_ballista"), NodePath("s_catapult")]
-pcs = NodePath("Area3D")
 
-[node name="Area3D" type="Area3D" parent="Top/TowerNoTower/Active/Selections"]
+[node name="Area3D" type="Area3D" parent="Top/TowerNoTower/Active/Selections" node_paths=PackedStringArray("node")]
 script = ExtResource("7_r2jbb")
+node = NodePath("../s_ballista/mesh/selection-a3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Top/TowerNoTower/Active/Selections/Area3D"]
 shape = SubResource("SphereShape3D_txxrw")
 
 [node name="s_catapult" type="Node3D" parent="Top/TowerNoTower/Active/Selections"]
 script = ExtResource("8_m3t7t")
-tower = SubResource("Resource_6k482")
 
 [node name="mesh" parent="Top/TowerNoTower/Active/Selections/s_catapult" instance=ExtResource("4_uxw6g")]
 transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 0.5, -0.5)
@@ -152,14 +98,17 @@ transform = Transform3D(-5.02681e-08, 0, -1.15, 0, 1.15, 0, 1.15, 0, -5.02681e-0
 
 [node name="s_ballista" type="Node3D" parent="Top/TowerNoTower/Active/Selections"]
 script = ExtResource("8_m3t7t")
-tower = SubResource("Resource_i7v2g")
 
 [node name="mesh" parent="Top/TowerNoTower/Active/Selections/s_ballista" instance=ExtResource("3_u5wxm")]
 transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 0.5, 0.5)
 
-[node name="selection" parent="Top/TowerNoTower/Active/Selections/s_ballista/mesh" instance=ExtResource("6_rjnjd")]
+[node name="selection-a3" parent="Top/TowerNoTower/Active/Selections/s_ballista/mesh" instance=ExtResource("6_rjnjd")]
 transform = Transform3D(-5.02681e-08, 0, -1.15, 0, 1.15, 0, 1.15, 0, -5.02681e-08, 0, 0, 0)
 
 [node name="Rotator" type="Node" parent="Top/TowerNoTower/Active/Selections" node_paths=PackedStringArray("node")]
 script = ExtResource("3_uxw6g")
 node = NodePath("..")
+
+[node name="tower-round-base2" parent="Top/TowerNoTower/Active" instance=ExtResource("2_unpa3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00458026, 0.107961, -0.0066607)
+visible = false

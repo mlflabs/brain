@@ -3,7 +3,7 @@ class_name BrainActionEmoji
 
 
 @export var emoji:Emoji
-@export var state: Emoji.States
+@export var state: Utils.EmojiStates
 
 func on_enter():
 	emoji.change_state(state)
