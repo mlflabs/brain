@@ -1,5 +1,5 @@
-extends Node
-
+extends Effect
+class_name EffectRotation
 
 @export var node:Node3D
 
@@ -8,7 +8,7 @@ extends Node
 @onready var tween: Tween
 
 
-func _ready():
+func start():
 	
 	var target_rotation_radians = deg_to_rad(target_rotation_degrees)
 	var end_rotation = node.rotation
@@ -20,6 +20,7 @@ func _ready():
 	tween.set_loops()
 	tween.tween_callback(sequence_finished) # Call the function again to loop
 
+	
 
 func sequence_finished():
 	print("Tween sequence completed!")

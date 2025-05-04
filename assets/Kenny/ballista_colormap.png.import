@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxn2cki6q8oqg"
-path.s3tc="res://.godot/imported/emote_drops.png-9ca96c5e26e258ca3bc5d10e6cb8431a.s3tc.ctex"
+uid="uid://c1bfu7nu8sc6"
+path.s3tc="res://.godot/imported/ballista_colormap.png-37af72ba48f7a9c413b5fd7eaac59853.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "1f74a2e3f98596cf011af556b596f0b1"
+}
 
 [deps]
 
-source_file="res://assets/Kenny/Icons/emote_drops.png"
-dest_files=["res://.godot/imported/emote_drops.png-9ca96c5e26e258ca3bc5d10e6cb8431a.s3tc.ctex"]
+source_file="res://assets/Kenny/ballista_colormap.png"
+dest_files=["res://.godot/imported/ballista_colormap.png-37af72ba48f7a9c413b5fd7eaac59853.s3tc.ctex"]
 
 [params]
 

@@ -12,6 +12,7 @@ polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 4), PackedInt32Arr
 agent_radius = 0.1
 
 [node name="NavigationRegion3D" type="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.998066, 0, 0, 0)
 navigation_mesh = SubResource("NavigationMesh_idj7w")
 script = ExtResource("1_tj5wv")
 
@@ -38,75 +39,77 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2184, -0.393585, -3.48156)
 size = Vector3(24.4867, 1, 2.58548)
 material = ExtResource("5_xylue")
 
-[node name="Tree1" parent="." instance=ExtResource("6_tj5wv")]
+[node name="Vegetation" type="Node" parent="."]
+
+[node name="Tree1" parent="Vegetation" instance=ExtResource("6_tj5wv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.286, 0, 15.4925)
 type = 1
 effect = 1
 
-[node name="Tree2" parent="." instance=ExtResource("6_tj5wv")]
+[node name="Tree2" parent="Vegetation" instance=ExtResource("6_tj5wv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.09337, 0, 6.32178)
 type = 1
 effect = 1
 
-[node name="Tree3" parent="." instance=ExtResource("6_tj5wv")]
+[node name="Tree3" parent="Vegetation" instance=ExtResource("6_tj5wv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3966, 0, 3.35895)
 type = 1
 effect = 1
 
-[node name="Tree4" parent="." instance=ExtResource("6_tj5wv")]
+[node name="Tree4" parent="Vegetation" instance=ExtResource("6_tj5wv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.0071, 0, 20.6922)
 type = 1
 effect = 1
 
-[node name="Tree5" parent="." instance=ExtResource("6_tj5wv")]
+[node name="Tree5" parent="Vegetation" instance=ExtResource("6_tj5wv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7305, 0, 20.6)
 type = 1
 effect = 1
 
-[node name="Tree6" parent="." instance=ExtResource("6_tj5wv")]
+[node name="Tree6" parent="Vegetation" instance=ExtResource("6_tj5wv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.0912, 0, 22.7606)
 type = 1
 effect = 1
 
-[node name="Tree7" parent="." instance=ExtResource("6_tj5wv")]
+[node name="Tree7" parent="Vegetation" instance=ExtResource("6_tj5wv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4154, 0, 21.4997)
 type = 1
 effect = 1
 
-[node name="Tree8" parent="." instance=ExtResource("6_tj5wv")]
+[node name="Tree8" parent="Vegetation" instance=ExtResource("6_tj5wv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.286, 0, -1.34593)
 type = 1
 effect = 1
 
-[node name="Tree9" parent="." instance=ExtResource("6_tj5wv")]
+[node name="Tree9" parent="Vegetation" instance=ExtResource("6_tj5wv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.286, 0, 1.75035)
 type = 1
 effect = 1
 
-[node name="Tree10" parent="." instance=ExtResource("6_tj5wv")]
+[node name="Tree10" parent="Vegetation" instance=ExtResource("6_tj5wv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4409, 0, 20.0456)
 type = 1
 effect = 1
 
-[node name="Tree11" parent="." instance=ExtResource("6_tj5wv")]
+[node name="Tree11" parent="Vegetation" instance=ExtResource("6_tj5wv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.1859, 0, 21.9587)
 type = 1
 effect = 1
 
-[node name="Tree12" parent="." instance=ExtResource("6_tj5wv")]
+[node name="Tree12" parent="Vegetation" instance=ExtResource("6_tj5wv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.002, 0, 21.4666)
 type = 1
 effect = 1
 
-[node name="Tree13" parent="." instance=ExtResource("6_tj5wv")]
+[node name="Tree13" parent="Vegetation" instance=ExtResource("6_tj5wv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.198, 0, 7.36321)
 type = 1
 effect = 1
 
-[node name="Tree14" parent="." instance=ExtResource("6_tj5wv")]
+[node name="Tree14" parent="Vegetation" instance=ExtResource("6_tj5wv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.286, 0, 20.1864)
 type = 1
 effect = 1
 
-[node name="StaticBody3D" parent="." instance=ExtResource("5_tj5wv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.4008, 0.062086, 13.339)
+[node name="TowerParent" parent="." instance=ExtResource("5_tj5wv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.00194, -11.4533, -0.0835093, 9.24215)

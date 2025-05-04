@@ -4,6 +4,7 @@ class_name TowerStage
 @export var level:int = 0
 @export var cost_wood:int = 1
 @export var cost_gold:int = 1
+@export var scene:PackedScene
 
 @export var attack:int = 1
 @export var cooldown:float = 1

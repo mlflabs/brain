@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://bmtp6a1mgqxnj"]
+
+[ext_resource type="Script" uid="uid://bhrvawkktuwoj" path="res://Scripts/Classes/Towers/tower_ballista_0.gd" id="1_7gkd6"]
+[ext_resource type="Script" uid="uid://dr5y0x7opgc6c" path="res://Scripts/Classes/triggered_countdown.gd" id="1_dtvin"]
+[ext_resource type="Script" uid="uid://b5djwttq0w6f5" path="res://Scripts/Classes/Towers/Area3D_Trigger.gd" id="2_7gkd6"]
+[ext_resource type="Script" uid="uid://15oxitg723rc" path="res://addons/radial_progress/RadialProgress.gd" id="3_pviii"]
+[ext_resource type="PackedScene" uid="uid://osy2o32i46oi" path="res://assets/Kenny/TowerDefense/weapon-ballista.glb" id="4_3vg5h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fhm4x"]
+size = Vector3(4.26538, 4.27405, 0.412109)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_5rrr5"]
+viewport_path = NodePath("SubViewport")
+
+[node name="tower_ballista_0" type="Node3D" node_paths=PackedStringArray("trigger")]
+transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, 1, 0, -0.25, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_7gkd6")
+trigger = NodePath("countdown")
+
+[node name="countdown" type="Node" parent="." node_paths=PackedStringArray("progress", "trigger")]
+script = ExtResource("1_dtvin")
+progress = NodePath("../SubViewport/RadialProgress")
+trigger = NodePath("../Area3D")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 2
+script = ExtResource("2_7gkd6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13269, -0.0405885, 0.176332)
+shape = SubResource("BoxShape3D_fhm4x")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.42384e-07, 1.38628)
+texture = SubResource("ViewportTexture_5rrr5")
+
+[node name="weapon-ballista2" parent="." instance=ExtResource("4_3vg5h")]
+transform = Transform3D(4.435, 0, 0, 0, -4.84759e-08, -4.435, 0, 1.109, -1.9386e-07, 0, 0, 0)
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(500, 512)
+
+[node name="RadialProgress" type="Control" parent="SubViewport"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 250.0
+offset_top = 250.0
+offset_right = 750.0
+offset_bottom = 750.0
+scale = Vector2(2.23, 2.23)
+script = ExtResource("3_pviii")
+radius = 100.0
+progress = 7.77
+thickness = 50.0
+ring = true
+nb_points = 128
+
+[node name="TextureRect" type="TextureRect" parent="SubViewport"]
+offset_right = 40.0
+offset_bottom = 40.0

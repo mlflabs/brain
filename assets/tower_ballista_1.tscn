@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c87uiyqgu66jw"]
+
+[ext_resource type="PackedScene" uid="uid://b4nser0dao6q2" path="res://assets/Kenny/TowerDefense/tower-round-bottom-c.glb" id="1_mp8yx"]
+[ext_resource type="PackedScene" uid="uid://osy2o32i46oi" path="res://assets/Kenny/TowerDefense/weapon-ballista.glb" id="2_0hwdc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mp8yx"]
+size = Vector3(1, 1.33081, 1)
+
+[node name="ballista_1" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.165405, 0)
+shape = SubResource("BoxShape3D_mp8yx")
+
+[node name="base" parent="." instance=ExtResource("1_mp8yx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.00194, 0, 0, 0)
+
+[node name="weapon" parent="." instance=ExtResource("2_0hwdc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.00194, 0, 0.443443, 0)

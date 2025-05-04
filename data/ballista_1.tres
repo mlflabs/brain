@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TowerStage" load_steps=3 format=3 uid="uid://dtebrcuiayn4n"]
+
+[ext_resource type="Script" uid="uid://d3ksy3vdsjluv" path="res://Scripts/Resources/TowerStage.gd" id="1_a3w77"]
+[ext_resource type="PackedScene" uid="uid://c87uiyqgu66jw" path="res://assets/tower_ballista_1.tscn" id="1_kwx1b"]
+
+[resource]
+script = ExtResource("1_a3w77")
+level = 1
+cost_wood = 1
+cost_gold = 1
+scene = ExtResource("1_kwx1b")
+attack = 1
+cooldown = 1.0
+cost_work = 1
+metadata/_custom_type_script = "uid://d3ksy3vdsjluv"
