@@ -1,0 +1,103 @@
+[gd_scene load_steps=16 format=3 uid="uid://lq383vg71ioa"]
+
+[ext_resource type="Script" uid="uid://dsnlvqkx05ymq" path="res://Scripts/Classes/Towers/tower_ballista.gd" id="1_n7qqb"]
+[ext_resource type="PackedScene" uid="uid://b4nser0dao6q2" path="res://assets/Kenny/TowerDefense/tower-round-bottom-c.glb" id="1_vx0k7"]
+[ext_resource type="PackedScene" uid="uid://c6wuvnybtsd8o" path="res://assets/Kenny/ballista.glb" id="2_n7qqb"]
+[ext_resource type="PackedScene" uid="uid://c3qya1t16c8vs" path="res://assets/Kenny/TowerDefense/weapon-ammo-arrow.glb" id="3_vmyv3"]
+[ext_resource type="Script" uid="uid://4narl7hcf3si" path="res://Scripts/Brain/BrainBoard.gd" id="5_vuki0"]
+[ext_resource type="Script" uid="uid://dum72xbrhjpq2" path="res://Scripts/Brain/BrainAgent.gd" id="6_ael6y"]
+[ext_resource type="Script" uid="uid://cc7fba2ldx1j2" path="res://Scripts/Brain/Considerations/BrainConsiderationBBValidTarget.gd" id="7_0yl2t"]
+[ext_resource type="Script" uid="uid://pp6jh1a56vm3" path="res://Scripts/Brain/States/BrainStateActions.gd" id="8_0yl2t"]
+[ext_resource type="Script" uid="uid://c6csi8s37ifd8" path="res://Scripts/Brain/Actions/BrainActionRotateTarget.gd" id="9_0yl2t"]
+[ext_resource type="Script" uid="uid://bfnlfmbgnrhlo" path="res://Scripts/Brain/Actions/Tower/BrainActionTowerClearDeadTargets.gd" id="10_iislt"]
+[ext_resource type="Script" uid="uid://ostptb0aygoy" path="res://Scripts/Brain/Actions/Tower/BrainActionTowerSetTarget.gd" id="11_2sw0o"]
+[ext_resource type="Script" uid="uid://edoydr0od3k6" path="res://Scripts/Brain/Considerations/Tower/BCTowerHasTargets.gd" id="12_3pwor"]
+[ext_resource type="Script" uid="uid://ckkiuwu6ni03x" path="res://Scripts/Brain/States/BrainStateWait.gd" id="13_612el"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vx0k7"]
+radius = 0.420828
+height = 1.2203
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vmyv3"]
+radius = 2.74551
+
+[node name="tower_ballista_1" type="StaticBody3D"]
+script = ExtResource("1_n7qqb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.251892, 0)
+shape = SubResource("CapsuleShape3D_vx0k7")
+
+[node name="base" parent="." instance=ExtResource("1_vx0k7")]
+
+[node name="top" type="Node3D" parent="."]
+
+[node name="weapon" parent="top" instance=ExtResource("2_n7qqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.408285, 0)
+
+[node name="bullet" parent="top" instance=ExtResource("3_vmyv3")]
+transform = Transform3D(0.994955, 0.100327, 0, -0.100327, 0.994955, 0, 0, 0, 1, -0.00375766, 0.82726, 0.105678)
+
+[node name="Area3D_Scanner" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D_Scanner"]
+shape = SubResource("SphereShape3D_vmyv3")
+
+[node name="BrainBoard" type="Node" parent="."]
+script = ExtResource("5_vuki0")
+metadata/_custom_type_script = "uid://4narl7hcf3si"
+
+[node name="BrainAgent" type="Node" parent="."]
+script = ExtResource("6_ael6y")
+metadata/_custom_type_script = "uid://dum72xbrhjpq2"
+
+[node name="BrainConsiderationBBValidTarget" type="Node" parent="BrainAgent" node_paths=PackedStringArray("bb")]
+script = ExtResource("7_0yl2t")
+bb = NodePath("../../BrainBoard")
+valid_key_score = 0.5
+brain_name = "Tower_Has_Target"
+metadata/_custom_type_script = "uid://cc7fba2ldx1j2"
+
+[node name="BrainStateActions" type="Node" parent="BrainAgent/BrainConsiderationBBValidTarget"]
+script = ExtResource("8_0yl2t")
+metadata/_custom_type_script = "uid://pp6jh1a56vm3"
+
+[node name="BrainActionRotateToBBTarget" type="Node" parent="BrainAgent/BrainConsiderationBBValidTarget/BrainStateActions" node_paths=PackedStringArray("bb")]
+script = ExtResource("9_0yl2t")
+bb = NodePath("../../../../BrainBoard")
+buffer = 0.01
+rotate_speed_key = "prop_rotation_speed"
+metadata/_custom_type_script = "uid://c6csi8s37ifd8"
+
+[node name="BrainConsiderationBBValidTarget2" type="Node" parent="BrainAgent" node_paths=PackedStringArray("bb")]
+script = ExtResource("7_0yl2t")
+bb = NodePath("../../BrainBoard")
+valid_key_score = 0.0
+invalid_key_score = 0.3
+brain_name = "Tower_Has_No_Target"
+metadata/_custom_type_script = "uid://cc7fba2ldx1j2"
+
+[node name="BrainStateActions" type="Node" parent="BrainAgent/BrainConsiderationBBValidTarget2"]
+script = ExtResource("8_0yl2t")
+metadata/_custom_type_script = "uid://pp6jh1a56vm3"
+
+[node name="BrainActionTowerClearDeadTargets" type="Node" parent="BrainAgent/BrainConsiderationBBValidTarget2/BrainStateActions" node_paths=PackedStringArray("tower")]
+script = ExtResource("10_iislt")
+tower = NodePath("../../../..")
+metadata/_custom_type_script = "uid://bfnlfmbgnrhlo"
+
+[node name="BrainActionTowerSetTarget" type="Node" parent="BrainAgent/BrainConsiderationBBValidTarget2/BrainStateActions" node_paths=PackedStringArray("tower", "bb")]
+script = ExtResource("11_2sw0o")
+tower = NodePath("../../../..")
+bb = NodePath("../../../../BrainBoard")
+metadata/_custom_type_script = "uid://ostptb0aygoy"
+
+[node name="BCTowerHasTargets" type="Node" parent="BrainAgent" node_paths=PackedStringArray("tower")]
+script = ExtResource("12_3pwor")
+tower = NodePath("../..")
+brain_name = "TowerHas0Targers"
+metadata/_custom_type_script = "uid://edoydr0od3k6"
+
+[node name="BrainStateWait" type="Node" parent="BrainAgent/BCTowerHasTargets"]
+script = ExtResource("13_612el")
+metadata/_custom_type_script = "uid://ckkiuwu6ni03x"

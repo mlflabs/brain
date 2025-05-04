@@ -8,6 +8,7 @@ class_name TowerStage
 
 @export var attack:int = 1
 @export var cooldown:float = 1
+@export var rotation_speed:float = 1
 
 #how much work it takes to build, same as life for creeps
 @export var cost_work:int = 1

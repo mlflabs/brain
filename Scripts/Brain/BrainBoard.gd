@@ -5,6 +5,9 @@ class_name BrainBoard
 
 const DEFAULT = "default"
 
+var target
+var root
+
 
 ## The blackboard is an object that can be used to store and access data between
 ## multiple nodes of the behavior tree.

@@ -8,7 +8,7 @@ const CREEPS_KEY = "creeps"
 @export var creep: PackedScene
 @export var creep_parent: Node
 
-@export var timer_wave:float = 10
+@export var timer_wave:float = 2
 @export var timer_creep:float = 0.5
 
 
