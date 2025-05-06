@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://lq383vg71ioa"]
+[gd_scene load_steps=17 format=3 uid="uid://lq383vg71ioa"]
 
 [ext_resource type="Script" uid="uid://dsnlvqkx05ymq" path="res://Scripts/Classes/Towers/tower_ballista.gd" id="1_n7qqb"]
 [ext_resource type="PackedScene" uid="uid://b4nser0dao6q2" path="res://assets/Kenny/TowerDefense/tower-round-bottom-c.glb" id="1_vx0k7"]
+[ext_resource type="Resource" uid="uid://dtebrcuiayn4n" path="res://data/ballista_1.tres" id="2_612el"]
 [ext_resource type="PackedScene" uid="uid://c6wuvnybtsd8o" path="res://assets/Kenny/ballista.glb" id="2_n7qqb"]
 [ext_resource type="PackedScene" uid="uid://c3qya1t16c8vs" path="res://assets/Kenny/TowerDefense/weapon-ammo-arrow.glb" id="3_vmyv3"]
 [ext_resource type="Script" uid="uid://4narl7hcf3si" path="res://Scripts/Brain/BrainBoard.gd" id="5_vuki0"]
@@ -19,10 +20,14 @@ radius = 0.420828
 height = 1.2203
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_vmyv3"]
-radius = 2.74551
+margin = 0.0
+radius = 5.0
 
-[node name="tower_ballista_1" type="StaticBody3D"]
+[node name="tower_ballista_1" type="StaticBody3D" node_paths=PackedStringArray("scanner_area3d", "bb")]
 script = ExtResource("1_n7qqb")
+scanner_area3d = NodePath("Area3D_Scanner")
+data = ExtResource("2_612el")
+bb = NodePath("BrainBoard")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.251892, 0)
@@ -62,9 +67,10 @@ metadata/_custom_type_script = "uid://cc7fba2ldx1j2"
 script = ExtResource("8_0yl2t")
 metadata/_custom_type_script = "uid://pp6jh1a56vm3"
 
-[node name="BrainActionRotateToBBTarget" type="Node" parent="BrainAgent/BrainConsiderationBBValidTarget/BrainStateActions" node_paths=PackedStringArray("bb")]
+[node name="BrainActionRotateToBBTarget" type="Node" parent="BrainAgent/BrainConsiderationBBValidTarget/BrainStateActions" node_paths=PackedStringArray("bb", "tower")]
 script = ExtResource("9_0yl2t")
 bb = NodePath("../../../../BrainBoard")
+tower = NodePath("../../../..")
 buffer = 0.01
 rotate_speed_key = "prop_rotation_speed"
 metadata/_custom_type_script = "uid://c6csi8s37ifd8"
@@ -73,7 +79,7 @@ metadata/_custom_type_script = "uid://c6csi8s37ifd8"
 script = ExtResource("7_0yl2t")
 bb = NodePath("../../BrainBoard")
 valid_key_score = 0.0
-invalid_key_score = 0.3
+invalid_key_score = 0.2
 brain_name = "Tower_Has_No_Target"
 metadata/_custom_type_script = "uid://cc7fba2ldx1j2"
 
@@ -95,6 +101,8 @@ metadata/_custom_type_script = "uid://ostptb0aygoy"
 [node name="BCTowerHasTargets" type="Node" parent="BrainAgent" node_paths=PackedStringArray("tower")]
 script = ExtResource("12_3pwor")
 tower = NodePath("../..")
+has_targets_score = 0.0
+no_targets_score = 0.3
 brain_name = "TowerHas0Targers"
 metadata/_custom_type_script = "uid://edoydr0od3k6"
 

@@ -5,6 +5,7 @@ class_name  TowerBase
 @export var scanner_area3d: Area3D
 @export var data: TowerStage
 @export var bb: BrainBoard
+@export var bullet:Node3D
 
 var targets: Array[NpcEnemy] = []
 
@@ -18,10 +19,12 @@ func _ready() -> void:
 func on_entered(body):
 	if body is NpcEnemy:
 		targets.append(body)
+		print("New Target:::: ", targets.size())
 
 func on_exited(body):
 	if body is NpcEnemy:
 		targets.erase(body)
+		print("Remvoe Target:::: ", targets.size())
 
 func cleanup():
 	for t in targets:

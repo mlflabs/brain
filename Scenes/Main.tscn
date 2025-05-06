@@ -1,10 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://bgxygt6h17kxl"]
+[gd_scene load_steps=18 format=3 uid="uid://bgxygt6h17kxl"]
 
 [ext_resource type="PackedScene" uid="uid://2xhidvti6bfa" path="res://Scenes/Ui/resources.tscn" id="1_bmxlf"]
 [ext_resource type="Script" uid="uid://c78gp5y6mlwml" path="res://Scripts/Classes/Managers/WaveManager.gd" id="1_erwvk"]
 [ext_resource type="PackedScene" uid="uid://dgaexk2mqn6j8" path="res://addons/srcoder_thirdperson_controller/player.tscn" id="1_r150o"]
 [ext_resource type="PackedScene" uid="uid://6ulp4jr8arsk" path="res://Scenes/Creeps/creep1.tscn" id="2_2w5on"]
-[ext_resource type="PackedScene" uid="uid://bfvficdshqjxn" path="res://Scenes/npcs/npc.tscn" id="4_vy5pj"]
 [ext_resource type="PackedScene" uid="uid://dcmwngwlpcc1o" path="res://Scenes/Level.tscn" id="9_grg3l"]
 [ext_resource type="Script" uid="uid://cs8e3cxqdibst" path="res://Scenes/node_properties.gd" id="10_grg3l"]
 [ext_resource type="Script" uid="uid://1mrerf28m6y1" path="res://Scenes/node_npcs.gd" id="11_frkhe"]
@@ -47,9 +46,6 @@ environment = SubResource("Environment_pbw6q")
 
 [node name="Player" parent="." instance=ExtResource("1_r150o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1018, 0.00247574, 17.5635)
-
-[node name="Npc" parent="." instance=ExtResource("4_vy5pj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.191, 0, 8.415)
 
 [node name="NavigationRegion3D" parent="." instance=ExtResource("9_grg3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00716782, 0.00995731, 0.00571389)

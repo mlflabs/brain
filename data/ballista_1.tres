@@ -11,5 +11,6 @@ cost_gold = 1
 scene = ExtResource("1_kwx1b")
 attack = 1
 cooldown = 1.0
+rotation_speed = 5.0
 cost_work = 1
 metadata/_custom_type_script = "uid://d3ksy3vdsjluv"
