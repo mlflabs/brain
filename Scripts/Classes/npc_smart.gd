@@ -2,8 +2,7 @@ extends Npc
 class_name NpcSmart
 
 @export var stats:NpcStats
-#if 0, will be overwritten by stats.life
-@export var life:int = 0
+
 
 @export var selected: bool = false
 @export var action: Utils.ActionStates
@@ -13,9 +12,9 @@ class_name NpcSmart
 @export var npc_selector: NpcSelector
 
 func _ready() -> void:
+	super._ready()
 	BB.blackboard.set("name", name)
-	if life == 0:
-		life = stats.life
+
 
 
 func set_action(a: Utils.ActionStates, r:Utils.ResourceTypes, s:bool = false) ->void:

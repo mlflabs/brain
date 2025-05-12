@@ -6,8 +6,11 @@ class_name  TowerBase
 @export var data: TowerStage
 @export var bb: BrainBoard
 @export var bullet:Node3D
+@export var ap: AnimationPlayer
 
 var targets: Array[NpcEnemy] = []
+
+var bullet2:Node3D
 
 func _ready() -> void:
 	scanner_area3d.body_entered.connect(on_entered)
@@ -30,3 +33,20 @@ func cleanup():
 	for t in targets:
 		if !is_instance_valid(t):
 			targets.erase(t)
+
+func start():
+	if ap:
+		ap.play("fire")
+		return
+	
+	fire()
+
+func fire():
+	
+	bullet2 = bullet.duplicate()
+	
+	bullet2.global_position = bullet.global_position
+	
+	get_tree().current_scene.add_child(bullet2)
+	bullet.visible = false
+	bullet2.start(bb.target)

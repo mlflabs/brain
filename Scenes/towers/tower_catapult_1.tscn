@@ -1,0 +1,214 @@
+[gd_scene load_steps=25 format=3 uid="uid://drbml3yh78wgr"]
+
+[ext_resource type="Script" uid="uid://dsnlvqkx05ymq" path="res://Scripts/Classes/Towers/tower_ballista.gd" id="1_532ru"]
+[ext_resource type="Resource" uid="uid://dtebrcuiayn4n" path="res://data/ballista_1.tres" id="2_gq5kx"]
+[ext_resource type="PackedScene" uid="uid://c8gh5wfamlfy4" path="res://assets/Kenny/TowerDefense/tower-square-bottom-a.glb" id="3_gq5kx"]
+[ext_resource type="PackedScene" uid="uid://cdhglbmb0ditr" path="res://assets/Kenny/TowerDefense/weapon-catapult.glb" id="4_mywbv"]
+[ext_resource type="Script" uid="uid://br7ffol1uny6m" path="res://Scripts/Classes/Towers/bullet_base.gd" id="5_lfqsp"]
+[ext_resource type="PackedScene" uid="uid://cvjvlu0kxjbf6" path="res://assets/Kenny/TowerDefense/weapon-ammo-boulder.glb" id="5_qb0qt"]
+[ext_resource type="Script" uid="uid://4narl7hcf3si" path="res://Scripts/Brain/BrainBoard.gd" id="7_dpsf3"]
+[ext_resource type="PackedScene" uid="uid://suej7380t5p2" path="res://Scenes/Explosions/explosion_1.tscn" id="7_fjo8r"]
+[ext_resource type="Script" uid="uid://dum72xbrhjpq2" path="res://Scripts/Brain/BrainAgent.gd" id="8_gh7pu"]
+[ext_resource type="Script" uid="uid://edoydr0od3k6" path="res://Scripts/Brain/Considerations/Tower/BCTowerHasTargets.gd" id="9_uy4j8"]
+[ext_resource type="Script" uid="uid://pp6jh1a56vm3" path="res://Scripts/Brain/States/BrainStateActions.gd" id="10_m4gds"]
+[ext_resource type="Script" uid="uid://dq020rqtgnqsm" path="res://Scripts/Brain/Actions/Tower/BrainActionTowerFireAtTarget.gd" id="11_ulfj4"]
+[ext_resource type="Script" uid="uid://c6csi8s37ifd8" path="res://Scripts/Brain/Actions/BrainActionRotateTarget.gd" id="12_tqx5l"]
+[ext_resource type="Script" uid="uid://ostptb0aygoy" path="res://Scripts/Brain/Actions/Tower/BrainActionTowerSetTarget.gd" id="13_vau8t"]
+[ext_resource type="Script" uid="uid://cc7fba2ldx1j2" path="res://Scripts/Brain/Considerations/BrainConsiderationBBValidTarget.gd" id="14_chr26"]
+[ext_resource type="Script" uid="uid://bfnlfmbgnrhlo" path="res://Scripts/Brain/Actions/Tower/BrainActionTowerClearDeadTargets.gd" id="15_jfk4q"]
+[ext_resource type="Script" uid="uid://ckkiuwu6ni03x" path="res://Scripts/Brain/States/BrainStateWait.gd" id="16_qxp3n"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vx0k7"]
+radius = 0.420828
+height = 1.2203
+
+[sub_resource type="Animation" id="Animation_688fs"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("weapon-catapult/catapult")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_lfqsp"]
+resource_name = "fire"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("weapon-catapult/catapult")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.233333, 1, 0.449, 0, 0, 0.894, 0.54, 1, -0.178, 0, 0, 0.984, 0.84, 1, 0, 0, 0, 1)
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.233333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"fire"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dpsf3"]
+_data = {
+&"RESET": SubResource("Animation_688fs"),
+&"fire": SubResource("Animation_lfqsp")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_t1ru3"]
+radius = 0.146089
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fjo8r"]
+radius = 1.32653
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vmyv3"]
+margin = 0.0
+radius = 10.0
+
+[node name="tower_ballista_1" type="StaticBody3D" node_paths=PackedStringArray("scanner_area3d", "bb", "bullet", "ap")]
+script = ExtResource("1_532ru")
+scanner_area3d = NodePath("Area3D_Scanner")
+data = ExtResource("2_gq5kx")
+bb = NodePath("BrainBoard")
+bullet = NodePath("top/weapon/weapon-catapult/catapult/ammo")
+ap = NodePath("top/AnimationPlayer")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.251892, 0)
+shape = SubResource("CapsuleShape3D_vx0k7")
+
+[node name="base" parent="." instance=ExtResource("3_gq5kx")]
+
+[node name="top" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="top"]
+root_node = NodePath("../weapon")
+libraries = {
+&"": SubResource("AnimationLibrary_dpsf3")
+}
+
+[node name="weapon" parent="top" instance=ExtResource("4_mywbv")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.454653, 0)
+
+[node name="catapult" parent="top/weapon/weapon-catapult" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.406082, 0.0200293)
+rotation_edit_mode = 1
+
+[node name="ammo" parent="top/weapon/weapon-catapult/catapult" index="0" node_paths=PackedStringArray("particles", "area3d", "area3d_area_damage") instance=ExtResource("5_qb0qt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.00194, 0, 0.146884, -0.329699)
+script = ExtResource("5_lfqsp")
+lifespan = 3.0
+gravity = 8.0
+target_offset = Vector3(0, -2.895, 0)
+particles = NodePath("Explosion1")
+area3d = NodePath("Area3D")
+area3d_area_damage = NodePath("Area3D2")
+
+[node name="Area3D" type="Area3D" parent="top/weapon/weapon-catapult/catapult/ammo"]
+collision_mask = 17
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="top/weapon/weapon-catapult/catapult/ammo/Area3D"]
+shape = SubResource("SphereShape3D_t1ru3")
+
+[node name="Area3D2" type="Area3D" parent="top/weapon/weapon-catapult/catapult/ammo"]
+collision_mask = 17
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="top/weapon/weapon-catapult/catapult/ammo/Area3D2"]
+shape = SubResource("SphereShape3D_fjo8r")
+
+[node name="Explosion1" parent="top/weapon/weapon-catapult/catapult/ammo" instance=ExtResource("7_fjo8r")]
+transform = Transform3D(1, 0, 0, 0, 0.99878, 0, 0, 0, 0.999286, 0, 0, 0)
+
+[node name="GPUParticles3D" parent="top/weapon/weapon-catapult/catapult/ammo/Explosion1" index="0"]
+lifetime = 0.11
+
+[node name="Area3D_Scanner" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D_Scanner"]
+shape = SubResource("SphereShape3D_vmyv3")
+
+[node name="BrainBoard" type="Node" parent="."]
+script = ExtResource("7_dpsf3")
+metadata/_custom_type_script = "uid://4narl7hcf3si"
+
+[node name="BrainAgent" type="Node" parent="."]
+script = ExtResource("8_gh7pu")
+metadata/_custom_type_script = "uid://dum72xbrhjpq2"
+
+[node name="BCTowerHasTargets" type="Node" parent="BrainAgent" node_paths=PackedStringArray("tower")]
+script = ExtResource("9_uy4j8")
+tower = NodePath("../..")
+has_targets_score = 0.5
+brain_name = "Tower has targerts"
+metadata/_custom_type_script = "uid://edoydr0od3k6"
+
+[node name="BrainStateActions" type="Node" parent="BrainAgent/BCTowerHasTargets"]
+script = ExtResource("10_m4gds")
+metadata/_custom_type_script = "uid://pp6jh1a56vm3"
+
+[node name="BrainActionTowerSetTarget2" type="Node" parent="BrainAgent/BCTowerHasTargets/BrainStateActions" node_paths=PackedStringArray("tower", "bb")]
+script = ExtResource("11_ulfj4")
+tower = NodePath("../../../..")
+bb = NodePath("../../../../BrainBoard")
+metadata/_custom_type_script = "uid://dq020rqtgnqsm"
+
+[node name="BrainActionRotateToBBTarget" type="Node" parent="BrainAgent/BCTowerHasTargets/BrainStateActions" node_paths=PackedStringArray("bb", "tower")]
+script = ExtResource("12_tqx5l")
+bb = NodePath("../../../../BrainBoard")
+tower = NodePath("../../../..")
+buffer = 5.0
+rotate_speed_key = "prop_rotation_speed"
+rotation_speed_deg_per_sec = 45.0
+metadata/_custom_type_script = "uid://c6csi8s37ifd8"
+
+[node name="BrainActionTowerSetTarget" type="Node" parent="BrainAgent/BCTowerHasTargets/BrainStateActions" node_paths=PackedStringArray("tower", "bb")]
+script = ExtResource("13_vau8t")
+tower = NodePath("../../../..")
+bb = NodePath("../../../../BrainBoard")
+reload_wait_time = 0.5
+finish_time = 1.5
+bullet_offset = Vector3(0, 0.147, -0.33)
+metadata/_custom_type_script = "uid://ostptb0aygoy"
+
+[node name="BrainConsiderationBBValidTarget2" type="Node" parent="BrainAgent" node_paths=PackedStringArray("bb")]
+script = ExtResource("14_chr26")
+bb = NodePath("../../BrainBoard")
+valid_key_score = 0.0
+invalid_key_score = 0.2
+brain_name = "Tower_Has_No_Target"
+metadata/_custom_type_script = "uid://cc7fba2ldx1j2"
+
+[node name="BrainStateActions" type="Node" parent="BrainAgent/BrainConsiderationBBValidTarget2"]
+script = ExtResource("10_m4gds")
+brain_name = "BrainStataActiions Invalid TArget"
+metadata/_custom_type_script = "uid://pp6jh1a56vm3"
+
+[node name="BrainActionTowerClearDeadTargets" type="Node" parent="BrainAgent/BrainConsiderationBBValidTarget2/BrainStateActions" node_paths=PackedStringArray("tower", "bb")]
+script = ExtResource("15_jfk4q")
+tower = NodePath("../../../..")
+bb = NodePath("../../../../BrainBoard")
+metadata/_custom_type_script = "uid://bfnlfmbgnrhlo"
+
+[node name="BCTowerHasNoTargets" type="Node" parent="BrainAgent" node_paths=PackedStringArray("tower")]
+script = ExtResource("9_uy4j8")
+tower = NodePath("../..")
+has_targets_score = 0.0
+no_targets_score = 0.3
+brain_name = "TowerHas0Targers"
+metadata/_custom_type_script = "uid://edoydr0od3k6"
+
+[node name="BrainStateWait" type="Node" parent="BrainAgent/BCTowerHasNoTargets"]
+script = ExtResource("16_qxp3n")
+time = 1.0
+metadata/_custom_type_script = "uid://ckkiuwu6ni03x"
+
+[editable path="top/weapon"]
+[editable path="top/weapon/weapon-catapult/catapult/ammo/Explosion1"]

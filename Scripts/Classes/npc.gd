@@ -7,12 +7,15 @@ class_name Npc
 @export var BB:BrainBoard
 @export var npc_stats: NpcStats
 @export var npc_anim: NpcAnim
-
+#if 0, will be overwritten by stats.life
+@export var life:int = 0
 var parent
-
 var target
-
 var on_destroy_callback
+
+func _ready():
+	if life == 0:
+		life = npc_stats.life
 
 
 func interupt(t):

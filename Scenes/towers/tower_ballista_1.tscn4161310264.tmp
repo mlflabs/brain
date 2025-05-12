@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://lq383vg71ioa"]
+[gd_scene load_steps=19 format=3 uid="uid://lq383vg71ioa"]
 
 [ext_resource type="Script" uid="uid://dsnlvqkx05ymq" path="res://Scripts/Classes/Towers/tower_ballista.gd" id="1_n7qqb"]
 [ext_resource type="PackedScene" uid="uid://b4nser0dao6q2" path="res://assets/Kenny/TowerDefense/tower-round-bottom-c.glb" id="1_vx0k7"]
@@ -21,12 +21,9 @@
 radius = 0.420828
 height = 1.2203
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_0wqsv"]
-radius = 0.0964832
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_vmyv3"]
 margin = 0.0
-radius = 10.0
+radius = 5.0
 
 [node name="tower_ballista_1" type="StaticBody3D" node_paths=PackedStringArray("scanner_area3d", "bb", "bullet")]
 script = ExtResource("1_n7qqb")
@@ -45,25 +42,14 @@ shape = SubResource("CapsuleShape3D_vx0k7")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="weapon" parent="top" instance=ExtResource("2_n7qqb")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.408285, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.408285, 0)
 
-[node name="bullet" type="Node3D" parent="top" node_paths=PackedStringArray("area3d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.854485, 0)
+[node name="bullet" type="Node3D" parent="top"]
 script = ExtResource("6_afv4k")
-speed = 10.0
-lifespan = 3.0
-gravity = 2.0
-area3d = NodePath("Area3D")
-
-[node name="Area3D" type="Area3D" parent="top/bullet"]
-transform = Transform3D(1, -5.28e-21, 0, 0, 1, 1.77636e-15, 0, 2.71051e-20, 1, -1.49012e-08, -0.0672407, -1.3027e-15)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="top/bullet/Area3D"]
-transform = Transform3D(1, 5.3781e-29, 0, 0, 1, 0, 0, 0, 1, 2.5033e-08, 0.0907909, -0.286344)
-shape = SubResource("SphereShape3D_0wqsv")
+speed = 2.0
 
 [node name="bullet" parent="top/bullet" instance=ExtResource("3_vmyv3")]
-transform = Transform3D(-0.994881, -0.101056, -8.74228e-08, -0.101056, 0.994881, 0, 8.69753e-08, 8.83463e-09, -1, 0, 0, 0)
+transform = Transform3D(0.994955, 0.100327, 0, -0.100327, 0.994955, 0, 0, 0, 1, -0.00375766, 0.82726, 0.105678)
 
 [node name="Area3D_Scanner" type="Area3D" parent="."]
 
@@ -99,17 +85,15 @@ metadata/_custom_type_script = "uid://dq020rqtgnqsm"
 script = ExtResource("9_0yl2t")
 bb = NodePath("../../../../BrainBoard")
 tower = NodePath("../../../..")
-buffer = 5.0
+buffer = 0.01
 rotate_speed_key = "prop_rotation_speed"
-rotation_speed_deg_per_sec = 45.0
 metadata/_custom_type_script = "uid://c6csi8s37ifd8"
 
 [node name="BrainActionTowerSetTarget" type="Node" parent="BrainAgent/BCTowerHasTargets/BrainStateActions" node_paths=PackedStringArray("tower", "bb")]
 script = ExtResource("11_2sw0o")
 tower = NodePath("../../../..")
 bb = NodePath("../../../../BrainBoard")
-reload_wait_time = 0.5
-finish_time = 1.5
+reload_wait_time = 1.0
 metadata/_custom_type_script = "uid://ostptb0aygoy"
 
 [node name="BrainConsiderationBBValidTarget2" type="Node" parent="BrainAgent" node_paths=PackedStringArray("bb")]

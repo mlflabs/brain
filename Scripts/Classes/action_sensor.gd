@@ -14,7 +14,7 @@ func on_body_entered(node):
 	if node is NpcWPCreeper:
 		printerr("hitting creep")
 		disable()
-		node.npc_stats.remove_life(player.calculated_strength)
+		node.damage(player.calculated_strength)
 		player.target = node
 		player.change_action(Utils.ActionStates.Attack)
 		GlobalBoard.blackboard.set(PropertyManager.KEY_PLAYER_TARGET, node)

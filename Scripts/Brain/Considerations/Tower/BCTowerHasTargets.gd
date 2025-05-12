@@ -6,8 +6,6 @@ class_name BCTowerHasTargets
 @export var no_targets_score : float = 0
 
 
-
-
 func get_score():
 	if tower.targets.is_empty():
 		return no_targets_score

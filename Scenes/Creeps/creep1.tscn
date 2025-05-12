@@ -15,13 +15,14 @@
 [ext_resource type="Script" uid="uid://bwtnxjnd36e7k" path="res://Scripts/Brain/Actions/BrainBoardActions/BrainActionWait.gd" id="11_xcg2l"]
 [ext_resource type="Script" uid="uid://2dhr0n4hbxl6" path="res://Scripts/Brain/Actions/BrainActionMoveWithAvoidance.gd" id="12_xcg2l"]
 
-[sub_resource type="Resource" id="Resource_eotv4"]
+[sub_resource type="Resource" id="Resource_mcuvf"]
 script = ExtResource("2_72wl0")
-life = 6
+life = 4
 strength = 1
 metadata/_custom_type_script = "uid://dvyl7g0ubvjku"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fq0cl"]
+radius = 0.472503
 
 [sub_resource type="SphereMesh" id="SphereMesh_hwpts"]
 
@@ -29,10 +30,10 @@ metadata/_custom_type_script = "uid://dvyl7g0ubvjku"
 
 [node name="Creep1" type="CharacterBody3D" node_paths=PackedStringArray("effect", "BA", "BB", "npc_anim")]
 script = ExtResource("1_16t62")
-stats = SubResource("Resource_eotv4")
 effect = NodePath("EffectShake")
 BA = NodePath("BrainAgent")
 BB = NodePath("BrainBoardNpc")
+npc_stats = SubResource("Resource_mcuvf")
 npc_anim = NodePath("NpcAnim")
 
 [node name="EffectShake" type="StaticBody3D" parent="." node_paths=PackedStringArray("mesh")]

@@ -5,6 +5,7 @@ extends Node
 
 const distance_reach_buffer:float = 0.4
 const tower_rotation_speed:float = 5
+const grond_y_level:float = .01
 
 const KEY_TARGET:String = "target"
 const KEY_PLAYER:String = "player"
