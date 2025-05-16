@@ -27,7 +27,6 @@ func on_entered(body):
 func on_exited(body):
 	if body is NpcEnemy:
 		targets.erase(body)
-		print("Remvoe Target:::: ", targets.size())
 
 func cleanup():
 	for t in targets:

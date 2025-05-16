@@ -1,8 +1,6 @@
 extends CharacterBody3D
 class_name Npc
 
-
-
 @export var BA:BrainAgent
 @export var BB:BrainBoard
 @export var npc_stats: NpcStats
@@ -30,6 +28,7 @@ func interupt(t):
 func loose_target(t):
 	if target == t:
 		BB.blackboard.set(PropertyManager.KEY_TARGET, null)
+		target = null
 		BA.interupt()
 
 func receive_damage(value:int):

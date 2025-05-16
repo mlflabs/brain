@@ -4,6 +4,8 @@ class_name NpcStats
 @export var life:int = 2
 @export var strength:int = 1
 
+@export var speed:float = 1
+
 
 
 

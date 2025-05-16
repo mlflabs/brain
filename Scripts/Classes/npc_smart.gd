@@ -1,9 +1,6 @@
 extends Npc
 class_name NpcSmart
 
-@export var stats:NpcStats
-
-
 @export var selected: bool = false
 @export var action: Utils.ActionStates
 @export var resource: Utils.ResourceTypes
@@ -11,9 +8,13 @@ class_name NpcSmart
 @export var npc_model_root : Node3D
 @export var npc_selector: NpcSelector
 
+@export var strength:int = 0
+
 func _ready() -> void:
 	super._ready()
 	BB.blackboard.set("name", name)
+	if strength == 0:
+		strength = npc_stats.strength
 
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://6ulp4jr8arsk"]
+[gd_scene load_steps=16 format=3 uid="uid://6ulp4jr8arsk"]
 
 [ext_resource type="Script" uid="uid://0dim3ha5y8k7" path="res://Scripts/Classes/npc/npc_path3d_creeper.gd" id="1_16t62"]
 [ext_resource type="Script" uid="uid://dvyl7g0ubvjku" path="res://Scripts/Resources/NpcStats.gd" id="2_72wl0"]
@@ -6,7 +6,11 @@
 [ext_resource type="Script" uid="uid://5xm5vsxyceah" path="res://Scripts/Brain/BrainBoardNpc.gd" id="2_x1fa8"]
 [ext_resource type="Script" uid="uid://p8tk42mnbnih" path="res://Scripts/Classes/npc/enemy_pointer.gd" id="3_etwnn"]
 [ext_resource type="Script" uid="uid://ds1c32y20tiig" path="res://Scripts/Classes/npc_anim.gd" id="3_t2dta"]
+[ext_resource type="Script" uid="uid://dum72xbrhjpq2" path="res://Scripts/Brain/BrainAgent.gd" id="4_etwnn"]
+[ext_resource type="Script" uid="uid://bdan8ph3hdfa2" path="res://Scripts/Brain/Considerations/BrainStaticConsideration.gd" id="5_xcg2l"]
+[ext_resource type="Script" uid="uid://pp6jh1a56vm3" path="res://Scripts/Brain/States/BrainStateActions.gd" id="6_mcuvf"]
 [ext_resource type="Material" uid="uid://fyvygjjo7ysh" path="res://assets/Kenny/kenney_prototype_tools/materials/red/material_02.tres" id="9_srfhi"]
+[ext_resource type="Script" uid="uid://2dhr0n4hbxl6" path="res://Scripts/Brain/Actions/BrainActionMoveWithAvoidance.gd" id="12_xcg2l"]
 
 [sub_resource type="Resource" id="Resource_mcuvf"]
 script = ExtResource("2_72wl0")
@@ -17,6 +21,32 @@ metadata/_custom_type_script = "uid://dvyl7g0ubvjku"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fq0cl"]
 radius = 0.786535
+
+[sub_resource type="GDScript" id="GDScript_t2dta"]
+script/source = "extends BrainAction
+class_name BrainActionGetNextWP
+
+@export var npc
+@export var bb:BrainBoardNpc
+
+
+func on_enter():
+	if npc.waypoint:
+		var d = npc.global_position.distance_to(npc.waypoint.position)
+		if npc.global_position.distance_to(npc.waypoint.position) < PropertyManager.distance_reach_buffer:
+			#get next wp
+			if npc.waypoint.end_wp:
+				npc.queue_free()
+			else:
+				npc.waypoint = npc.waypoint.next_wp
+				bb.nav_agent.set_target_position(npc.waypoint.position)
+		else:
+			bb.nav_agent.set_target_position(npc.waypoint.position)
+	else:
+		printerr(\"No waypoint specified\")
+	
+	parent.on_result(true)
+"
 
 [sub_resource type="SphereMesh" id="SphereMesh_hwpts"]
 
@@ -46,6 +76,29 @@ metadata/_custom_type_script = "uid://5xm5vsxyceah"
 [node name="NpcAnim" type="Node" parent="."]
 script = ExtResource("3_t2dta")
 metadata/_custom_type_script = "uid://ds1c32y20tiig"
+
+[node name="BrainAgent" type="Node" parent="."]
+script = ExtResource("4_etwnn")
+metadata/_custom_type_script = "uid://dum72xbrhjpq2"
+
+[node name="BrainStaticConsideration" type="Node" parent="BrainAgent"]
+script = ExtResource("5_xcg2l")
+value = 0.1
+metadata/_custom_type_script = "uid://bdan8ph3hdfa2"
+
+[node name="BrainStateActions" type="Node" parent="BrainAgent/BrainStaticConsideration"]
+script = ExtResource("6_mcuvf")
+metadata/_custom_type_script = "uid://pp6jh1a56vm3"
+
+[node name="BrainActionGetNextWP" type="Node" parent="BrainAgent/BrainStaticConsideration/BrainStateActions" node_paths=PackedStringArray("bb")]
+script = SubResource("GDScript_t2dta")
+bb = NodePath("../../../../BrainBoardNpc")
+metadata/_custom_type_script = "uid://c3cdo2revtl7"
+
+[node name="BrainActionMoveWithAvoidance" type="Node" parent="BrainAgent/BrainStaticConsideration/BrainStateActions" node_paths=PackedStringArray("bb")]
+script = ExtResource("12_xcg2l")
+bb = NodePath("../../../../BrainBoardNpc")
+metadata/_custom_type_script = "uid://2dhr0n4hbxl6"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = ExtResource("9_srfhi")

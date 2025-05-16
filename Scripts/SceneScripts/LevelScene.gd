@@ -22,7 +22,7 @@ func remove_item(item: StaticInteractableItem) ->void:
 		items_wood.erase(item)
 
 
-func find_closest_resource(pos: Vector3, type:Utils.ResourceTypes) -> StaticInteractableItem:
+func find_closest_resource(pos: Vector3, type:Utils.ResourceTypes, max_distance:float = INF) -> StaticInteractableItem:
 	var items = items_all
 	match type:
 		Utils.ResourceTypes.Wood:
@@ -35,7 +35,8 @@ func find_closest_resource(pos: Vector3, type:Utils.ResourceTypes) -> StaticInte
 	var distance:float
 	for	i in range(len(items)):
 		distance = pos.distance_squared_to(items[i].global_position)
-		if distance < closest_distance:
+		print("TREEEEEE Distance:::: ", distance)
+		if distance < closest_distance and distance < max_distance:
 			closest_distance = distance
 			closest_index = i
 	

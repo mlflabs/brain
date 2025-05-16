@@ -1,11 +1,11 @@
 [gd_scene load_steps=25 format=3 uid="uid://drbml3yh78wgr"]
 
-[ext_resource type="Script" uid="uid://dsnlvqkx05ymq" path="res://Scripts/Classes/Towers/tower_ballista.gd" id="1_532ru"]
+[ext_resource type="Script" uid="uid://dsnlvqkx05ymq" path="res://Scripts/Classes/Towers/tower_base.gd" id="1_532ru"]
 [ext_resource type="Resource" uid="uid://dtebrcuiayn4n" path="res://data/ballista_1.tres" id="2_gq5kx"]
 [ext_resource type="PackedScene" uid="uid://c8gh5wfamlfy4" path="res://assets/Kenny/TowerDefense/tower-square-bottom-a.glb" id="3_gq5kx"]
 [ext_resource type="PackedScene" uid="uid://cdhglbmb0ditr" path="res://assets/Kenny/TowerDefense/weapon-catapult.glb" id="4_mywbv"]
-[ext_resource type="Script" uid="uid://br7ffol1uny6m" path="res://Scripts/Classes/Towers/bullet_base.gd" id="5_lfqsp"]
 [ext_resource type="PackedScene" uid="uid://cvjvlu0kxjbf6" path="res://assets/Kenny/TowerDefense/weapon-ammo-boulder.glb" id="5_qb0qt"]
+[ext_resource type="Script" uid="uid://dyg13ssg7h2l4" path="res://Scripts/Classes/Towers/bullet_gravity.gd" id="6_fjo8r"]
 [ext_resource type="Script" uid="uid://4narl7hcf3si" path="res://Scripts/Brain/BrainBoard.gd" id="7_dpsf3"]
 [ext_resource type="PackedScene" uid="uid://suej7380t5p2" path="res://Scenes/Explosions/explosion_1.tscn" id="7_fjo8r"]
 [ext_resource type="Script" uid="uid://dum72xbrhjpq2" path="res://Scripts/Brain/BrainAgent.gd" id="8_gh7pu"]
@@ -72,7 +72,7 @@ radius = 1.32653
 margin = 0.0
 radius = 10.0
 
-[node name="tower_ballista_1" type="StaticBody3D" node_paths=PackedStringArray("scanner_area3d", "bb", "bullet", "ap")]
+[node name="tower_catapult_1" type="StaticBody3D" node_paths=PackedStringArray("scanner_area3d", "bb", "bullet", "ap")]
 script = ExtResource("1_532ru")
 scanner_area3d = NodePath("Area3D_Scanner")
 data = ExtResource("2_gq5kx")
@@ -102,15 +102,13 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.406082, 0.0200293)
 rotation_edit_mode = 1
 
-[node name="ammo" parent="top/weapon/weapon-catapult/catapult" index="0" node_paths=PackedStringArray("particles", "area3d", "area3d_area_damage") instance=ExtResource("5_qb0qt")]
+[node name="ammo" parent="top/weapon/weapon-catapult/catapult" index="0" node_paths=PackedStringArray("area3d", "area3d_area_damage", "particles") instance=ExtResource("5_qb0qt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.00194, 0, 0.146884, -0.329699)
-script = ExtResource("5_lfqsp")
-lifespan = 3.0
-gravity = 8.0
-target_offset = Vector3(0, -2.895, 0)
-particles = NodePath("Explosion1")
+script = ExtResource("6_fjo8r")
 area3d = NodePath("Area3D")
 area3d_area_damage = NodePath("Area3D2")
+lifespan = 3.0
+particles = NodePath("Explosion1")
 
 [node name="Area3D" type="Area3D" parent="top/weapon/weapon-catapult/catapult/ammo"]
 collision_mask = 17

@@ -11,13 +11,12 @@ func _ready() -> void:
 
 
 func on_body_entered(node):
-	if node is NpcWPCreeper:
-		printerr("hitting creep")
+	if node is enemy_pointer:
 		disable()
-		node.damage(player.calculated_strength)
+		node.npc.damage(player.calculated_strength)
 		player.target = node
 		player.change_action(Utils.ActionStates.Attack)
-		GlobalBoard.blackboard.set(PropertyManager.KEY_PLAYER_TARGET, node)
+		GlobalBoard.blackboard.set(PropertyManager.KEY_PLAYER_TARGET, node.npc)
 
 	if node is StaticInteractableItem:
 		node.damage(player.calculated_strength)

@@ -13,6 +13,8 @@ class_name  StaticInteractableItem
 @export var shake_speed: float = 20.0
 @export var shake_cool_down: float = 0.2
 
+var callable:Callable
+
 var current_shake_intensity:float = 0
 
 
@@ -57,4 +59,6 @@ func stop_shake():
 
 func remove():
 	MapManager.level.remove_item(self)
+	if callable:
+		callable.call(self)
 	queue_free()

@@ -1,0 +1,118 @@
+[gd_scene load_steps=20 format=3 uid="uid://dpt3p5vkutp1c"]
+
+[ext_resource type="Script" uid="uid://ypooxrd6yadn" path="res://Scripts/Classes/Towers/tower_worker.gd" id="1_pgi3s"]
+[ext_resource type="PackedScene" uid="uid://ctu07eoutqhvm" path="res://assets/Kenny/FantasyTownKit/chimneyTop.glb" id="3_pgi3s"]
+[ext_resource type="Script" uid="uid://br7ffol1uny6m" path="res://Scripts/Classes/Towers/bullet_base.gd" id="4_48m8r"]
+[ext_resource type="PackedScene" uid="uid://c2gtt5l3moul3" path="res://assets/Kenny/FantasyTownKit/wallWood.glb" id="4_pgi3s"]
+[ext_resource type="PackedScene" uid="uid://bnfcu3hhafntl" path="res://assets/Kenny/FantasyTownKit/roofFlat.glb" id="4_y2ic6"]
+[ext_resource type="PackedScene" uid="uid://c3qya1t16c8vs" path="res://assets/Kenny/TowerDefense/weapon-ammo-arrow.glb" id="5_pgi3s"]
+[ext_resource type="PackedScene" uid="uid://c7itt8a7acchv" path="res://assets/Kenny/FantasyTownKit/wallWoodDoor.glb" id="5_y2ic6"]
+[ext_resource type="PackedScene" uid="uid://svl77m5uonro" path="res://assets/Kenny/FantasyTownKit/fence.glb" id="6_8soe3"]
+[ext_resource type="Script" uid="uid://4narl7hcf3si" path="res://Scripts/Brain/BrainBoard.gd" id="6_y2ic6"]
+[ext_resource type="Script" uid="uid://dum72xbrhjpq2" path="res://Scripts/Brain/BrainAgent.gd" id="7_8soe3"]
+[ext_resource type="Script" uid="uid://b6q1gfigh4qe7" path="res://Scripts/Brain/CFunctions/BF_GetResource.gd" id="11_y2ic6"]
+[ext_resource type="Script" uid="uid://dkli8aojrmr0g" path="res://Scripts/Brain/CFunctions/BF_RunCollable.gd" id="12_8soe3"]
+[ext_resource type="Script" uid="uid://bdan8ph3hdfa2" path="res://Scripts/Brain/Considerations/BrainStaticConsideration.gd" id="13_bisag"]
+[ext_resource type="Script" uid="uid://ckkiuwu6ni03x" path="res://Scripts/Brain/States/BrainStateWait.gd" id="14_qluo5"]
+[ext_resource type="Script" uid="uid://dvyl7g0ubvjku" path="res://Scripts/Resources/NpcStats.gd" id="16_bisag"]
+[ext_resource type="PackedScene" uid="uid://bl4jpthxyu71j" path="res://Scenes/npcs/npc_tower.tscn" id="19_y2ic6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bisag"]
+size = Vector3(1.479, 0.899048, 1.32129)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vmyv3"]
+margin = 0.0
+radius = 10.0
+
+[sub_resource type="Resource" id="Resource_48m8r"]
+script = ExtResource("16_bisag")
+life = 2
+strength = 1
+speed = 1.0
+metadata/_custom_type_script = "uid://dvyl7g0ubvjku"
+
+[node name="tower_worker_1" type="StaticBody3D" node_paths=PackedStringArray("workers", "scanner_area3d", "bb")]
+script = ExtResource("1_pgi3s")
+workers = [NodePath("Npc")]
+scanner_area3d = NodePath("Area3D_Scanner")
+bb = NodePath("BrainBoard")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.239502, 0.400268, 0.160645)
+shape = SubResource("BoxShape3D_bisag")
+
+[node name="base" type="Node3D" parent="."]
+
+[node name="chimneyTop2" parent="base" instance=ExtResource("3_pgi3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.552163, 0.639332, 0.193465)
+
+[node name="roofFlat2" parent="base" instance=ExtResource("4_y2ic6")]
+transform = Transform3D(1.39835, 0, 0, 0, 1, 0, 0, 0, 1.29695, 0, 0.958418, 0.05013)
+
+[node name="wallWood2" parent="base" instance=ExtResource("4_pgi3s")]
+transform = Transform3D(0.994939, 0, 0, 0, 0.994939, 0, 0, 0, 0.842908, 0.960015, 0, 0)
+
+[node name="wallWood3" parent="base" instance=ExtResource("4_pgi3s")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.105137, 0, 0)
+
+[node name="fence2" parent="base" instance=ExtResource("6_8soe3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.28829, 0, 0.452532)
+
+[node name="fence3" parent="base" instance=ExtResource("6_8soe3")]
+transform = Transform3D(-0.0500874, 0, -0.998745, 0, 1, 0, 0.998745, 0, -0.0500874, 0.32836, 0, 1.36808)
+
+[node name="wallWoodDoor2" parent="base" instance=ExtResource("5_y2ic6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.825205, 0.000171661, 0, 0.0685587)
+
+[node name="top" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="bullet" type="Node3D" parent="top"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.370421, 0)
+script = ExtResource("4_48m8r")
+speed = 20.0
+lifespan = 2.0
+distance_buffer = 0.5
+
+[node name="weapon-ammo-arrow2" parent="top/bullet" instance=ExtResource("5_pgi3s")]
+transform = Transform3D(-0.31, 0, 4.68087e-08, 0, 0.31, 0, -4.68087e-08, 0, -0.31, 0, -0.0128008, 0)
+
+[node name="Area3D_Scanner" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D_Scanner"]
+shape = SubResource("SphereShape3D_vmyv3")
+
+[node name="BrainBoard" type="Node" parent="."]
+script = ExtResource("6_y2ic6")
+metadata/_custom_type_script = "uid://4narl7hcf3si"
+
+[node name="BrainAgent" type="Node" parent="."]
+script = ExtResource("7_8soe3")
+metadata/_custom_type_script = "uid://dum72xbrhjpq2"
+
+[node name="BF_FindResource" type="Node" parent="BrainAgent" node_paths=PackedStringArray("bb", "position_node")]
+script = ExtResource("11_y2ic6")
+bb = NodePath("../../BrainBoard")
+position_node = NodePath("../..")
+max_distance = 100.0
+type = 1
+metadata/_custom_type_script = "uid://b6q1gfigh4qe7"
+
+[node name="BF_RunCollable" type="Node" parent="BrainAgent" node_paths=PackedStringArray("function_node")]
+script = ExtResource("12_8soe3")
+function_node = NodePath("../..")
+function_name = "set_worker_resource"
+metadata/_custom_type_script = "uid://dkli8aojrmr0g"
+
+[node name="BrainStaticConsideration" type="Node" parent="BrainAgent"]
+script = ExtResource("13_bisag")
+value = 0.242
+metadata/_custom_type_script = "uid://bdan8ph3hdfa2"
+
+[node name="BrainStateWait" type="Node" parent="BrainAgent/BrainStaticConsideration"]
+script = ExtResource("14_qluo5")
+metadata/_custom_type_script = "uid://ckkiuwu6ni03x"
+
+[node name="Npc" parent="." instance=ExtResource("19_y2ic6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.839106, 0.416915, -0.276516)
+npc_stats = SubResource("Resource_48m8r")

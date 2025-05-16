@@ -1,25 +1,25 @@
 extends BrainAction
-class_name BrainActionNpcSmartDealDamageTarget
+class_name BrainActionDealDamageTarget
 
 
 @export var npc:NpcSmart
 
-enum States {Start, Finished}
-var state:States
+enum state {Start, Finished}
+var current_state:state
 
 
 func on_enter():
-	state = States.Start
+	current_state = state.Start
 
 func tick(_delta:float):
-	match  state:
-		States.Start:
+	match  current_state:
+		state.Start:
 			if npc.target == null:
 				return parent.on_result(false)
 			if !is_instance_valid(npc.target):
 				return parent.on_result(false)
 			
 			npc.target.damage(npc.strength)
-			state = States.Finished
-		States.Finished:
+			current_state = state.Finished
+		state.Finished:
 			parent.on_result(true)

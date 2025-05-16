@@ -46,7 +46,7 @@ func tick_physics(delta:float):
 				return parent.on_result(true)	
 				
 			if reach_distance > 0:
-				if npc.npc.global_position.distance_to(target.global_position) < reach_distance:
+				if npc.global_position.distance_to(target.global_position) < reach_distance:
 					return parent.on_result(true)
 			
 			var next_nav_point = npc.nav_agent.get_next_path_position()	

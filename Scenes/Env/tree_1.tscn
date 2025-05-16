@@ -4,11 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://ccdl6slbj8rjw" path="res://assets/Kenny/FantasyTownKit/treeCrooked.glb" id="2_kyg1u"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_esopp"]
-height = 2.77465
+radius = 0.307186
+height = 2.1621
 
 [node name="Tree1" type="StaticBody3D"]
 script = ExtResource("1_lietq")
 shake_multiplier = 0.02
+type = 1
+effect = 1
 shake_speed = 1.0
 shake_cool_down = 0.02
 
@@ -16,6 +19,6 @@ shake_cool_down = 0.02
 transform = Transform3D(0.856267, 0, -0.516533, 0, 1, 0, 0.516533, 0, 0.856267, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.977622, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.801807, 0)
 shape = SubResource("CapsuleShape3D_esopp")
 debug_color = Color(0.820628, 0.318386, 0.633218, 0.42)

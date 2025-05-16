@@ -1,9 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://bgxygt6h17kxl"]
+[gd_scene load_steps=15 format=3 uid="uid://bgxygt6h17kxl"]
 
 [ext_resource type="PackedScene" uid="uid://2xhidvti6bfa" path="res://Scenes/Ui/resources.tscn" id="1_bmxlf"]
-[ext_resource type="Script" uid="uid://c78gp5y6mlwml" path="res://Scripts/Classes/Managers/WaveManager.gd" id="1_erwvk"]
 [ext_resource type="PackedScene" uid="uid://dgaexk2mqn6j8" path="res://addons/srcoder_thirdperson_controller/player.tscn" id="1_r150o"]
-[ext_resource type="PackedScene" uid="uid://6ulp4jr8arsk" path="res://Scenes/Creeps/creep1.tscn" id="2_2w5on"]
 [ext_resource type="PackedScene" uid="uid://dcmwngwlpcc1o" path="res://Scenes/Level.tscn" id="9_grg3l"]
 [ext_resource type="Script" uid="uid://cs8e3cxqdibst" path="res://Scenes/node_properties.gd" id="10_grg3l"]
 [ext_resource type="Script" uid="uid://1mrerf28m6y1" path="res://Scenes/node_npcs.gd" id="11_frkhe"]
@@ -13,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://b8jpim8h6aj8r" path="res://assets/Kenny/TowerDefense/detail-rocks.glb" id="13_2w5on"]
 [ext_resource type="PackedScene" uid="uid://fq2d3c5kvq4b" path="res://assets/Kenny/TowerDefense/snow-detail-dirt.glb" id="14_346fj"]
 [ext_resource type="PackedScene" uid="uid://cehp3qw86ie27" path="res://Scenes/towers/tower1.tscn" id="15_0sclb"]
-[ext_resource type="Script" uid="uid://cdxnbyx27pk8x" path="res://Scripts/Classes/WayPoint.gd" id="16_2w5on"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kln2b"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -32,15 +29,6 @@ glow_enabled = true
 
 [node name="Control" parent="." instance=ExtResource("1_bmxlf")]
 
-[node name="Managers" type="Node" parent="."]
-
-[node name="WaveManager" type="Node" parent="Managers" node_paths=PackedStringArray("start_waypoints", "waypoint", "creep_parent")]
-script = ExtResource("1_erwvk")
-start_waypoints = [NodePath("../../Waypoints/WayPoint 1 1")]
-waypoint = NodePath("../../Waypoints/WayPoint 1 1")
-creep = ExtResource("2_2w5on")
-creep_parent = NodePath("../../Creeps")
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pbw6q")
 
@@ -58,36 +46,6 @@ script = ExtResource("11_frkhe")
 
 [node name="NodeItems" type="Node" parent="."]
 script = ExtResource("12_1p5hy")
-
-[node name="Waypoints" type="Node" parent="."]
-
-[node name="WayPoint 1 1" type="Marker3D" parent="Waypoints" node_paths=PackedStringArray("next_wp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.9445, 0.298972, 10.6379)
-script = ExtResource("16_2w5on")
-next_wp = NodePath("../WayPoint 1 2")
-start_wp = true
-metadata/_custom_type_script = "uid://cdxnbyx27pk8x"
-
-[node name="WayPoint 1 2" type="Marker3D" parent="Waypoints" node_paths=PackedStringArray("prev_wp", "next_wp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0307, 0.298972, 10.6379)
-script = ExtResource("16_2w5on")
-prev_wp = NodePath("../WayPoint 1 1")
-next_wp = NodePath("../WayPoint 1 3")
-metadata/_custom_type_script = "uid://cdxnbyx27pk8x"
-
-[node name="WayPoint 1 3" type="Marker3D" parent="Waypoints" node_paths=PackedStringArray("prev_wp", "next_wp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2825, 0.298972, -4.09914)
-script = ExtResource("16_2w5on")
-prev_wp = NodePath("../WayPoint 1 2")
-next_wp = NodePath("../WayPoint 1 4")
-metadata/_custom_type_script = "uid://cdxnbyx27pk8x"
-
-[node name="WayPoint 1 4" type="Marker3D" parent="Waypoints" node_paths=PackedStringArray("prev_wp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.8111, 0.298972, -4.09914)
-script = ExtResource("16_2w5on")
-prev_wp = NodePath("../WayPoint 1 3")
-end_wp = true
-metadata/_custom_type_script = "uid://cdxnbyx27pk8x"
 
 [node name="Creeps" type="Node" parent="."]
 

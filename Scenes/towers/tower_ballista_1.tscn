@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://lq383vg71ioa"]
 
-[ext_resource type="Script" uid="uid://dsnlvqkx05ymq" path="res://Scripts/Classes/Towers/tower_ballista.gd" id="1_n7qqb"]
+[ext_resource type="Script" uid="uid://dsnlvqkx05ymq" path="res://Scripts/Classes/Towers/tower_base.gd" id="1_n7qqb"]
 [ext_resource type="PackedScene" uid="uid://b4nser0dao6q2" path="res://assets/Kenny/TowerDefense/tower-round-bottom-c.glb" id="1_vx0k7"]
 [ext_resource type="Resource" uid="uid://dtebrcuiayn4n" path="res://data/ballista_1.tres" id="2_612el"]
 [ext_resource type="PackedScene" uid="uid://c6wuvnybtsd8o" path="res://assets/Kenny/ballista.glb" id="2_n7qqb"]

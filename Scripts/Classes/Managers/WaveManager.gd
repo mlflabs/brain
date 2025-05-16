@@ -3,10 +3,11 @@ class_name WaveManager
 
 const CREEPS_KEY = "creeps"
 
-@export var start_waypoints: Array[WayPoint] = []
-@export var waypoint: WayPoint
+@export var paths:Array[Path3D]
+
+
 @export var creep: PackedScene
-@export var creep_parent: Node
+
 
 @export var timer_wave:float = 2
 @export var timer_creep:float = 0.5
@@ -15,7 +16,7 @@ const CREEPS_KEY = "creeps"
 
 var time:float
 
-var creeps:Array[NpcWPCreeper] = []
+var creeps:Array[NpcPathCreeper] = []
 
 func _ready() -> void:
 	time = 10
@@ -32,11 +33,11 @@ func _physics_process(delta: float) -> void:
 
 func start_wave():
 	var c = creep.instantiate()
-	creep_parent.add_child(c)
-	c.waypoint = waypoint
+	var rnd = randi_range(0, paths.size() - 1)
+	
+	paths[rnd].add_child(c)
 	c.on_destroy_callback = remove_creep
 	add_creep(c)
-	c.position = waypoint.position
 
 
 func remove_creep(node):

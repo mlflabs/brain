@@ -1,2 +1,0 @@
-extends NpcEnemy
-class_name NpcWPCreeper
